@@ -11,6 +11,10 @@
 
 @interface FWTableController : NSObject
 {
+	IBOutlet NSTableColumn *oBoolColumn;
+	IBOutlet NSTableColumn *oStringColumn;
 }
+
+- (IBAction)removeSelectedRow:(id)sender;
 
 @end

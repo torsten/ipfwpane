@@ -10,6 +10,7 @@
 
 
 @class SFAuthorizationView;
+@class FWTableController;
 
 
 @interface FWPrefPane : NSPreferencePane 
@@ -20,6 +21,11 @@
 	IBOutlet NSTableView *oTableView;
 	IBOutlet NSButton *oAddButton;
 	IBOutlet NSButton *oRemoveButton;
+	
+	IBOutlet NSWindow *oAddSheet;
+	IBOutlet NSWindow *oMainWindow;
+	
+	IBOutlet FWTableController *oTableController;
 }
 
 - (void)mainViewDidLoad;
@@ -30,10 +36,10 @@
 
 - (IBAction)addItem:(id)sender;
 
-- (IBAction)removeItem:(id)sender;
-
 - (void)enableFirewall;
 
 - (void)disableFirewall;
+
+- (IBAction)endSheet:(id)sender;
 
 @end

@@ -17,6 +17,7 @@
 		E569A6B60E850B17001ED27B /* FWPrefPane.h in Headers */ = {isa = PBXBuildFile; fileRef = E569A6B40E850B17001ED27B /* FWPrefPane.h */; };
 		E569A6B70E850B17001ED27B /* FWPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = E569A6B50E850B17001ED27B /* FWPrefPane.m */; };
 		E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */; };
+		E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E02EA80E856935003663D0 /* SecurityInterface.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E569A6B40E850B17001ED27B /* FWPrefPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWPrefPane.h; sourceTree = SOURCE_ROOT; };
 		E569A6B50E850B17001ED27B /* FWPrefPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWPrefPane.m; sourceTree = SOURCE_ROOT; };
 		E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
+		E5E02EA80E856935003663D0 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		F506C043013D9D8C01CA16C8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ipfwPanePref.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +45,7 @@
 			files = (
 				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
 				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
+				E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E5E02EA80E856935003663D0 /* SecurityInterface.framework */,
 				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
 				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
 			);

@@ -20,12 +20,39 @@
       objectValueForTableColumn:(NSTableColumn *)tableColumn
       row:(int)row
 {
-	return @"HMM";
+	// NSLog(@"Col: %d  Row: %d", tableColumn, row);
+	
+	if(tableColumn == oBoolColumn)
+		return [NSNumber numberWithInt:row];
+	
+	else
+		return @"HMM";
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectTableColumn:(NSTableColumn *)aTableColumn
+- (BOOL)tableView:(NSTableView *)pTableView
+shouldSelectTableColumn:(NSTableColumn *)pTableColumn
 {
 	return NO;
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	if(aTableColumn == oBoolColumn)
+		return YES;
+		
+	else
+		return NO;
+}
+
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	NSLog(@"NEW: %@", anObject);
+}
+
+- (IBAction)removeSelectedRow:(id)pSender
+{
+	NSLog(@"REMOVE");
 }
 
 

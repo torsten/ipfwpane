@@ -8,12 +8,20 @@
 
 #import "FWPrefPane.h"
 
+#import <SecurityInterface/SFAuthorizationView.h>
+
 
 @implementation FWPrefPane
 
 - (void)mainViewDidLoad
 {
+	[oAuthorizationView setString:"system.privilege.admin"];
+	[oAuthorizationView updateStatus:self];
+	
 	[self setUpIcon];
+	
+	// [oAuthorizationView setAutoupdate:YES];
+	// [oAuthorizationView setAuthorizationRights:&authorizationRights];
 }
 
 - (void)setUpIcon
@@ -22,7 +30,8 @@
 	
 	// NSImage *img = [NSImage imageNamed:@"ipfwPanePref.png"];
 	
-	NSString* path = [[self bundle] pathForResource:@"ipfwPanePref" ofType:@"png"];
+	NSString* path = [[self bundle] pathForResource:@"ipfwPanePref"
+			ofType:@"png"];
 	
 	// NSString *path = [[NSBundle mainBundle] pathForResource:@"ipfwPanePref"
 	// 	ofType:@"png"];
@@ -72,14 +81,24 @@
 
 - (IBAction)addItem:(id)pSender
 {
+	/*
+	The didEndSelector method is optional. If implemented by the modalDelegate, this method is invoked after the modal session has ended and is passed a return code and caller specified in contextInfo. didEndSelector should have the following signature:
+
+	- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+	*/
 	
+	[NSApp beginSheet:oAddSheet
+			modalForWindow:[NSApp mainWindow]
+			modalDelegate:nil
+			didEndSelector:nil
+			contextInfo:NULL];
 }
 
-- (IBAction)removeItem:(id)pSender
+- (IBAction)endSheet:(id)pSender
 {
-	
+	NSLog(@"END");
+	[NSApp endSheet:oAddSheet];
 }
-
 
 
 @end
