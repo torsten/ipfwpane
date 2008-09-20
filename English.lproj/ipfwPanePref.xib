@@ -218,7 +218,8 @@
 																</object>
 															</object>
 															<double key="NSRowHeight">1.700000e+01</double>
-															<int key="NSTvFlags">-700448768</int>
+															<int key="NSTvFlags">-1841299456</int>
+															<int key="NSGridStyleMask">1</int>
 															<int key="NSColumnAutoresizingStyle">4</int>
 															<int key="NSDraggingSourceMaskForLocal">15</int>
 															<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -519,7 +520,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				<string key="NSMinSize">{480, 292}</string>
 				<string key="NSMaxSize">{480, 292}</string>
 			</object>
-			<object class="NSUserDefaultsController" id="580911775">
+			<object class="NSUserDefaultsController" id="166525284">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>firewallEnabled</string>
@@ -775,6 +776,22 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						</object>
 					</object>
 					<int key="connectionID">225</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oPrefPane</string>
+						<reference key="source" ref="1030702136"/>
+						<reference key="destination" ref="294453543"/>
+					</object>
+					<int key="connectionID">226</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oTableView</string>
+						<reference key="source" ref="1030702136"/>
+						<reference key="destination" ref="58736736"/>
+					</object>
+					<int key="connectionID">227</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1055,7 +1072,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">193</int>
-						<reference key="object" ref="580911775"/>
+						<reference key="object" ref="166525284"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1189,7 +1206,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">225</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1254,12 +1271,16 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>oBoolColumn</string>
+							<string>oPrefPane</string>
 							<string>oStringColumn</string>
+							<string>oTableView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTableColumn</string>
+							<string>FWPrefPane</string>
 							<string>NSTableColumn</string>
+							<string>NSTableView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

@@ -100,10 +100,7 @@
 			[self setModifyButtonsAreEnabled:YES];
 	}
 	else
-	{
-		[self setTableIsEnabled:NO];
 		[self setModifyButtonsAreEnabled:NO];
-	}
 }
 
 

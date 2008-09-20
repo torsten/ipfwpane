@@ -7,6 +7,7 @@
 //
 
 #import "FWTableController.h"
+#import "FWPrefPane.h"
 
 
 @implementation FWTableController
@@ -44,6 +45,14 @@ shouldSelectTableColumn:(NSTableColumn *)pTableColumn
 		return NO;
 }
 
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+	if([oTableView selectedRow] == -1)
+		[oPrefPane enableModifyButtons:NO];
+	
+	else
+		[oPrefPane enableModifyButtons:YES];
+}
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {

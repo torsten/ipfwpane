@@ -9,10 +9,17 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class FWPrefPane;
+
+
 @interface FWTableController : NSObject
 {
 	IBOutlet NSTableColumn *oBoolColumn;
 	IBOutlet NSTableColumn *oStringColumn;
+	
+	IBOutlet NSTableView *oTableView;
+	
+	IBOutlet FWPrefPane *oPrefPane;
 }
 
 - (IBAction)removeSelectedRow:(id)sender;
