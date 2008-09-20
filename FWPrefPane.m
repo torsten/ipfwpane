@@ -11,8 +11,35 @@
 
 @implementation FWPrefPane
 
-- (void) mainViewDidLoad
+- (void)mainViewDidLoad
 {
+	[self setUpIcon];
+}
+
+- (void)setUpIcon
+{
+	NSLog(@"setUpIcon");
+	
+	// NSImage *img = [NSImage imageNamed:@"ipfwPanePref.png"];
+	
+	NSString* path = [[self bundle] pathForResource:@"ipfwPanePref" ofType:@"png"];
+	
+	// NSString *path = [[NSBundle mainBundle] pathForResource:@"ipfwPanePref"
+	// 	ofType:@"png"];
+	
+	NSLog(@"path: %@", path);
+	
+	NSImage *img = [[NSImage alloc] initWithContentsOfFile:path];
+	[img setScalesWhenResized:YES];
+	
+	
+	NSLog(@"width: %f", [img size].width);
+	
+	// INFO((@"...", ...))
+	
+	[oIconView setImageScaling:NSScaleToFit];
+	
+	[oIconView setImage:img];
 }
 
 @end

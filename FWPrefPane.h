@@ -11,9 +11,11 @@
 
 @interface FWPrefPane : NSPreferencePane 
 {
-
+	IBOutlet NSImageView *oIconView;
 }
 
-- (void) mainViewDidLoad;
+- (void)mainViewDidLoad;
+
+- (void)setUpIcon;
 
 @end
