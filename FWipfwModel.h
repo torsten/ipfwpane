@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class FWPrefPane;
+
+
 typedef struct
 {
 	BOOL enabled;
@@ -18,7 +21,7 @@ typedef struct
 
 @interface FWipfwModel : NSObject
 {
-
+	IBOutlet FWPrefPane *oPrefPane;
 }
 
 - (unsigned int)numberOfRules;
@@ -29,5 +32,8 @@ typedef struct
 
 - (void)removeRuleAtIndex:(unsigned int)index;
 
+- (void)loadRules;
+
+- (void)saveRules;
 
 @end

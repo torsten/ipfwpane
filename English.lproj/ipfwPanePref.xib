@@ -26,6 +26,12 @@
 			<object class="NSCustomObject" id="278121016">
 				<string key="NSClassName">NSApplication</string>
 			</object>
+			<object class="NSCustomObject" id="1030702136">
+				<string key="NSClassName">FWTableController</string>
+			</object>
+			<object class="NSCustomObject" id="647874873">
+				<string key="NSClassName">FWipfwModel</string>
+			</object>
 			<object class="NSWindowTemplate" id="660800786">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
@@ -470,15 +476,12 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				<string key="NSMinSize">{224.664, 32}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
-			<object class="NSCustomObject" id="1030702136">
-				<string key="NSClassName">FWTableController</string>
-			</object>
 			<object class="NSWindowTemplate" id="1031678134">
 				<int key="NSWindowStyleMask">1</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {480, 270}}</string>
 				<int key="NSWTFlags">1677721600</int>
-				<string key="NSWindowTitle">Add New Sheet</string>
+				<string key="NSWindowTitle"/>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{480, 270}</string>
@@ -519,14 +522,6 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{480, 292}</string>
 				<string key="NSMaxSize">{480, 292}</string>
-			</object>
-			<object class="NSUserDefaultsController" id="166525284">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>firewallEnabled</string>
-					<string>isFirewallEnabled</string>
-				</object>
-				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -793,6 +788,22 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					</object>
 					<int key="connectionID">227</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oPrefPane</string>
+						<reference key="source" ref="647874873"/>
+						<reference key="destination" ref="294453543"/>
+					</object>
+					<int key="connectionID">229</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oModel</string>
+						<reference key="source" ref="1030702136"/>
+						<reference key="destination" ref="647874873"/>
+					</object>
+					<int key="connectionID">230</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1032,6 +1043,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 							<reference ref="1067459509"/>
 						</object>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Sheet</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">166</int>
@@ -1071,9 +1083,10 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						<reference key="parent" ref="235483479"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">193</int>
-						<reference key="object" ref="166525284"/>
+						<int key="objectID">228</int>
+						<reference key="object" ref="647874873"/>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">ipfw Model</string>
 					</object>
 				</object>
 			</object>
@@ -1128,6 +1141,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					<string>168.IBPluginDependency</string>
 					<string>185.IBPluginDependency</string>
 					<string>186.IBPluginDependency</string>
+					<string>228.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>6.ImportedFromIB2</string>
 					<string>99.IBPluginDependency</string>
@@ -1182,6 +1196,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
@@ -1206,7 +1221,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">227</int>
+			<int key="maxID">230</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1271,6 +1286,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>oBoolColumn</string>
+							<string>oModel</string>
 							<string>oPrefPane</string>
 							<string>oStringColumn</string>
 							<string>oTableView</string>
@@ -1278,6 +1294,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTableColumn</string>
+							<string>FWipfwModel</string>
 							<string>FWPrefPane</string>
 							<string>NSTableColumn</string>
 							<string>NSTableView</string>
@@ -1286,6 +1303,18 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">FWTableController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">FWipfwModel</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">oPrefPane</string>
+						<string key="NS.object.0">FWPrefPane</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">FWipfwModel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

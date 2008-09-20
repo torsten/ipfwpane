@@ -7,6 +7,7 @@
 //
 
 #import "FWipfwModel.h"
+#import "FWPrefPane.h"
 
 
 @implementation FWipfwModel
@@ -27,6 +28,16 @@
 }
 
 - (void)removeRuleAtIndex:(unsigned int)index
+{
+	
+}
+
+- (void)loadRules
+{
+	
+}
+
+- (void)saveRules
 {
 	
 }

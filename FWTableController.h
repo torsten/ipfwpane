@@ -10,6 +10,7 @@
 
 
 @class FWPrefPane;
+@class FWipfwModel;
 
 
 @interface FWTableController : NSObject
@@ -20,6 +21,7 @@
 	IBOutlet NSTableView *oTableView;
 	
 	IBOutlet FWPrefPane *oPrefPane;
+	IBOutlet FWipfwModel *oModel;
 }
 
 - (IBAction)removeSelectedRow:(id)sender;
