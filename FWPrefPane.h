@@ -11,6 +11,7 @@
 
 @class SFAuthorizationView;
 @class FWTableController;
+@class FWipfwModel;
 
 
 @interface FWPrefPane : NSPreferencePane 
@@ -26,6 +27,7 @@
 	IBOutlet NSWindow *oMainWindow;
 	
 	IBOutlet FWTableController *oTableController;
+	IBOutlet FWipfwModel *oModel;
 	
 	BOOL uiIsEnabled;
 	BOOL tableIsEnabled;

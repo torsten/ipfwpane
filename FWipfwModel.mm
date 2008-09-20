@@ -9,35 +9,72 @@
 #import "FWipfwModel.h"
 #import "FWPrefPane.h"
 
+#include <vector>
+
+
+struct FWipfwModelCppMembers
+{
+	std::vector<FWipfwRule*> rules;
+};
+
 
 @implementation FWipfwModel
 
+- (id)init
+{
+	if(self = [super init])
+	{
+		m = new FWipfwModelCppMembers;
+		
+		FWipfwRule *rule = new FWipfwRule;
+		rule->enabled = YES;
+		rule->title = @"Test";
+		rule->body = nil;
+		
+		m->rules.push_back(rule);
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	delete m;
+	
+	[super dealloc];
+}
+
+
 - (unsigned int)numberOfRules
 {
-	return 0;
+	return m->rules.size();
 }
 
-- (FWipfwRule*)ruleForIndex:(unsigned int)index
+- (FWipfwRule*)ruleForIndex:(unsigned int)pIndex
 {
-	return 0;
+	return m->rules[pIndex];
 }
 
-- (void)addRule:(FWipfwRule*)newRule
-{
-	
-}
-
-- (void)removeRuleAtIndex:(unsigned int)index
+- (void)addRule:(FWipfwRule*)pNewRule
 {
 	
 }
 
-- (void)loadRules
+- (void)removeRuleAtIndex:(unsigned int)pIndex
+{
+	
+}
+
+- (void)reloadRules
 {
 	
 }
 
 - (void)saveRules
+{
+	
+}
+
+- (void)setAuthStuff:(void*)someAuthStuff
 {
 	
 }

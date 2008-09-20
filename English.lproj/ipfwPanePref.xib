@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="135"/>
 			<integer value="166"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -29,7 +29,7 @@
 			<object class="NSCustomObject" id="1030702136">
 				<string key="NSClassName">FWTableController</string>
 			</object>
-			<object class="NSCustomObject" id="647874873">
+			<object class="NSCustomObject" id="87277428">
 				<string key="NSClassName">FWipfwModel</string>
 			</object>
 			<object class="NSWindowTemplate" id="660800786">
@@ -42,8 +42,8 @@
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
 				</object>
-				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
-				<string key="NSWindowContentMinSize">{224.664, 10}</string>
+				<string key="NSWindowContentMaxSize">{480, 270}</string>
+				<string key="NSWindowContentMinSize">{480, 270}</string>
 				<object class="NSView" key="NSWindowView" id="1037298196">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -150,11 +150,11 @@
 																	</object>
 																	<object class="NSButtonCell" key="NSDataCell" id="968662410">
 																		<int key="NSCellFlags">67239424</int>
-																		<int key="NSCellFlags2">131072</int>
+																		<int key="NSCellFlags2">134348800</int>
 																		<string key="NSContents"/>
 																		<reference key="NSSupport" ref="26"/>
 																		<reference key="NSControlView" ref="58736736"/>
-																		<int key="NSButtonFlags">1211912703</int>
+																		<int key="NSButtonFlags">1216107007</int>
 																		<int key="NSButtonFlags2">130</int>
 																		<reference key="NSNormalImage" ref="935632094"/>
 																		<reference key="NSAlternateImage" ref="8184455"/>
@@ -163,7 +163,7 @@
 																		<int key="NSPeriodicDelay">200</int>
 																		<int key="NSPeriodicInterval">25</int>
 																	</object>
-																	<int key="NSResizingMask">3</int>
+																	<int key="NSResizingMask">1</int>
 																	<bool key="NSIsResizeable">YES</bool>
 																	<bool key="NSIsEditable">YES</bool>
 																	<reference key="NSTableView" ref="58736736"/>
@@ -202,9 +202,8 @@
 																			<reference key="NSColor" ref="671894859"/>
 																		</object>
 																	</object>
-																	<int key="NSResizingMask">3</int>
+																	<int key="NSResizingMask">1</int>
 																	<bool key="NSIsResizeable">YES</bool>
-																	<bool key="NSIsEditable">YES</bool>
 																	<reference key="NSTableView" ref="58736736"/>
 																</object>
 															</object>
@@ -224,8 +223,7 @@
 																</object>
 															</object>
 															<double key="NSRowHeight">1.700000e+01</double>
-															<int key="NSTvFlags">-1841299456</int>
-															<int key="NSGridStyleMask">1</int>
+															<int key="NSTvFlags">306184192</int>
 															<int key="NSColumnAutoresizingStyle">4</int>
 															<int key="NSDraggingSourceMaskForLocal">15</int>
 															<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -391,13 +389,13 @@
 						<object class="NSTextField" id="152806847">
 							<reference key="NSNextResponder" ref="1037298196"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{398, 23}, {253, 17}}</string>
+							<string key="NSFrame">{{379, 20}, {272, 17}}</string>
 							<reference key="NSSuperview" ref="1037298196"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="227885292">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">ipfw Preference Pane by Torsten Becker</string>
+								<string key="NSContents">ipfw Preference Pane v1 by Torsten Becker</string>
 								<reference key="NSSupport" ref="478844536"/>
 								<reference key="NSControlView" ref="152806847"/>
 								<object class="NSColor" key="NSBackgroundColor" id="799479023">
@@ -473,7 +471,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
-				<string key="NSMinSize">{224.664, 32}</string>
+				<string key="NSMinSize">{480, 292}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSWindowTemplate" id="1031678134">
@@ -790,19 +788,19 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">oPrefPane</string>
-						<reference key="source" ref="647874873"/>
-						<reference key="destination" ref="294453543"/>
+						<string key="label">oModel</string>
+						<reference key="source" ref="1030702136"/>
+						<reference key="destination" ref="87277428"/>
 					</object>
-					<int key="connectionID">229</int>
+					<int key="connectionID">230</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">oModel</string>
-						<reference key="source" ref="1030702136"/>
-						<reference key="destination" ref="647874873"/>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="87277428"/>
 					</object>
-					<int key="connectionID">230</int>
+					<int key="connectionID">231</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1084,7 +1082,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">228</int>
-						<reference key="object" ref="647874873"/>
+						<reference key="object" ref="87277428"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">ipfw Model</string>
 					</object>
@@ -1185,9 +1183,9 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 					<string>{{34, 586}, {480, 270}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{34, 586}, {480, 270}}</string>
-					<integer value="0"/>
-					<integer value="1" id="5"/>
-					<reference ref="5"/>
+					<reference ref="6"/>
+					<reference ref="9"/>
+					<reference ref="9"/>
 					<string>{480, 270}</string>
 					<string>{480, 270}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1221,7 +1219,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">230</int>
+			<int key="maxID">231</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1253,6 +1251,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 							<string>oAuthorizationView</string>
 							<string>oIconView</string>
 							<string>oMainWindow</string>
+							<string>oModel</string>
 							<string>oRemoveButton</string>
 							<string>oTableController</string>
 							<string>oTableView</string>
@@ -1264,6 +1263,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 							<string>SFAuthorizationView</string>
 							<string>NSImageView</string>
 							<string>NSWindow</string>
+							<string>FWipfwModel</string>
 							<string>NSButton</string>
 							<string>FWTableController</string>
 							<string>NSTableView</string>
@@ -1308,10 +1308,6 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">FWipfwModel</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">oPrefPane</string>
-						<string key="NS.object.0">FWPrefPane</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">FWipfwModel.h</string>

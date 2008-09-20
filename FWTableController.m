@@ -13,40 +13,36 @@
 
 @implementation FWTableController
 
-- (int)numberOfRowsInTableView:(NSTableView *)tableView
+- (int)numberOfRowsInTableView:(NSTableView *)pTableView
 {
-    return 2;
+	return [oModel numberOfRules];
 }
 
-- (id)tableView:(NSTableView *)tableView
-      objectValueForTableColumn:(NSTableColumn *)tableColumn
-      row:(int)row
+- (id)tableView:(NSTableView *)pTableView
+      objectValueForTableColumn:(NSTableColumn *)pTableColumn
+      row:(int)pRow
 {
-	// NSLog(@"Col: %d  Row: %d", tableColumn, row);
+	FWipfwRule *rule = [oModel ruleForIndex:pRow];
 	
-	if(tableColumn == oBoolColumn)
-		return [NSNumber numberWithInt:row];
+	if(pTableColumn == oBoolColumn)
+		return [NSNumber numberWithBool:rule->enabled];
 	
 	else
-		return @"HMM";
+		return rule->title;
 }
 
-- (BOOL)tableView:(NSTableView *)pTableView
-shouldSelectTableColumn:(NSTableColumn *)pTableColumn
-{
-	return NO;
-}
+// - (BOOL)tableView:(NSTableView *)pTableView
+// 	shouldEditTableColumn:(NSTableColumn *)pTableColumn
+// 	row:(NSInteger)pRowIndex
+// {
+// 	if(pTableColumn == oBoolColumn)
+// 		return YES;
+// 	
+// 	else
+// 		return NO;
+// }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-{
-	if(aTableColumn == oBoolColumn)
-		return YES;
-		
-	else
-		return NO;
-}
-
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+- (void)tableViewSelectionDidChange:(NSNotification *)pNotification
 {
 	if([oTableView selectedRow] == -1)
 		[oPrefPane enableModifyButtons:NO];
@@ -55,9 +51,15 @@ shouldSelectTableColumn:(NSTableColumn *)pTableColumn
 		[oPrefPane enableModifyButtons:YES];
 }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+- (void)tableView:(NSTableView *)pTableView
+	setObjectValue:(id)pValue
+	forTableColumn:(NSTableColumn *)pTableColumn
+	row:(NSInteger)pRowIndex
 {
-	NSLog(@"NEW: %@", anObject);
+	FWipfwRule *rule = [oModel ruleForIndex:pRowIndex];
+	
+	if(pTableColumn == oBoolColumn)
+		rule->enabled = [pValue boolValue];
 }
 
 - (IBAction)removeSelectedRow:(id)pSender
