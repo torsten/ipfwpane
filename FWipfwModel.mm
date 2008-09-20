@@ -28,7 +28,7 @@ struct FWipfwModelCppMembers
 		
 		FWipfwRule *rule = new FWipfwRule;
 		rule->enabled = YES;
-		rule->title = @"Test";
+		rule->title = @"Transmission";
 		rule->body = nil;
 		
 		m->rules.push_back(rule);
@@ -55,6 +55,13 @@ struct FWipfwModelCppMembers
 }
 
 - (void)addRule:(FWipfwRule*)pNewRule
+{
+	
+}
+
+- (void)addRuleEnabled:(BOOL)enabled
+	withTitle:(NSString*)title
+	body:(NSString*)body
 {
 	
 }

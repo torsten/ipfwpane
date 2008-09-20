@@ -67,6 +67,13 @@ struct FWipfwModelCppMembers;
 - (void)addRule:(FWipfwRule*)newRule;
 
 /**
+ *	Adds a rule with a more convienient interface.
+ */
+- (void)addRuleEnabled:(BOOL)enabled
+	withTitle:(NSString*)title
+	body:(NSString*)body;
+
+/**
  *	Removed the rule at the index.
  */
 - (void)removeRuleAtIndex:(unsigned int)index;

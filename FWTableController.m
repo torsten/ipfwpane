@@ -31,17 +31,6 @@
 		return rule->title;
 }
 
-// - (BOOL)tableView:(NSTableView *)pTableView
-// 	shouldEditTableColumn:(NSTableColumn *)pTableColumn
-// 	row:(NSInteger)pRowIndex
-// {
-// 	if(pTableColumn == oBoolColumn)
-// 		return YES;
-// 	
-// 	else
-// 		return NO;
-// }
-
 - (void)tableViewSelectionDidChange:(NSNotification *)pNotification
 {
 	if([oTableView selectedRow] == -1)
@@ -64,7 +53,22 @@
 
 - (IBAction)removeSelectedRow:(id)pSender
 {
-	NSLog(@"REMOVE");
+	if([oTableView selectedRow] != -1)
+		[oModel removeRuleAtIndex:[oTableView selectedRow]];
+
+}
+
+- (BOOL)tableView:(NSTableView *)pTableView
+	shouldEditTableColumn:(NSTableColumn *)pTableColumn
+	row:(NSInteger)pRowIndex
+{
+	NSLog(@"EDIT");
+	
+	if(pTableColumn == oStringColumn)
+		return NO;
+		
+	else
+		return YES;
 }
 
 

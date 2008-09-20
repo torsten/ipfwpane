@@ -181,7 +181,7 @@
 																		<reference key="NSTextColor" ref="607993943"/>
 																	</object>
 																	<object class="NSTextFieldCell" key="NSDataCell" id="962127467">
-																		<int key="NSCellFlags">337772096</int>
+																		<int key="NSCellFlags">337772097</int>
 																		<int key="NSCellFlags2">2048</int>
 																		<string key="NSContents">Text Cell</string>
 																		<reference key="NSSupport" ref="478844536"/>
@@ -204,6 +204,7 @@
 																	</object>
 																	<int key="NSResizingMask">1</int>
 																	<bool key="NSIsResizeable">YES</bool>
+																	<bool key="NSIsEditable">YES</bool>
 																	<reference key="NSTableView" ref="58736736"/>
 																</object>
 															</object>
