@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="122"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -390,8 +390,8 @@
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">272629760</int>
 								<string type="base64-UTF8" key="NSContents">VGhpcyBQcmVmZXJlbmNlIFBhbmUgYWxsb3dzIHlvdSB0byBjb25maWd1cmUgeW91ciBGaXJld2FsbCBh
-cyBpbiBNYWMgT1MgMTAuNCBhZ2Fpbi4KSXQgaXMgYW4gc2ltcGxlIGludGVyZmFjZSBmb3IgdGhlIGlw
-ZncoOCkgY29tbWFuZCBsaW5lIHV0aWxpdHkuA</string>
+cyBpbiBNYWMgT1MgWCAxMC40IGFnYWluLgpJdCBpcyBhbiBzaW1wbGUgaW50ZXJmYWNlIGZvciB0aGUg
+aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">1.300000e+01</double>
@@ -412,13 +412,13 @@ ZncoOCkgY29tbWFuZCBsaW5lIHV0aWxpdHkuA</string>
 						<object class="NSTextField" id="1013876060">
 							<reference key="NSNextResponder" ref="1037298196"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{237, 277}, {318, 17}}</string>
+							<string key="NSFrame">{{237, 277}, {372, 17}}</string>
 							<reference key="NSSuperview" ref="1037298196"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="367228180">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Blocks all traffic except for what is stated bellow.</string>
+								<string key="NSContents">Blocks all incoming traffic except for what is listed bellow.</string>
 								<reference key="NSSupport" ref="478844536"/>
 								<reference key="NSControlView" ref="1013876060"/>
 								<reference key="NSBackgroundColor" ref="799479023"/>
