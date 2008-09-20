@@ -61,6 +61,6 @@
 
 - (void)disableFirewall;
 
-- (IBAction)endSheet:(id)sender;
+- (IBAction)closeSheet:(id)sender;
 
 @end

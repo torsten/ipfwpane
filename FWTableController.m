@@ -66,7 +66,7 @@
 	
 	if(pTableColumn == oStringColumn)
 		return NO;
-		
+	
 	else
 		return YES;
 }
