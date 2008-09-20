@@ -44,8 +44,31 @@
 
 - (IBAction)toggleFirewall:(id)pSender
 {
-	
+	if([pSender state] == NSOnState)
+		[self enableFirewall];
+
+	else
+		[self disableFirewall];
 }
+
+- (void)enableFirewall
+{
+	[oRemoveButton setEnabled:YES];
+	[oAddButton setEnabled:YES];
+	[oTableView setEnabled:YES];
+	
+	// ...
+}
+
+- (void)disableFirewall
+{
+	[oRemoveButton setEnabled:NO];
+	[oAddButton setEnabled:NO];
+	[oTableView setEnabled:NO];
+	
+	// ...
+}
+
 
 - (IBAction)addItem:(id)pSender
 {

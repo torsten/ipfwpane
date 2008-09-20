@@ -23,4 +23,10 @@
 	return @"HMM";
 }
 
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectTableColumn:(NSTableColumn *)aTableColumn
+{
+	return NO;
+}
+
+
 @end

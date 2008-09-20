@@ -16,6 +16,10 @@
 {
 	IBOutlet NSImageView *oIconView;
 	IBOutlet SFAuthorizationView *oAuthorizationView;
+	
+	IBOutlet NSTableView *oTableView;
+	IBOutlet NSButton *oAddButton;
+	IBOutlet NSButton *oRemoveButton;
 }
 
 - (void)mainViewDidLoad;
@@ -28,6 +32,8 @@
 
 - (IBAction)removeItem:(id)sender;
 
+- (void)enableFirewall;
 
+- (void)disableFirewall;
 
 @end

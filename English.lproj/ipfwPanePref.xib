@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="132"/>
+			<integer value="122"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -515,6 +515,30 @@ ZncoOCkgY29tbWFuZCBsaW5lIHV0aWxpdHkuA</string>
 					</object>
 					<int key="connectionID">161</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oAddButton</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="687588217"/>
+					</object>
+					<int key="connectionID">162</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oRemoveButton</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="799111021"/>
+					</object>
+					<int key="connectionID">163</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">oTableView</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="58736736"/>
+					</object>
+					<int key="connectionID">164</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -850,7 +874,7 @@ ZncoOCkgY29tbWFuZCBsaW5lIHV0aWxpdHkuA</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">161</int>
+			<int key="maxID">164</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -877,13 +901,19 @@ ZncoOCkgY29tbWFuZCBsaW5lIHV0aWxpdHkuA</string>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>oAddButton</string>
 							<string>oAuthorizationView</string>
 							<string>oIconView</string>
+							<string>oRemoveButton</string>
+							<string>oTableView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSButton</string>
 							<string>SFAuthorizationView</string>
 							<string>NSImageView</string>
+							<string>NSButton</string>
+							<string>NSTableView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
