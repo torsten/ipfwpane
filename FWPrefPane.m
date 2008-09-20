@@ -1,6 +1,6 @@
 //
 //  FWPrefPane.m
-//  FWPrefPane
+//  ipfwPane
 //
 //  Created by Torsten Becker on 20.09.08.
 //  Copyright (c) 2008 __MyCompanyName__. All rights reserved.
@@ -41,5 +41,22 @@
 	
 	[oIconView setImage:img];
 }
+
+- (IBAction)toggleFirewall:(id)pSender
+{
+	
+}
+
+- (IBAction)addItem:(id)pSender
+{
+	
+}
+
+- (IBAction)removeItem:(id)pSender
+{
+	
+}
+
+
 
 @end
