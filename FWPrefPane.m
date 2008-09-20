@@ -46,11 +46,20 @@
 	{
 		[self setUiIsEnabled:pEnable];
 		
-		// if check enabled
-		[self setTableIsEnabled:NO];
+		// If the checkbox is toggled
+		if([[defaultsDict objectForKey:@"isFirewallEnabled"] boolValue])
+			[self setTableIsEnabled:YES];
 		
-		// if row selected
-		[self setModifyButtonsAreEnabled:NO];
+		else
+			[self setTableIsEnabled:NO];
+		
+		
+		// if a row is selected
+		if([oTableView selectedRow] != -1)
+			[self setModifyButtonsAreEnabled:YES];
+		
+		else
+			[self setModifyButtonsAreEnabled:NO];
 	}
 	else
 	{
@@ -67,7 +76,13 @@
 		if([self uiIsEnabled])
 		{
 			[self setTableIsEnabled:YES];
-			[self setModifyButtonsAreEnabled:NO];
+			
+			// if a row is selected
+			if([oTableView selectedRow] != -1)
+				[self setModifyButtonsAreEnabled:YES];
+		
+			else
+				[self setModifyButtonsAreEnabled:NO];
 		}
 	}
 	else
@@ -79,7 +94,16 @@
 
 - (void)enableModifyButtons:(BOOL)pEnable
 {
-	
+	if(pEnable)
+	{
+		if([self tableIsEnabled])
+			[self setModifyButtonsAreEnabled:YES];
+	}
+	else
+	{
+		[self setTableIsEnabled:NO];
+		[self setModifyButtonsAreEnabled:NO];
+	}
 }
 
 
