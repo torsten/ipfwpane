@@ -13,40 +13,108 @@
 
 @implementation FWPrefPane
 
+@synthesize uiIsEnabled;
+@synthesize tableIsEnabled;
+@synthesize modifyButtonsAreEnabled;
+@synthesize defaultsDict;
+
+- (id)initWithBundle:(NSBundle *)pBundle
+{
+	if(self = [super initWithBundle:pBundle])
+	{
+		defaultsDict = [NSMutableDictionary dictionaryWithDictionary:
+				[[NSUserDefaults standardUserDefaults]
+					persistentDomainForName:[[self bundle] bundleIdentifier]]];
+		
+		[defaultsDict retain];
+	}
+	return self;
+}
+
+- (NSPreferencePaneUnselectReply)shouldUnselect
+{
+	[[NSUserDefaults standardUserDefaults] setPersistentDomain:defaultsDict
+			forName:[[self bundle] bundleIdentifier]];
+	
+	return NSUnselectNow;
+}
+
+
+- (void)enableUI:(BOOL)pEnable
+{
+	if(pEnable)
+	{
+		[self setUiIsEnabled:pEnable];
+		
+		// if check enabled
+		[self setTableIsEnabled:NO];
+		
+		// if row selected
+		[self setModifyButtonsAreEnabled:NO];
+	}
+	else
+	{
+		[self setUiIsEnabled:NO];
+		[self setTableIsEnabled:NO];
+		[self setModifyButtonsAreEnabled:NO];
+	}
+}
+
+- (void)enableTable:(BOOL)pEnable
+{
+	if(pEnable)
+	{
+		if([self uiIsEnabled])
+		{
+			[self setTableIsEnabled:YES];
+			[self setModifyButtonsAreEnabled:NO];
+		}
+	}
+	else
+	{
+		[self setTableIsEnabled:NO];
+		[self setModifyButtonsAreEnabled:NO];
+	}
+}
+
+- (void)enableModifyButtons:(BOOL)pEnable
+{
+	
+}
+
+
 - (void)mainViewDidLoad
 {
 	[oAuthorizationView setString:"system.privilege.admin"];
 	[oAuthorizationView updateStatus:self];
+	[oAuthorizationView setDelegate:self];
 	
 	[self setUpIcon];
 	
-	// [oAuthorizationView setAutoupdate:YES];
-	// [oAuthorizationView setAuthorizationRights:&authorizationRights];
+	[self enableUI:NO];
+}
+
+- (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
+{
+	[self enableUI:YES];
+}
+
+- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)view
+{
+	[self enableUI:NO];
 }
 
 - (void)setUpIcon
 {
-	NSLog(@"setUpIcon");
-	
-	// NSImage *img = [NSImage imageNamed:@"ipfwPanePref.png"];
-	
 	NSString* path = [[self bundle] pathForResource:@"ipfwPanePref"
 			ofType:@"png"];
 	
-	// NSString *path = [[NSBundle mainBundle] pathForResource:@"ipfwPanePref"
-	// 	ofType:@"png"];
-	
-	NSLog(@"path: %@", path);
-	
 	NSImage *img = [[NSImage alloc] initWithContentsOfFile:path];
+	
+	
 	[img setScalesWhenResized:YES];
-	
-	
-	NSLog(@"width: %f", [img size].width);
-	
-	// INFO((@"...", ...))
-	
 	[oIconView setImageScaling:NSScaleToFit];
+	
 	
 	[oIconView setImage:img];
 }
@@ -54,26 +122,26 @@
 - (IBAction)toggleFirewall:(id)pSender
 {
 	if([pSender state] == NSOnState)
-		[self enableFirewall];
-
+		[self enableTable:YES];
+	
 	else
-		[self disableFirewall];
+		[self enableTable:NO];
 }
 
 - (void)enableFirewall
 {
-	[oRemoveButton setEnabled:YES];
-	[oAddButton setEnabled:YES];
-	[oTableView setEnabled:YES];
+	// [oRemoveButton setEnabled:YES];
+	// [oAddButton setEnabled:YES];
+	// [oTableView setEnabled:YES];
 	
 	// ...
 }
 
 - (void)disableFirewall
 {
-	[oRemoveButton setEnabled:NO];
-	[oAddButton setEnabled:NO];
-	[oTableView setEnabled:NO];
+	// [oRemoveButton setEnabled:NO];
+	// [oAddButton setEnabled:NO];
+	// [oTableView setEnabled:NO];
 	
 	// ...
 }

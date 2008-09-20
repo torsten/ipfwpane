@@ -26,7 +26,26 @@
 	IBOutlet NSWindow *oMainWindow;
 	
 	IBOutlet FWTableController *oTableController;
+	
+	BOOL uiIsEnabled;
+	BOOL tableIsEnabled;
+	BOOL modifyButtonsAreEnabled;
+	
+	NSMutableDictionary *defaultsDict;
 }
+
+@property BOOL uiIsEnabled;
+@property BOOL tableIsEnabled;
+@property BOOL modifyButtonsAreEnabled;
+@property(readonly) NSMutableDictionary *defaultsDict;
+
+
+- (void)enableUI:(BOOL)enabled;
+
+- (void)enableTable:(BOOL)enabled;
+
+- (void)enableModifyButtons:(BOOL)enabled;
+
 
 - (void)mainViewDidLoad;
 
