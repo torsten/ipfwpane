@@ -120,7 +120,7 @@
 	[self enableUI:YES];
 }
 
-- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)view
+- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
 {
 	[self enableUI:NO];
 }
@@ -151,36 +151,22 @@
 
 - (void)enableFirewall
 {
-	// [oRemoveButton setEnabled:YES];
-	// [oAddButton setEnabled:YES];
-	// [oTableView setEnabled:YES];
-	
 	// ...
 }
 
 - (void)disableFirewall
 {
-	// [oRemoveButton setEnabled:NO];
-	// [oAddButton setEnabled:NO];
-	// [oTableView setEnabled:NO];
-	
 	// ...
 }
 
 
 - (IBAction)addItem:(id)pSender
 {
-	/*
-	The didEndSelector method is optional. If implemented by the modalDelegate, this method is invoked after the modal session has ended and is passed a return code and caller specified in contextInfo. didEndSelector should have the following signature:
-
-	- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
-	*/
-	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]
 			modalDelegate:self
             didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-            contextInfo: nil];
+            contextInfo:nil];
 }
 
 - (IBAction)closeSheet:(id)pSender
@@ -189,9 +175,9 @@
     [NSApp endSheet:oAddSheet];
 }
 
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo
 {
-    [sheet orderOut:self];
+    [pSheet orderOut:self];
 }
 
 
