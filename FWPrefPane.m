@@ -163,27 +163,4 @@
 }
 
 
-- (IBAction)addItem:(id)pSender
-{
-	[NSApp beginSheet:oAddSheet
-			modalForWindow:[NSApp mainWindow]
-			modalDelegate:self
-            didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-            contextInfo:nil];
-	
-	
-}
-
-- (IBAction)closeSheet:(id)pSender
-{
-	NSLog(@"END");
-    [NSApp endSheet:oAddSheet];
-}
-
-- (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo
-{
-    [pSheet orderOut:self];
-}
-
-
 @end

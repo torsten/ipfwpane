@@ -10,6 +10,7 @@
 #import "FWPrefPane.h"
 #import "FWipfwModel.h"
 #import "FWipfwRule.h"
+#import "FWSheetController.h"
 
 
 @implementation FWTableController
@@ -72,6 +73,24 @@
 	
 	else
 		return YES;
+}
+
+- (IBAction)editSelectedRow:(id)pSender
+{
+	NSLog(@"EDIT ROW");
+}
+
+- (IBAction)addItem:(id)pSender
+{
+	[oSheetController addRule];
+	
+	FWipfwRule rule;
+	rule.enabled = NO;
+	rule.title = @"Foo";
+	
+	[oModel copyAndAddRule:&rule];
+	
+	[oTableView reloadData];
 }
 
 

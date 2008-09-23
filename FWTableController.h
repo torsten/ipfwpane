@@ -11,6 +11,7 @@
 
 @class FWPrefPane;
 @class FWipfwModel;
+@class FWSheetController;
 
 
 @interface FWTableController : NSObject
@@ -22,8 +23,13 @@
 	
 	IBOutlet FWPrefPane *oPrefPane;
 	IBOutlet FWipfwModel *oModel;
+	
+	IBOutlet FWSheetController *oSheetController;
 }
 
 - (IBAction)removeSelectedRow:(id)sender;
+- (IBAction)editSelectedRow:(id)sender;
+- (IBAction)addItem:(id)sender;
+
 
 @end

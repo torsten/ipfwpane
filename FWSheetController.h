@@ -11,7 +11,11 @@
 
 @interface FWSheetController : NSObject
 {
-
+	IBOutlet NSWindow *oAddSheet;
 }
+
+- (IBAction)closeSheet:(id)sender;
+
+- (void)addRule;
 
 @end

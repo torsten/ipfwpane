@@ -20,14 +20,10 @@
 	IBOutlet SFAuthorizationView *oAuthorizationView;
 	
 	IBOutlet NSTableView *oTableView;
-	IBOutlet NSButton *oAddButton;
-	IBOutlet NSButton *oRemoveButton;
-	
-	IBOutlet NSWindow *oAddSheet;
-	IBOutlet NSWindow *oMainWindow;
 	
 	IBOutlet FWTableController *oTableController;
 	IBOutlet FWipfwModel *oModel;
+	// IBOutlet FWSheetController *oSheetController;
 	
 	BOOL uiIsEnabled;
 	BOOL tableIsEnabled;
@@ -55,12 +51,9 @@
 
 - (IBAction)toggleFirewall:(id)sender;
 
-- (IBAction)addItem:(id)sender;
-
 - (void)enableFirewall;
 
 - (void)disableFirewall;
 
-- (IBAction)closeSheet:(id)sender;
 
 @end
