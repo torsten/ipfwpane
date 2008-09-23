@@ -12,9 +12,20 @@
 @interface FWSheetController : NSObject
 {
 	IBOutlet NSWindow *oAddSheet;
+	
+	IBOutlet NSButton *oTCPButton;
+	IBOutlet NSButton *oUDPButton;
+	
+	IBOutlet NSTextField *oPortsTextField;
+	IBOutlet NSTextField *oDescriptionTextField;
+	
+	IBOutlet NSPopUpButton *oPopUpButton;
 }
 
-- (IBAction)closeSheet:(id)sender;
+- (IBAction)saveSheet:(id)sender;
+- (IBAction)cancelSheet:(id)sender;
+
+- (IBAction)popUpButtonChanged:(id)sender;
 
 - (void)addRule;
 

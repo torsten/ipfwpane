@@ -11,6 +11,16 @@
 
 @implementation FWSheetController
 
+- (void)awakeFromNib
+{
+	// Initialize the combo Box
+	
+	[oPopUpButton addItemWithTitle:@"Foo Bar"];
+	[oPopUpButton addItemWithTitle:@"ROFL Kartoffl"];
+	[oPopUpButton addItemWithTitle:@"LOL"];
+	[oPopUpButton addItemWithTitle:@"Custom"];
+}
+
 - (void)addRule
 {
 	[NSApp beginSheet:oAddSheet
@@ -20,15 +30,29 @@
             contextInfo:nil];
 }
 
-
-- (IBAction)closeSheet:(id)pSender
+- (IBAction)saveSheet:(id)pSender
 {
-	NSLog(@"END");
+	NSLog(@"SAVE");
     [NSApp endSheet:oAddSheet];
+	
+}
+
+- (IBAction)cancelSheet:(id)pSender
+{
+	NSLog(@"CANCEL");
+    [NSApp endSheet:oAddSheet];
+	
+}
+
+- (IBAction)popUpButtonChanged:(id)pSender
+{
+	NSLog(@"CHANGE");
 }
 
 - (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo
 {
+	NSLog(@"DID END");
+	
     [pSheet orderOut:self];
 }
 
