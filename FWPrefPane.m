@@ -113,6 +113,9 @@
 	[self setUpIcon];
 	
 	[self enableUI:NO];
+	
+	// TODO: remove this:
+	[self authorizationViewDidAuthorize:nil];
 }
 
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
@@ -167,6 +170,8 @@
 			modalDelegate:self
             didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
             contextInfo:nil];
+	
+	
 }
 
 - (IBAction)closeSheet:(id)pSender

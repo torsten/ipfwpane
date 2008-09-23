@@ -15,9 +15,9 @@ struct FWipfwRuleStruct;
 
 #ifdef __cplusplus
 	#include <vector>
-	typedef std::vector<struct FWipfwRuleStruct*> FWipfwRuleVector;
+	typedef std::vector<struct FWipfwRuleStruct*> FWipfwRuleContainer;
 #else
-	typedef int* FWipfwRuleVector;
+	typedef int* FWipfwRuleContainer;
 #endif
 
 
@@ -27,7 +27,7 @@ struct FWipfwRuleStruct;
  */
 @interface FWipfwModel : NSObject
 {
-	FWipfwRuleVector *mRules;
+	FWipfwRuleContainer *mRules;
 }
 
 /**
@@ -46,11 +46,17 @@ struct FWipfwRuleStruct;
 - (void)addRule:(struct FWipfwRuleStruct*)newRule;
 
 /**
+ *	First creates a new rule and then it fills the new one with the
+ *	values from the old one.  After this it adds the new rule.
+ */
+- (void)copyAndAddRule:(struct FWipfwRuleStruct*)newRule;
+
+/**
  *	Adds a rule with a more convienient interface.
  */
-- (void)addRuleEnabled:(BOOL)enabled
-	withTitle:(NSString*)title
-	body:(NSString*)body;
+// - (void)addRuleEnabled:(BOOL)enabled
+// 	withTitle:(NSString*)title
+// 	body:(NSString*)body;
 
 /**
  *	Removed the rule at the index.

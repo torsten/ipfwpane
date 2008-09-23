@@ -56,6 +56,8 @@
 {
 	if([oTableView selectedRow] != -1)
 		[oModel removeRuleAtIndex:[oTableView selectedRow]];
+	
+	[oTableView reloadData];
 
 }
 
