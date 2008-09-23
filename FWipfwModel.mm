@@ -8,14 +8,9 @@
 
 #import "FWipfwModel.h"
 #import "FWPrefPane.h"
+#import "FWipfwRule.h"
 
-#include <vector>
-
-
-struct FWipfwModelCppMembers
-{
-	std::vector<FWipfwRule*> rules;
-};
+// #include <vector>  --  has been done already in FWipfwModel.h
 
 
 @implementation FWipfwModel
@@ -24,21 +19,21 @@ struct FWipfwModelCppMembers
 {
 	if(self = [super init])
 	{
-		m = new FWipfwModelCppMembers;
+		mRules = new FWipfwRuleVector();
 		
 		FWipfwRule *rule = new FWipfwRule;
 		rule->enabled = YES;
-		rule->title = @"Transmission";
+		rule->title = @"Transmissionnnnn";
 		rule->body = nil;
 		
-		m->rules.push_back(rule);
+		mRules->push_back(rule);
 	}
 	return self;
 }
 
 - (void)dealloc
 {
-	delete m;
+	delete mRules;
 	
 	[super dealloc];
 }
@@ -46,12 +41,12 @@ struct FWipfwModelCppMembers
 
 - (unsigned int)numberOfRules
 {
-	return m->rules.size();
+	return mRules->size();
 }
 
 - (FWipfwRule*)ruleForIndex:(unsigned int)pIndex
 {
-	return m->rules[pIndex];
+	return (*mRules)[pIndex];
 }
 
 - (void)addRule:(FWipfwRule*)pNewRule

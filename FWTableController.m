@@ -9,6 +9,7 @@
 #import "FWTableController.h"
 #import "FWPrefPane.h"
 #import "FWipfwModel.h"
+#import "FWipfwRule.h"
 
 
 @implementation FWTableController

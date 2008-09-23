@@ -11,35 +11,14 @@
 
 @class FWPrefPane;
 
+struct FWipfwRuleStruct;
 
-/**
- *	A struct to get the data out of the class in a structured way.
- */
-typedef struct
-{
-	/**
-	 *	If it is currently enabled or not.
-	 */
-	BOOL enabled;
-	
-	/**
-	 *	The string shown in the UI
-	 */
-	NSString *title;
-	
-	/**
-	 *	Which ports are actually meant
-	 */
-	NSString *body;
-	
-} FWipfwRule;
-
-
-/**
- *	A work around to have c++ containers as members without telling
- *	the Obj-C runtime about this...
- */
-struct FWipfwModelCppMembers;
+#ifdef __cplusplus
+	#include <vector>
+	typedef std::vector<struct FWipfwRuleStruct*> FWipfwRuleVector;
+#else
+	typedef int* FWipfwRuleVector;
+#endif
 
 
 /**
@@ -48,7 +27,7 @@ struct FWipfwModelCppMembers;
  */
 @interface FWipfwModel : NSObject
 {
-	struct FWipfwModelCppMembers *m;
+	FWipfwRuleVector *mRules;
 }
 
 /**
@@ -59,12 +38,12 @@ struct FWipfwModelCppMembers;
 /**
  *	Returns the rule at the given index.
  */
-- (FWipfwRule*)ruleForIndex:(unsigned int)index;
+- (struct FWipfwRuleStruct*)ruleForIndex:(unsigned int)index;
 
 /**
  *	Adds new rule.
  */
-- (void)addRule:(FWipfwRule*)newRule;
+- (void)addRule:(struct FWipfwRuleStruct*)newRule;
 
 /**
  *	Adds a rule with a more convienient interface.

@@ -27,7 +27,7 @@
 	<key>NSPrefPaneIconFile</key>
 	<string>ipfwPanePref.png</string>
 	<key>NSPrefPaneIconLabel</key>
-	<string>ipfw</string>
+	<string>ipfw Firewall</string>
 	<key>NSPrincipalClass</key>
 	<string>FWPrefPane</string>
 </dict>
