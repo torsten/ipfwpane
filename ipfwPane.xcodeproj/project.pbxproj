@@ -184,6 +184,9 @@
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+			};
 			buildConfigurationList = 1DBD214C08BA80EA00186707 /* Build configuration list for PBXProject "ipfwPane" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
