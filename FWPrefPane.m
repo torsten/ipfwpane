@@ -31,6 +31,21 @@
 	return self;
 }
 
+- (void)mainViewDidLoad
+{
+	[oAuthorizationView setString:"system.privilege.admin"];
+	[oAuthorizationView updateStatus:self];
+	[oAuthorizationView setDelegate:self];
+	
+	[self setUpIcon];
+	
+	[self enableUI:NO];
+	
+	// TODO: this enables the UI when the app starts, REMOVE THIS:
+	[self authorizationViewDidAuthorize:nil];
+}
+
+
 - (NSPreferencePaneUnselectReply)shouldUnselect
 {
 	[[NSUserDefaults standardUserDefaults] setPersistentDomain:defaultsDict
@@ -69,6 +84,7 @@
 	}
 }
 
+
 - (void)enableTable:(BOOL)pEnable
 {
 	if(pEnable)
@@ -92,6 +108,7 @@
 	}
 }
 
+
 - (void)enableModifyButtons:(BOOL)pEnable
 {
 	if(pEnable)
@@ -104,20 +121,6 @@
 }
 
 
-- (void)mainViewDidLoad
-{
-	[oAuthorizationView setString:"system.privilege.admin"];
-	[oAuthorizationView updateStatus:self];
-	[oAuthorizationView setDelegate:self];
-	
-	[self setUpIcon];
-	
-	[self enableUI:NO];
-	
-	// TODO: remove this:
-	[self authorizationViewDidAuthorize:nil];
-}
-
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
 {
 	[self enableUI:YES];
@@ -127,6 +130,7 @@
 {
 	[self enableUI:NO];
 }
+
 
 - (void)setUpIcon
 {
@@ -143,6 +147,7 @@
 	[oIconView setImage:img];
 }
 
+
 - (IBAction)toggleFirewall:(id)pSender
 {
 	if([pSender state] == NSOnState)
@@ -152,10 +157,12 @@
 		[self enableTable:NO];
 }
 
+
 - (void)enableFirewall
 {
 	// ...
 }
+
 
 - (void)disableFirewall
 {

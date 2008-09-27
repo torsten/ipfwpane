@@ -19,6 +19,8 @@
 	[oPopUpButton addItemWithTitle:@"ROFL Kartoffl"];
 	[oPopUpButton addItemWithTitle:@"LOL"];
 	[oPopUpButton addItemWithTitle:@"Custom"];
+	
+	[oPopUpButton selectItem:nil];
 }
 
 - (void)addRule
