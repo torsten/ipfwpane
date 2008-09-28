@@ -36,8 +36,6 @@
 	IBOutlet NSTextField *oDescriptionTextField;
 	
 	IBOutlet NSPreferencePane *oPrefPane;
-	
-	id <FWSheetControllerCallback> mTempCallback;
 }
 
 - (IBAction)saveSheet:(id)sender;

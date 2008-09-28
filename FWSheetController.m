@@ -20,6 +20,12 @@ NSInteger FWSheetControllerSortDefaultRules(
 		NSMutableDictionary *a, NSMutableDictionary *b, void *context);
 
 
+typedef enum {
+	FWSheetControllerReturnSave = 0,
+	FWSheetControllerReturnCancel = 1
+} FWSheetControllerReturn;
+
+
 @implementation FWSheetController
 
 - (void)awakeFromNib
@@ -70,14 +76,12 @@ NSInteger FWSheetControllerSortDefaultRules(
 
 - (IBAction)saveSheet:(id)pSender
 {
-	NSLog(@"SAVE");
-    [NSApp endSheet:oAddSheet returnCode:0];
+    [NSApp endSheet:oAddSheet returnCode:FWSheetControllerReturnSave];
 }
 
 - (IBAction)cancelSheet:(id)pSender
 {
-	NSLog(@"CANCEL");
-    [NSApp endSheet:oAddSheet returnCode:1];
+    [NSApp endSheet:oAddSheet returnCode:FWSheetControllerReturnCancel];
 	
 }
 
@@ -107,9 +111,7 @@ NSInteger FWSheetControllerSortDefaultRules(
 - (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
 	contextInfo:(void *)pContextInfo
 {
-	NSLog(@"DID END");
-	
-	if(pReturnCode == 0)
+	if(pReturnCode == FWSheetControllerReturnSave)
 	{
 		FWRule *newRule = [[[FWRule alloc] init] autorelease];
 		newRule.description = [oDescriptionTextField stringValue];
