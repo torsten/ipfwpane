@@ -13,6 +13,18 @@
 @class FWRule;
 
 
+/**
+ *	The protocol you should implement if you use this class and
+ *	expect callbacks form it.
+ */
+@protocol FWSheetControllerCallback
+- (void)sheetCreatedNewRule:(FWRule*)rule;
+- (void)sheetCanceledEditRule:(FWRule*)rule;
+- (void)sheetDidEditRule:(FWRule*)rule;	
+
+@end
+
+
 @interface FWSheetController : NSObject
 {
 	IBOutlet NSWindow *oAddSheet;
@@ -24,6 +36,8 @@
 	IBOutlet NSTextField *oDescriptionTextField;
 	
 	IBOutlet NSPreferencePane *oPrefPane;
+	
+	id <FWSheetControllerCallback> mTempCallback;
 }
 
 - (IBAction)saveSheet:(id)sender;
@@ -49,13 +63,5 @@
  */
 - (void)editRule:(FWRule*)rule andCallback:(id)callback;
 
-
-@end
-
-
-@protocol FWSheetControllerCallback
-- (void)sheetCreatedNewRule:(FWRule*)rule;
-- (void)sheetCanceledEditRule:(FWRule*)rule;
-- (void)sheetDidEditRule:(FWRule*)rule;	
 
 @end

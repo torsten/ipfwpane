@@ -71,14 +71,13 @@ NSInteger FWSheetControllerSortDefaultRules(
 - (IBAction)saveSheet:(id)pSender
 {
 	NSLog(@"SAVE");
-    [NSApp endSheet:oAddSheet];
-	
+    [NSApp endSheet:oAddSheet returnCode:0];
 }
 
 - (IBAction)cancelSheet:(id)pSender
 {
 	NSLog(@"CANCEL");
-    [NSApp endSheet:oAddSheet];
+    [NSApp endSheet:oAddSheet returnCode:1];
 	
 }
 
@@ -105,9 +104,21 @@ NSInteger FWSheetControllerSortDefaultRules(
 }
 
 
-- (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo
+- (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
+	contextInfo:(void *)pContextInfo
 {
 	NSLog(@"DID END");
+	
+	if(pReturnCode == 0)
+	{
+		FWRule *newRule = [[[FWRule alloc] init] autorelease];
+		newRule.description = [oDescriptionTextField stringValue];
+		
+		id <FWSheetControllerCallback> cb = pContextInfo;
+	
+		[cb sheetCreatedNewRule:newRule];
+	}
+	
 	
     [pSheet orderOut:self];
 }
@@ -129,12 +140,7 @@ NSInteger FWSheetControllerSortDefaultRules(
 			modalForWindow:[NSApp mainWindow]
 			modalDelegate:self
             didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-            contextInfo:nil];
-	
-	FWRule *newRule = [[[FWRule alloc] init] autorelease];
-	newRule.description = @"NEW RULE";
-	
-	[(id<FWSheetControllerCallback>)pCallback sheetCreatedNewRule:newRule];
+            contextInfo:pCallback];
 }
 
 - (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
