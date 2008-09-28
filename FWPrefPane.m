@@ -20,7 +20,7 @@
 
 - (id)initWithBundle:(NSBundle *)pBundle
 {
-	if(self = [super initWithBundle:pBundle])
+	if((self = [super initWithBundle:pBundle]))
 	{
 		defaultsDict = [NSMutableDictionary dictionaryWithDictionary:
 				[[NSUserDefaults standardUserDefaults]
@@ -134,6 +134,9 @@
 
 - (void)setUpIcon
 {
+	// No +imageNamed: usage because we are not looking the the
+	// app bundle but in the bundle of the prefPane plugin.
+	
 	NSString* path = [[self bundle] pathForResource:@"ipfwPanePref"
 			ofType:@"png"];
 	

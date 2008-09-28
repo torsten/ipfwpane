@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>TCPSmartPorts</key>
+		<array>
+			<string>org.m0k.transmission</string>
+			<string>BindPort</string>
+		</array>
+		<key>Title</key>
+		<string>Transmission</string>
+	</dict>
+	<dict>
+		<key>TCPPorts</key>
+		<string>80</string>
+		<key>Title</key>
+		<string>Web Server (HTTP)</string>
+	</dict>
+	<dict>
+		<key>TCPPorts</key>
+		<string>22</string>
+		<key>Title</key>
+		<string>Remote Login (SSH)</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>iChat AV</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Apple Remote Desktop</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>AFP</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Printer Sharing</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>ICQ File Transfer</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>FTP Server</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Windows File Sharing (SMB)</string>
+	</dict>
+</array>
+</plist>

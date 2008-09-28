@@ -17,6 +17,7 @@
 		E569A6B60E850B17001ED27B /* FWPrefPane.h in Headers */ = {isa = PBXBuildFile; fileRef = E569A6B40E850B17001ED27B /* FWPrefPane.h */; };
 		E569A6B70E850B17001ED27B /* FWPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = E569A6B50E850B17001ED27B /* FWPrefPane.m */; };
 		E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */; };
+		E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */; };
 		E5CF8DB80E8929AE001E9106 /* FWipfwRule.h in Headers */ = {isa = PBXBuildFile; fileRef = E5CF8DB60E8929AE001E9106 /* FWipfwRule.h */; };
 		E5CF8DB90E8929AE001E9106 /* FWipfwRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CF8DB70E8929AE001E9106 /* FWipfwRule.m */; };
 		E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E02EA80E856935003663D0 /* SecurityInterface.framework */; };
@@ -39,6 +40,7 @@
 		E569A6B40E850B17001ED27B /* FWPrefPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWPrefPane.h; sourceTree = SOURCE_ROOT; };
 		E569A6B50E850B17001ED27B /* FWPrefPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWPrefPane.m; sourceTree = SOURCE_ROOT; };
 		E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
+		E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = DefaultRules.plist; sourceTree = SOURCE_ROOT; };
 		E5CF8DB60E8929AE001E9106 /* FWipfwRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWipfwRule.h; sourceTree = "<group>"; };
 		E5CF8DB70E8929AE001E9106 /* FWipfwRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWipfwRule.m; sourceTree = "<group>"; };
 		E5E02EA80E856935003663D0 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
@@ -88,6 +90,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */,
 				E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */,
 				8D202CF70486D31800D8A456 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -208,6 +211,7 @@
 				8D202CED0486D31800D8A456 /* InfoPlist.strings in Resources */,
 				8D202CEF0486D31800D8A456 /* ipfwPanePref.xib in Resources */,
 				E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */,
+				E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +321,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
 		};
@@ -329,6 +334,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
 		};

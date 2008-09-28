@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class NSPreferencePane;
+
+
 @interface FWSheetController : NSObject
 {
 	IBOutlet NSWindow *oAddSheet;
@@ -18,6 +21,8 @@
 	IBOutlet NSTextField *oTCPPortsTextField;
 	IBOutlet NSTextField *oUDPPortsTextField;
 	IBOutlet NSTextField *oDescriptionTextField;
+	
+	IBOutlet NSPreferencePane *oPrefPane;
 }
 
 - (IBAction)saveSheet:(id)sender;
@@ -26,5 +31,6 @@
 - (IBAction)popUpButtonChanged:(id)sender;
 
 - (void)addRule;
+
 
 @end

@@ -6,7 +6,18 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import <PreferencePanes/PreferencePanes.h>
+
 #import "FWSheetController.h"
+
+
+
+@interface FWSheetController(Private)
+@end
+
+
+NSInteger FWSheetControllerSortDefaultRules(
+		NSMutableDictionary *a, NSMutableDictionary *b, void *context);
 
 
 @implementation FWSheetController
@@ -15,43 +26,41 @@
 {
 	// Initialize the combo Box
 	
-	[oPopUpButton addItemWithTitle:@"AFP"];
-	[oPopUpButton addItemWithTitle:@"Apple Remote Desktop"];
-	[oPopUpButton addItemWithTitle:@"FTP Server"];
-	[oPopUpButton addItemWithTitle:@"iChat AV"];
-	[oPopUpButton addItemWithTitle:@"ICQ File Transfer"];
-	[oPopUpButton addItemWithTitle:@"Printer Sharing"];
-	[oPopUpButton addItemWithTitle:@"Remote Login (SSH)"];
-	[oPopUpButton addItemWithTitle:@"Web Server (HTTP)"];
-	[oPopUpButton addItemWithTitle:@"Windows Sharing (SMB)"];
+	NSString *defaultRulesFile = [[oPrefPane bundle] pathForResource:
+			@"DefaultRules" ofType:@"plist"];
 	
-
-	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
-
-
+	NSMutableArray *rules =
+			[NSMutableArray arrayWithContentsOfFile:defaultRulesFile];
+	
+	[rules sortUsingFunction:FWSheetControllerSortDefaultRules context:nil];
+	
 	NSMenuItem *item;
 	NSImage *smartBadge = [NSImage imageNamed:@"NSSmartBadgeTemplate"];
+	BOOL gotFirstSmart = NO;
 	
+	for(NSDictionary *dict in rules)
+	{
+		item = [[[NSMenuItem alloc] init] autorelease];
+		[item setRepresentedObject:dict];
+		
+		if([dict objectForKey:@"IsSmart"])
+		{
+			[item setImage:smartBadge];
+			[item setToolTip:@"Updates automatically if you change the port."];
+			
+			// Add the seperator for smart items if we get the first one
+			if(!gotFirstSmart)
+			{
+				gotFirstSmart = YES;
+				[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
+			}
+		}
+		
+		[item setTitle:[dict objectForKey:@"Title"]];
+		[[oPopUpButton menu] addItem:item];
+	}
 	
-	item = [[[NSMenuItem alloc] init] autorelease];
-	[item setImage:smartBadge];
-	[item setToolTip:@"Updates automatically if you change the port."];
-	
-	[item setTitle:@"ShakesPeer"];
-	[[oPopUpButton menu] addItem:item];
-
-	
-	item = [[[NSMenuItem alloc] init] autorelease];
-	[item setImage:smartBadge];
-	[item setToolTip:@"Updates automatically if you change the port."];
-	
-	[item setTitle:@"Transmission"];
-	[[oPopUpButton menu] addItem:item];
-
-
 	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
-
-	
 	[oPopUpButton addItemWithTitle:@"Other"];
 	
 	[oPopUpButton selectItem:nil];
@@ -82,8 +91,9 @@
 
 - (IBAction)popUpButtonChanged:(id)pSender
 {
-	[oDescriptionTextField setStringValue:[[pSender selectedItem] title]];
+	[oDescriptionTextField setStringValue:[[oPopUpButton selectedItem] title]];
 }
+
 
 - (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo
 {
@@ -102,3 +112,38 @@
 
 
 @end
+
+
+NSInteger FWSheetControllerSortDefaultRules(
+		NSMutableDictionary *pA, NSMutableDictionary *pB, void *pContext)
+{
+	BOOL aIsSmart = NO, bIsSmart = NO;
+	
+	if([pA objectForKey:@"TCPSmartPorts"] != nil ||
+	   [pA objectForKey:@"UDPSmartPorts"] != nil)
+	{
+		[pA setObject:[NSNumber numberWithBool:YES] forKey:@"IsSmart"];
+		aIsSmart = YES;
+	}
+
+	if([pB objectForKey:@"TCPSmartPorts"] != nil ||
+	   [pB objectForKey:@"UDPSmartPorts"] != nil)
+	{
+		[pB setObject:[NSNumber numberWithBool:YES] forKey:@"IsSmart"];
+		bIsSmart = YES;
+	}
+
+	
+	if(aIsSmart == bIsSmart)
+		return [[pA objectForKey:@"Title"] caseInsensitiveCompare:
+				[pB objectForKey:@"Title"]];
+	
+	else
+	{
+		if(aIsSmart)
+			return NSOrderedDescending;
+		
+		else
+			return NSOrderedAscending;
+	}
+}
