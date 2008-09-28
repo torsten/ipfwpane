@@ -15,10 +15,40 @@
 {
 	// Initialize the combo Box
 	
-	[oPopUpButton addItemWithTitle:@"Foo Bar"];
-	[oPopUpButton addItemWithTitle:@"ROFL Kartoffl"];
-	[oPopUpButton addItemWithTitle:@"LOL"];
-	[oPopUpButton addItemWithTitle:@"Custom"];
+	[oPopUpButton addItemWithTitle:@"AFP"];
+	[oPopUpButton addItemWithTitle:@"FTP Server"];
+	[oPopUpButton addItemWithTitle:@"iChat AV"];
+	[oPopUpButton addItemWithTitle:@"ICQ File Transfer"];
+	[oPopUpButton addItemWithTitle:@"SMB"];
+	[oPopUpButton addItemWithTitle:@"SSH"];
+	[oPopUpButton addItemWithTitle:@"Webserver (HTTP)"];
+	
+
+	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
+
+
+	NSMenuItem *item;
+	NSImage *smartBadge = [NSImage imageNamed:@"NSSmartBadgeTemplate"];
+	
+	
+	item = [[[NSMenuItem alloc] init] autorelease];
+	[item setImage:smartBadge];
+	[item setTitle:@"ShakesPeer"];
+	
+	[[oPopUpButton menu] addItem:item];
+
+	
+	item = [[[NSMenuItem alloc] init] autorelease];
+	[item setImage:smartBadge];
+	[item setTitle:@"Transmission"];
+	
+	[[oPopUpButton menu] addItem:item];
+
+
+	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
+
+	
+	[oPopUpButton addItemWithTitle:@"Other"];
 	
 	[oPopUpButton selectItem:nil];
 }

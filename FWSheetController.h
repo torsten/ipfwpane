@@ -13,13 +13,11 @@
 {
 	IBOutlet NSWindow *oAddSheet;
 	
-	IBOutlet NSButton *oTCPButton;
-	IBOutlet NSButton *oUDPButton;
-	
-	IBOutlet NSTextField *oPortsTextField;
-	IBOutlet NSTextField *oDescriptionTextField;
-	
 	IBOutlet NSPopUpButton *oPopUpButton;
+	
+	IBOutlet NSTextField *oTCPPortsTextField;
+	IBOutlet NSTextField *oUDPPortsTextField;
+	IBOutlet NSTextField *oDescriptionTextField;
 }
 
 - (IBAction)saveSheet:(id)sender;

@@ -18,6 +18,12 @@
 
 /**
  *	A struct to get the data out of the class in a structured way.
+ *
+ *	- TCP ports
+ *	- UDP ports
+ *	- present
+ *	- desciption
+ *	- smart-rule? [none/nil oder app-domain aka org.m0k.transmission]
  */
 struct FWipfwRuleStruct
 {
