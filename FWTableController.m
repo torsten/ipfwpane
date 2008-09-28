@@ -6,11 +6,11 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "FWTableController.h"
 #import "FWPrefPane.h"
-#import "FWipfwModel.h"
-#import "FWipfwRule.h"
+#import "FWRule.h"
 #import "FWSheetController.h"
+#import "FWTableController.h"
+#import "FWipfwModel.h"
 
 
 @implementation FWTableController
@@ -24,13 +24,13 @@
       objectValueForTableColumn:(NSTableColumn *)pTableColumn
       row:(int)pRow
 {
-	FWipfwRule *rule = [oModel ruleForIndex:pRow];
+	FWRule *rule = [oModel ruleForIndex:pRow];
 	
 	if(pTableColumn == oBoolColumn)
-		return [NSNumber numberWithBool:rule->enabled];
+		return [NSNumber numberWithBool:rule.enabled];
 	
 	else
-		return rule->title;
+		return rule.description;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)pNotification
@@ -47,10 +47,10 @@
 	forTableColumn:(NSTableColumn *)pTableColumn
 	row:(NSInteger)pRowIndex
 {
-	FWipfwRule *rule = [oModel ruleForIndex:pRowIndex];
+	FWRule *rule = [oModel ruleForIndex:pRowIndex];
 	
 	if(pTableColumn == oBoolColumn)
-		rule->enabled = [pValue boolValue];
+		rule.enabled = [pValue boolValue];
 }
 
 - (IBAction)removeSelectedRow:(id)pSender
@@ -77,19 +77,17 @@
 
 - (IBAction)editSelectedRow:(id)pSender
 {
-	NSLog(@"EDIT ROW");
+	// [oSheetController editRule:rule andCallback:self];
 }
 
 - (IBAction)addItem:(id)pSender
 {
-	[oSheetController addRule];
-	
-	FWipfwRule rule;
-	rule.enabled = NO;
-	rule.title = @"Foo";
-	
-	[oModel copyAndAddRule:&rule];
-	
+	[oSheetController createRuleAndCallback:self];
+}
+
+- (void)sheetCreatedNewRule:(FWRule*)pRule
+{
+	[oModel addRule:pRule];
 	[oTableView reloadData];
 }
 

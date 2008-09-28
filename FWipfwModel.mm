@@ -8,7 +8,7 @@
 
 #import "FWipfwModel.h"
 #import "FWPrefPane.h"
-#import "FWipfwRule.h"
+#import "FWRule.h"
 
 // #include <vector>  --  has already been done in FWipfwModel.h
 
@@ -21,12 +21,10 @@
 	{
 		mRules = new FWipfwRuleContainer();
 		
-		FWipfwRule *rule = new FWipfwRule;
-		rule->enabled = YES;
-		rule->title = @"Transmission";
-		rule->body = nil;
-		
-		mRules->push_back(rule);
+		// FWRule *rule = [[FWRule alloc] initEnabled:YES description:@"TEST"
+		// 		tcpPorts:nil udpPorts:nil];
+		// 
+		// mRules->push_back(rule);
 	}
 	return self;
 }
@@ -37,7 +35,7 @@
 	
 	// delete/free/dealloc each rule in the container.
 	for(; iter != mRules->end(); ++iter)
-		delete (*iter);
+		[(*iter) release];
 	
 	
 	delete mRules;
@@ -51,30 +49,20 @@
 	return mRules->size();
 }
 
-- (FWipfwRule*)ruleForIndex:(unsigned int)pIndex
+- (FWRule*)ruleForIndex:(unsigned int)pIndex
 {
 	return (*mRules)[pIndex];
 }
 
-- (void)addRule:(FWipfwRule*)pNewRule
+- (void)addRule:(FWRule*)pNewRule
 {
+	[pNewRule retain];
 	mRules->push_back(pNewRule);
-}
-
-- (void)copyAndAddRule:(FWipfwRule*)pNewRule
-{
-	FWipfwRule *tmpRule = new FWipfwRule();
-	
-	tmpRule->enabled = pNewRule->enabled;
-	tmpRule->title = pNewRule->title;
-	tmpRule->body = pNewRule->body;
-	
-	[self addRule:tmpRule];
 }
 
 - (void)removeRuleAtIndex:(unsigned int)pIndex
 {
-	delete ((*mRules)[pIndex]);
+	[((*mRules)[pIndex]) release];
 	mRules->erase(mRules->begin()+pIndex);
 }
 

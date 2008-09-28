@@ -10,12 +10,12 @@
 
 
 @class FWPrefPane;
+@class FWRule;
 
-struct FWipfwRuleStruct;
 
 #ifdef __cplusplus
 	#include <vector>
-	typedef std::vector<struct FWipfwRuleStruct*> FWipfwRuleContainer;
+	typedef std::vector<FWRule*> FWipfwRuleContainer;
 #else
 	typedef int* FWipfwRuleContainer;
 #endif
@@ -38,25 +38,12 @@ struct FWipfwRuleStruct;
 /**
  *	Returns the rule at the given index.
  */
-- (struct FWipfwRuleStruct*)ruleForIndex:(unsigned int)index;
+- (FWRule*)ruleForIndex:(unsigned int)index;
 
 /**
  *	Adds new rule.
  */
-- (void)addRule:(struct FWipfwRuleStruct*)newRule;
-
-/**
- *	First creates a new rule and then it fills the new one with the
- *	values from the old one.  After this it adds the new rule.
- */
-- (void)copyAndAddRule:(struct FWipfwRuleStruct*)newRule;
-
-/**
- *	Adds a rule with a more convienient interface.
- */
-// - (void)addRuleEnabled:(BOOL)enabled
-// 	withTitle:(NSString*)title
-// 	body:(NSString*)body;
+- (void)addRule:(FWRule*)newRule;
 
 /**
  *	Removed the rule at the index.

@@ -10,6 +10,7 @@
 
 
 @class NSPreferencePane;
+@class FWRule;
 
 
 @interface FWSheetController : NSObject
@@ -30,7 +31,31 @@
 
 - (IBAction)popUpButtonChanged:(id)sender;
 
-- (void)addRule;
 
+/**
+ *	If OK gets pressed, this results in a callback of the method:
+ *	- (void)sheetCreatedNewRule:(FWRule*)rule;
+ *
+ *	On cancel nothing will happen.
+ */ 
+- (void)createRuleAndCallback:(id)callback;
+
+/**
+ *	If the rule got modified, this will result in the following callback:
+ *	- (void)sheetDidEditRule:(FWRule*)rule;
+ *	
+ *	If the user pressed cancel, this will be called:
+ *	- (void)sheetCanceledEditRule:(FWRule*)rule;	
+ */
+- (void)editRule:(FWRule*)rule andCallback:(id)callback;
+
+
+@end
+
+
+@protocol FWSheetControllerCallback
+- (void)sheetCreatedNewRule:(FWRule*)rule;
+- (void)sheetCanceledEditRule:(FWRule*)rule;
+- (void)sheetDidEditRule:(FWRule*)rule;	
 
 @end

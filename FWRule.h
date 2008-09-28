@@ -1,19 +1,12 @@
 //
-//  FWipfwRule.h
+//  FWRule.h
 //  ipfwPane
 //
-//  Created by Torsten Becker on 23.09.08.
+//  Created by Torsten Becker on 28.09.08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-
-
-// @interface FWipfwRule : NSObject {
-// 	
-// }
-// 
-// @end
 
 
 /**
@@ -25,7 +18,7 @@
  *	- desciption
  *	- smart-rule? [none/nil oder app-domain aka org.m0k.transmission]
  */
-struct FWipfwRuleStruct
+@interface FWRule : NSObject
 {
 	/**
 	 *	If it is currently enabled or not.
@@ -35,13 +28,22 @@ struct FWipfwRuleStruct
 	/**
 	 *	The string shown in the UI
 	 */
-	NSString *title;
-	
-	/**
-	 *	Which ports are actually meant
-	 */
-	NSString *body;
-	
-};
+	NSString *description;
 
-typedef struct FWipfwRuleStruct FWipfwRule;
+	NSString *tcpPorts;
+	
+	NSString *udpPorts;
+}
+
+@property BOOL enabled;
+@property(retain) NSString *description;
+@property(retain) NSString *tcpPorts;
+@property(retain) NSString *udpPorts;
+
+- (id)initEnabled:(BOOL)enabled
+	description:(NSString*)desc
+	tcpPorts:(NSString*)tcp
+	udpPorts:(NSString*)udp;
+
+
+@end

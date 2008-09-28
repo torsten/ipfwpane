@@ -9,7 +9,7 @@
 #import <PreferencePanes/PreferencePanes.h>
 
 #import "FWSheetController.h"
-
+#import "FWRule.h"
 
 
 @interface FWSheetController(Private)
@@ -61,18 +61,11 @@ NSInteger FWSheetControllerSortDefaultRules(
 	}
 	
 	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
-	[oPopUpButton addItemWithTitle:@"Other"];
 	
-	[oPopUpButton selectItem:nil];
-}
-
-- (void)addRule
-{
-	[NSApp beginSheet:oAddSheet
-			modalForWindow:[NSApp mainWindow]
-			modalDelegate:self
-            didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
-            contextInfo:nil];
+	item = [[[NSMenuItem alloc] init] autorelease];
+	[item setRepresentedObject:[NSDictionary dictionary]];
+	[item setTitle:@"Other"];
+	[[oPopUpButton menu] addItem:item];
 }
 
 - (IBAction)saveSheet:(id)pSender
@@ -106,7 +99,9 @@ NSInteger FWSheetControllerSortDefaultRules(
 		[oUDPPortsTextField setStringValue:[NSString string]];
 	
 	
-	[oDescriptionTextField setStringValue:[ruleData objectForKey:@"Title"]];
+	// Yes, there is no else
+	if([ruleData objectForKey:@"Title"])
+		[oDescriptionTextField setStringValue:[ruleData objectForKey:@"Title"]];
 }
 
 
@@ -124,6 +119,29 @@ NSInteger FWSheetControllerSortDefaultRules(
 	// the "Other" item.
 	[oPopUpButton selectItem:[oPopUpButton lastItem]];
 }
+
+- (void)createRuleAndCallback:(id)pCallback
+{
+	[oPopUpButton selectItem:nil];
+	[oAddSheet makeFirstResponder:oPopUpButton];
+	
+	[NSApp beginSheet:oAddSheet
+			modalForWindow:[NSApp mainWindow]
+			modalDelegate:self
+            didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
+            contextInfo:nil];
+	
+	FWRule *newRule = [[[FWRule alloc] init] autorelease];
+	newRule.description = @"NEW RULE";
+	
+	[(id<FWSheetControllerCallback>)pCallback sheetCreatedNewRule:newRule];
+}
+
+- (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
+{
+	
+}
+
 
 
 @end

@@ -18,8 +18,8 @@
 		E569A6B70E850B17001ED27B /* FWPrefPane.m in Sources */ = {isa = PBXBuildFile; fileRef = E569A6B50E850B17001ED27B /* FWPrefPane.m */; };
 		E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */; };
 		E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */; };
-		E5CF8DB80E8929AE001E9106 /* FWipfwRule.h in Headers */ = {isa = PBXBuildFile; fileRef = E5CF8DB60E8929AE001E9106 /* FWipfwRule.h */; };
-		E5CF8DB90E8929AE001E9106 /* FWipfwRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CF8DB70E8929AE001E9106 /* FWipfwRule.m */; };
+		E58EA4860E901A76000FBD79 /* FWRule.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA4840E901A76000FBD79 /* FWRule.h */; };
+		E58EA4870E901A76000FBD79 /* FWRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E58EA4850E901A76000FBD79 /* FWRule.m */; };
 		E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E02EA80E856935003663D0 /* SecurityInterface.framework */; };
 		E5E02F1C0E858A84003663D0 /* FWipfwModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E5E02F1A0E858A84003663D0 /* FWipfwModel.h */; };
 		E5E02F1D0E858A84003663D0 /* FWipfwModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5E02F1B0E858A84003663D0 /* FWipfwModel.mm */; };
@@ -41,8 +41,8 @@
 		E569A6B50E850B17001ED27B /* FWPrefPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWPrefPane.m; sourceTree = SOURCE_ROOT; };
 		E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
 		E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = DefaultRules.plist; sourceTree = SOURCE_ROOT; };
-		E5CF8DB60E8929AE001E9106 /* FWipfwRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWipfwRule.h; sourceTree = "<group>"; };
-		E5CF8DB70E8929AE001E9106 /* FWipfwRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWipfwRule.m; sourceTree = "<group>"; };
+		E58EA4840E901A76000FBD79 /* FWRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWRule.h; sourceTree = "<group>"; };
+		E58EA4850E901A76000FBD79 /* FWRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWRule.m; sourceTree = "<group>"; };
 		E5E02EA80E856935003663D0 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		E5E02F1A0E858A84003663D0 /* FWipfwModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWipfwModel.h; sourceTree = "<group>"; };
 		E5E02F1B0E858A84003663D0 /* FWipfwModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FWipfwModel.mm; sourceTree = "<group>"; };
@@ -128,8 +128,8 @@
 		32DBCFA10370C40200C91783 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E5CF8DB60E8929AE001E9106 /* FWipfwRule.h */,
-				E5CF8DB70E8929AE001E9106 /* FWipfwRule.m */,
+				E58EA4840E901A76000FBD79 /* FWRule.h */,
+				E58EA4850E901A76000FBD79 /* FWRule.m */,
 				E5E02FC00E85B359003663D0 /* FWSheetController.h */,
 				E5E02FC10E85B359003663D0 /* FWSheetController.m */,
 				E5E02F1A0E858A84003663D0 /* FWipfwModel.h */,
@@ -155,7 +155,7 @@
 				E50B460A0E852E91002830D7 /* FWTableController.h in Headers */,
 				E5E02F1C0E858A84003663D0 /* FWipfwModel.h in Headers */,
 				E5E02FC20E85B359003663D0 /* FWSheetController.h in Headers */,
-				E5CF8DB80E8929AE001E9106 /* FWipfwRule.h in Headers */,
+				E58EA4860E901A76000FBD79 /* FWRule.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +253,7 @@
 				E50B460B0E852E91002830D7 /* FWTableController.m in Sources */,
 				E5E02F1D0E858A84003663D0 /* FWipfwModel.mm in Sources */,
 				E5E02FC30E85B359003663D0 /* FWSheetController.m in Sources */,
-				E5CF8DB90E8929AE001E9106 /* FWipfwRule.m in Sources */,
+				E58EA4870E901A76000FBD79 /* FWRule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
