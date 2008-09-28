@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 
 
-rev_num = 23
-current_commit_hash = 'ad69f07c'
+rev_list = `git rev-list HEAD`
+
+rev_num = rev_list.count "\n"
+long_hash = rev_list[/^.+$/]
+
+current_commit_hash = `git rev-parse --short=5 #{long_hash}`.chop
 
 
 puts %+<?xml version="1.0" encoding="UTF-8"?>

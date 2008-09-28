@@ -29,11 +29,15 @@
 	</dict>
 	<dict>
 		<key>Title</key>
+		<string>iTunes Library Sharing</string>
+	</dict>
+	<dict>
+		<key>Title</key>
 		<string>Apple Remote Desktop</string>
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>AFP</string>
+		<string>Apple File Sharing (AFP)</string>
 	</dict>
 	<dict>
 		<key>Title</key>
@@ -46,6 +50,8 @@
 	<dict>
 		<key>Title</key>
 		<string>FTP Server</string>
+		<key>TCPPorts</key>
+		<string>21</string>
 	</dict>
 	<dict>
 		<key>Title</key>
