@@ -39,6 +39,14 @@
 	
 	[self setUpIcon];
 	
+	// Replace the placeholder ${REV} by the real version from the Info.plist
+	[oCreditsField setStringValue:[[
+			oCreditsField stringValue]
+			stringByReplacingOccurrencesOfString:@"${REV}"
+			withString:[[self bundle]
+				objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]];
+	
+	
 	[self enableUI:NO];
 	
 	// TODO: this enables the UI when the app starts, REMOVE THIS:

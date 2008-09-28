@@ -25,6 +25,8 @@
 	IBOutlet FWipfwModel *oModel;
 	// IBOutlet FWSheetController *oSheetController;
 	
+	IBOutlet NSTextField *oCreditsField;
+	
 	BOOL uiIsEnabled;
 	BOOL tableIsEnabled;
 	BOOL modifyButtonsAreEnabled;
