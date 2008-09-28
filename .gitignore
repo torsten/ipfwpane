@@ -1,3 +1,4 @@
 build/*
 ipfwPane.xcodeproj/torsten.*
 .DS_Store
+Info.plist

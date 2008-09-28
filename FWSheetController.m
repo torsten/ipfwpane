@@ -16,12 +16,14 @@
 	// Initialize the combo Box
 	
 	[oPopUpButton addItemWithTitle:@"AFP"];
+	[oPopUpButton addItemWithTitle:@"Apple Remote Desktop"];
 	[oPopUpButton addItemWithTitle:@"FTP Server"];
 	[oPopUpButton addItemWithTitle:@"iChat AV"];
 	[oPopUpButton addItemWithTitle:@"ICQ File Transfer"];
-	[oPopUpButton addItemWithTitle:@"SMB"];
-	[oPopUpButton addItemWithTitle:@"SSH"];
-	[oPopUpButton addItemWithTitle:@"Webserver (HTTP)"];
+	[oPopUpButton addItemWithTitle:@"Printer Sharing"];
+	[oPopUpButton addItemWithTitle:@"Remote Login (SSH)"];
+	[oPopUpButton addItemWithTitle:@"Web Server (HTTP)"];
+	[oPopUpButton addItemWithTitle:@"Windows Sharing (SMB)"];
 	
 
 	[[oPopUpButton menu] addItem:[NSMenuItem separatorItem]];
@@ -33,15 +35,17 @@
 	
 	item = [[[NSMenuItem alloc] init] autorelease];
 	[item setImage:smartBadge];
-	[item setTitle:@"ShakesPeer"];
+	[item setToolTip:@"Updates automatically if you change the port."];
 	
+	[item setTitle:@"ShakesPeer"];
 	[[oPopUpButton menu] addItem:item];
 
 	
 	item = [[[NSMenuItem alloc] init] autorelease];
 	[item setImage:smartBadge];
-	[item setTitle:@"Transmission"];
+	[item setToolTip:@"Updates automatically if you change the port."];
 	
+	[item setTitle:@"Transmission"];
 	[[oPopUpButton menu] addItem:item];
 
 

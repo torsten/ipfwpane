@@ -1,3 +1,11 @@
+#!/usr/bin/env ruby
+
+
+rev_num = 23
+current_commit_hash = 'ad69f07c'
+
+puts %+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -17,11 +25,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>r#{rev_num}</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>#{current_commit_hash}</string>
 	<key>NSMainNibFile</key>
 	<string>ipfwPanePref</string>
 	<key>NSPrefPaneIconFile</key>
@@ -32,3 +40,5 @@
 	<string>FWPrefPane</string>
 </dict>
 </plist>
+
++

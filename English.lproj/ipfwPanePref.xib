@@ -9,6 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="166"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -47,7 +48,7 @@
 				<string key="NSWindowContentMaxSize">{480, 270}</string>
 				<string key="NSWindowContentMinSize">{224.664, 10}</string>
 				<object class="NSView" key="NSWindowView" id="1037298196">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -386,7 +387,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="227885292">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">71304192</int>
-								<string key="NSContents">ipfw Preference Pane rX by Torsten Becker</string>
+								<string key="NSContents">ipfw Preference Pane v25 by Torsten Becker</string>
 								<reference key="NSSupport" ref="478844536"/>
 								<reference key="NSControlView" ref="152806847"/>
 								<object class="NSColor" key="NSBackgroundColor" id="799479023">
@@ -459,6 +460,7 @@ aXBmdyg4KSBjb21tYW5kIGxpbmUgdXRpbGl0eS4</string>
 						</object>
 					</object>
 					<string key="NSFrameSize">{668, 368}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{224.664, 32}</string>
