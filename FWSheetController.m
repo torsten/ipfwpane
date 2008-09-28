@@ -88,4 +88,13 @@
     [pSheet orderOut:self];
 }
 
+
+- (void)controlTextDidChange:(NSNotification *)pNotification
+{
+	// If the text in any of the boxes changes, fall back to
+	// the "Other" item.
+	[oPopUpButton selectItem:[oPopUpButton lastItem]];
+}
+
+
 @end
