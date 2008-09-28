@@ -82,7 +82,7 @@
 
 - (IBAction)popUpButtonChanged:(id)pSender
 {
-	NSLog(@"CHANGE");
+	[oDescriptionTextField setStringValue:[[pSender selectedItem] title]];
 }
 
 - (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode contextInfo:(void *)pContextInfo

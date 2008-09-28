@@ -4,6 +4,7 @@
 rev_num = 23
 current_commit_hash = 'ad69f07c'
 
+
 puts %+
 
 <?xml version="1.0" encoding="UTF-8"?>
