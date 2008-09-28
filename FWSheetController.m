@@ -91,7 +91,22 @@ NSInteger FWSheetControllerSortDefaultRules(
 
 - (IBAction)popUpButtonChanged:(id)pSender
 {
-	[oDescriptionTextField setStringValue:[[oPopUpButton selectedItem] title]];
+	NSDictionary *ruleData = [[oPopUpButton selectedItem] representedObject];
+	
+	
+	if([ruleData objectForKey:@"TCPPorts"])
+		[oTCPPortsTextField setStringValue:[ruleData objectForKey:@"TCPPorts"]];
+	else
+		[oTCPPortsTextField setStringValue:[NSString string]];
+	
+		
+	if([ruleData objectForKey:@"UDPPorts"])
+		[oUDPPortsTextField setStringValue:[ruleData objectForKey:@"UDPPorts"]];
+	else
+		[oUDPPortsTextField setStringValue:[NSString string]];
+	
+	
+	[oDescriptionTextField setStringValue:[ruleData objectForKey:@"Title"]];
 }
 
 
