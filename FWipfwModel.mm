@@ -10,6 +10,8 @@
 #import "FWPrefPane.h"
 #import "FWRule.h"
 
+#include "DebugFU.h"
+
 #include <stdio.h>
 
 // #include <vector>  --  has already been done in FWipfwModel.h
@@ -73,19 +75,19 @@
 
 - (void)reloadRules
 {
-	NSLog(@"LOAD");
+	FULog(@"LOAD");
 }
 
 - (void)saveRules
 {
-	NSLog(@"SAVE");
+	FULog(@"SAVE");
 }
 
 - (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
 {
 	mAuthRef = pAuthRef;
 	
-	[self runId];
+	[self getRuleList];
 }
 
 - (void)setFirewallEnabled:(BOOL)enable
@@ -104,35 +106,73 @@
 
 @implementation FWipfwModel (Private)
 
-- (void)runId
+- (void)getRuleList
 {
-	NSLog(@"id: %@", [self runRootCommand:"/usr/bin/id"]);
+	NSLog(@"%@", [self runIpfwAsRootWithArgs:"-S", "list", NULL]);
 }
 
-- (NSString*)runRootCommand:(char*)pCmd;
+- (NSString*)runIpfwAsRootWithArgs:(char*)pArg, ...
 {
+	// Count the arguments
+	va_list argumentList;
+	unsigned int argumentCount;
+	char *nextStr;
+	
+	if(pArg == NULL)
+	{
+		argumentCount = 0;
+	}
+	else
+	{
+		argumentCount = 1;
+		va_start(argumentList, pArg);
+		
+		for(;;)
+		{
+			nextStr = va_arg(argumentList, char*);
+			
+			if(nextStr == NULL)
+				break;
+			
+			++argumentCount;
+		}
+		
+		va_end(argumentList);
+	}
+	
+	FULog(@"runIpfwAsRootWithArgs got %d args.", argumentCount);
+	
+	
+	// Collect the arguments into argv
+	char *argv[argumentCount+1];
+	
+	va_start(argumentList, pArg);
+	
+	for(unsigned int i = 0; i < argumentCount; ++i)
+		argv[i] = va_arg(argumentList, char*);
+	
+	va_end(argumentList);
+	
+	// This gets changed
 	OSStatus status;
 	FILE *communicationsPipe;
 	
-	char *nullPtr = 0; // aka argv
+	// Constant stuff
+	const char *ipfw = "/sbin/ipfw";
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
 	// TODO: Ensure somehow at this point, that pCmd is not bad.
 	
 	status = AuthorizationExecuteWithPrivileges(
-			mAuthRef, pCmd, options, &nullPtr, &communicationsPipe);
+			mAuthRef, ipfw, options, argv, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
 	{
-#ifdef DEBUG
-			NSLog(@"errAuthorizationSuccess, continuing...");
-#endif
+		FULog(@"errAuthorizationSuccess, continuing...");
 	}
 	else
 	{
-#ifdef DEBUG
-		NSLog(@"NOT errAuthorizationSuccess, STOP.");
-#endif
+		FULog(@"NOT errAuthorizationSuccess, STOP.");
 		return nil;
 	}
 	
@@ -146,9 +186,7 @@
 	
 	if(fclose(communicationsPipe) != 0)
 	{
-#ifdef DEBUG
-		NSLog(@"fclose() ERROR");
-#endif
+		FULog(@"fclose() ERROR");
 	}
 	
 	NSString *str = [[[NSString alloc] 

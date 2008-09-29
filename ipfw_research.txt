@@ -39,11 +39,11 @@ set 23 deny udp from any to any in
 
 
 ## Allow rules [Base + Nr]
-ipfw add   31337   set 23 allow tcp from any to any dst-port 8008 in
-ipfw add   31337   set 23 allow tcp from any to any dst-port 17328 in
+ipfw add   31337   set 23 allow tcp from any to me dst-port 8008 in
+ipfw add   31337   set 23 allow tcp from any to me dst-port 17328 in
 
 ## Required allows (DNS)  [Base + 500]
-ipfw add   31337   set 23 allow udp from any 53 to any in
+ipfw add   31337   set 23 allow udp from any 53 to me in
 
 ## Deny rules  [Base + 501]
 ipfw add   31337   set 23 deny tcp from any to any in setup
@@ -58,3 +58,11 @@ lzeas t go
 
 
 
+http://www.ecst.csuchico.edu/~beej/guide/ipc/flock.html
+
+
+
+Ports
+
+
+123,456,23-25,23,etc

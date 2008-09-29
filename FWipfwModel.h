@@ -86,7 +86,13 @@
 
 
 @interface FWipfwModel (Private)
-- (void)runId;
-- (NSString*)runRootCommand:(char*)cmd;
+
+- (void)getRuleList;
+
+/**
+ *	Runs ipfw with the given arguments and returns the output as a string.
+ *	The list is terminated by a NULL pointer.
+ */
+- (NSString*)runIpfwAsRootWithArgs:(char*)arg, ...;
 
 @end
