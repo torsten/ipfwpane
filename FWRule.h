@@ -10,12 +10,10 @@
 
 
 /**
- *	A struct to get the data out of the class in a structured way.
- *
- *	- TCP ports
- *	- UDP ports
+ *	Just a POO for keeping the rule-data,
+ *	
+ *	TODO:
  *	- present
- *	- desciption
  *	- smart-rule? [none/nil oder app-domain aka org.m0k.transmission]
  */
 @interface FWRule : NSObject
@@ -29,9 +27,15 @@
 	 *	The string shown in the UI
 	 */
 	NSString *description;
-
+	
+	/**
+	 *	
+	 */
 	NSString *tcpPorts;
 	
+	/**
+	 *	
+	 */
 	NSString *udpPorts;
 }
 

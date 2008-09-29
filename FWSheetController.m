@@ -12,10 +12,6 @@
 #import "FWRule.h"
 
 
-// @interface FWSheetController(Private)
-// @end
-
-
 NSInteger FWSheetControllerSortDefaultRules(
 		NSMutableDictionary *a, NSMutableDictionary *b, void *context);
 
@@ -175,17 +171,14 @@ enum FWSheetControllerReturnCode
 	
 	if(pReturnCode == FWSheetControllerReturnSave)
 	{
-		// FWRule *newRule = [[[FWRule alloc] init] autorelease];
-		// 
-		// newRule.enabled = YES;
-		// newRule.description = [oDescriptionTextField stringValue];
-		// newRule.tcpPorts = [oTCPPortsTextField stringValue];
-		// newRule.udpPorts = [oUDPPortsTextField stringValue];
+		mRuleInEdit.description = [oDescriptionTextField stringValue];
+		mRuleInEdit.tcpPorts = [oTCPPortsTextField stringValue];
+		mRuleInEdit.udpPorts = [oUDPPortsTextField stringValue];
 		
-		[callback sheetDidEditRule:nil];
+		[callback sheetDidEditRule:mRuleInEdit];
 	}
 	else
-		[callback sheetCanceledEditRule:nil];
+		[callback sheetCanceledEditRule:mRuleInEdit];
 	
 	
 	[pSheet orderOut:self];
@@ -200,6 +193,10 @@ enum FWSheetControllerReturnCode
 	[oPopUpButton selectItem:nil];
 	[oAddSheet makeFirstResponder:oPopUpButton];
 	
+	oDescriptionTextField.stringValue = [NSString string];
+	oTCPPortsTextField.stringValue = [NSString string];
+	oUDPPortsTextField.stringValue = [NSString string];
+	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]
 			modalDelegate:self
@@ -210,7 +207,13 @@ enum FWSheetControllerReturnCode
 - (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
 {
 	[oPopUpButton selectItem:nil];
-	[oAddSheet makeFirstResponder:oPopUpButton];
+	[oAddSheet makeFirstResponder:oTCPPortsTextField];
+	
+	oDescriptionTextField.stringValue = pRule.description;
+	oTCPPortsTextField.stringValue = pRule.tcpPorts;
+	oUDPPortsTextField.stringValue = pRule.udpPorts;
+	
+	mRuleInEdit = pRule;
 	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]

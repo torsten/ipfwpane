@@ -39,6 +39,8 @@
 	IBOutlet NSTextField *oDescriptionTextField;
 	
 	IBOutlet NSPreferencePane *oPrefPane;
+	
+	FWRule *mRuleInEdit;
 }
 
 - (IBAction)saveSheet:(id)sender;

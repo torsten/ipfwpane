@@ -65,8 +65,6 @@
 	shouldEditTableColumn:(NSTableColumn *)pTableColumn
 	row:(NSInteger)pRowIndex
 {
-	NSLog(@"EDIT");
-	
 	if(pTableColumn == oStringColumn)
 		return NO;
 	
@@ -89,7 +87,9 @@
 
 - (IBAction)editSelectedRow:(id)pSender
 {
-	[oSheetController editRule:nil andCallback:self];
+	if([oTableView selectedRow] != -1)
+		[oSheetController editRule:
+				[oModel ruleForIndex:[oTableView selectedRow]]andCallback:self];
 }
 
 - (IBAction)addItem:(id)pSender
@@ -107,14 +107,13 @@
 	[oTableView reloadData];
 }
 
-- (void)sheetCanceledEditRule:(FWRule*)rule
+- (void)sheetDidEditRule:(FWRule*)pRule
 {
-	
+	[oTableView reloadData];
 }
 
-- (void)sheetDidEditRule:(FWRule*)rule
+- (void)sheetCanceledEditRule:(FWRule*)pRule
 {
-	
 }
 
 
