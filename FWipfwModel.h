@@ -69,4 +69,15 @@
  */
 - (void)setAuthStuff:(void*)someAuthStuff;
 
+/**
+ *	Enables or disables the firewall, this also creates the startup item
+ *	or removes it.
+ */
+- (void)setFirewallEnabled:(BOOL)enable;
+
+/**
+ *	
+ */
+- (BOOL)firewallEnabled;
+
 @end

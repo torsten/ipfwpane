@@ -240,7 +240,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ruby generate_info_plist.rb > Info.plist";
+			shellScript = "# Delete the 'target plist'\nrm -f $INFOPLIST_PATH\n\n# Generate a new plist\nruby generate_info_plist.rb > Info.plist\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

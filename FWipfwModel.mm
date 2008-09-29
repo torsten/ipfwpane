@@ -88,5 +88,15 @@
 	
 }
 
+- (void)setFirewallEnabled:(BOOL)enable
+{
+	
+}
+
+- (BOOL)firewallEnabled
+{
+	
+}
+
 
 @end
