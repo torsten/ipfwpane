@@ -15,6 +15,10 @@
 
 @implementation FWTableController
 
+
+#pragma mark NSTableDataSource
+
+
 - (int)numberOfRowsInTableView:(NSTableView *)pTableView
 {
 	return [oModel numberOfRules];
@@ -33,15 +37,6 @@
 		return rule.description;
 }
 
-- (void)tableViewSelectionDidChange:(NSNotification *)pNotification
-{
-	if([oTableView selectedRow] == -1)
-		[oPrefPane enableModifyButtons:NO];
-	
-	else
-		[oPrefPane enableModifyButtons:YES];
-}
-
 - (void)tableView:(NSTableView *)pTableView
 	setObjectValue:(id)pValue
 	forTableColumn:(NSTableColumn *)pTableColumn
@@ -53,13 +48,17 @@
 		rule.enabled = [pValue boolValue];
 }
 
-- (IBAction)removeSelectedRow:(id)pSender
-{
-	if([oTableView selectedRow] != -1)
-		[oModel removeRuleAtIndex:[oTableView selectedRow]];
-	
-	[oTableView reloadData];
 
+#pragma mark NSTableView Delegate
+
+
+- (void)tableViewSelectionDidChange:(NSNotification *)pNotification
+{
+	if([oTableView selectedRow] == -1)
+		[oPrefPane enableModifyButtons:NO];
+	
+	else
+		[oPrefPane enableModifyButtons:YES];
 }
 
 - (BOOL)tableView:(NSTableView *)pTableView
@@ -73,6 +72,19 @@
 	
 	else
 		return YES;
+}
+
+
+#pragma mark IBActions
+
+
+- (IBAction)removeSelectedRow:(id)pSender
+{
+	if([oTableView selectedRow] != -1)
+		[oModel removeRuleAtIndex:[oTableView selectedRow]];
+	
+	[oTableView reloadData];
+
 }
 
 - (IBAction)editSelectedRow:(id)pSender
