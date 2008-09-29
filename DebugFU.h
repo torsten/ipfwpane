@@ -8,10 +8,10 @@
 #define DEBUGFU_H_DXPMYUJG
 
 #ifdef DEBUG
-#define FULog(MSG, ...) NSLog(MSG, ## __VA_ARGS__)
+#define FULog(...) NSLog(__VA_ARGS__)
 
 #else
-#define FULog(MSG, ...) {}
+#define FULog(...) {}
 
 #endif
 
