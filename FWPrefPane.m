@@ -57,7 +57,6 @@
 	[self authorizationViewDidAuthorize:nil];
 }
 
-
 - (NSPreferencePaneUnselectReply)shouldUnselect
 {
 	[[NSUserDefaults standardUserDefaults] setPersistentDomain:defaultsDict

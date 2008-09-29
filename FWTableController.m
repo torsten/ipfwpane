@@ -89,7 +89,7 @@
 
 - (IBAction)editSelectedRow:(id)pSender
 {
-	// [oSheetController editRule:rule andCallback:self];
+	[oSheetController editRule:nil andCallback:self];
 }
 
 - (IBAction)addItem:(id)pSender
@@ -107,8 +107,15 @@
 	[oTableView reloadData];
 }
 
-// - (void)sheetCanceledEditRule:(FWRule*)rule;
-// - (void)sheetDidEditRule:(FWRule*)rule;	
+- (void)sheetCanceledEditRule:(FWRule*)rule
+{
+	
+}
+
+- (void)sheetDidEditRule:(FWRule*)rule
+{
+	
+}
 
 
 @end

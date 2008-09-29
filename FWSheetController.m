@@ -153,7 +153,11 @@ enum FWSheetControllerReturnCode
 	if(pReturnCode == FWSheetControllerReturnSave)
 	{
 		FWRule *newRule = [[[FWRule alloc] init] autorelease];
+		
+		newRule.enabled = YES;
 		newRule.description = [oDescriptionTextField stringValue];
+		newRule.tcpPorts = [oTCPPortsTextField stringValue];
+		newRule.udpPorts = [oUDPPortsTextField stringValue];
 		
 		id <FWSheetControllerCallback> callback = pContextInfo;
 		
@@ -167,6 +171,23 @@ enum FWSheetControllerReturnCode
 - (void)didEndEditSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
 	contextInfo:(void *)pContextInfo
 {
+	id <FWSheetControllerCallback> callback = pContextInfo;
+	
+	if(pReturnCode == FWSheetControllerReturnSave)
+	{
+		// FWRule *newRule = [[[FWRule alloc] init] autorelease];
+		// 
+		// newRule.enabled = YES;
+		// newRule.description = [oDescriptionTextField stringValue];
+		// newRule.tcpPorts = [oTCPPortsTextField stringValue];
+		// newRule.udpPorts = [oUDPPortsTextField stringValue];
+		
+		[callback sheetDidEditRule:nil];
+	}
+	else
+		[callback sheetCanceledEditRule:nil];
+	
+	
 	[pSheet orderOut:self];
 }
 
