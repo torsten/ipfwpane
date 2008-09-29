@@ -11,7 +11,7 @@
 #define FULog(...) NSLog(__VA_ARGS__)
 
 #else
-#define FULog(...) {}
+#define FULog(...)
 
 #endif
 

@@ -167,9 +167,8 @@
 			mAuthRef, ipfw, options, argv, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
-	{
 		FULog(@"errAuthorizationSuccess, continuing...");
-	}
+	
 	else
 	{
 		FULog(@"NOT errAuthorizationSuccess, STOP.");
@@ -185,9 +184,7 @@
 	NSData *data = [fh readDataToEndOfFile];
 	
 	if(fclose(communicationsPipe) != 0)
-	{
 		FULog(@"fclose() ERROR");
-	}
 	
 	NSString *str = [[[NSString alloc] 
 			initWithData:data encoding:NSUTF8StringEncoding] autorelease];
