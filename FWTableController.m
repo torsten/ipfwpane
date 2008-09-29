@@ -61,13 +61,17 @@
 		[oPrefPane enableModifyButtons:YES];
 }
 
+// This is the double click on a row
 - (BOOL)tableView:(NSTableView *)pTableView
 	shouldEditTableColumn:(NSTableColumn *)pTableColumn
 	row:(NSInteger)pRowIndex
 {
 	if(pTableColumn == oStringColumn)
+	{
+		[self editSelectedRow:nil];
+		
 		return NO;
-	
+	}
 	else
 		return YES;
 }
