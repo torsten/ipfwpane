@@ -20,6 +20,7 @@
 		E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */; };
 		E58EA4860E901A76000FBD79 /* FWRule.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA4840E901A76000FBD79 /* FWRule.h */; };
 		E58EA4870E901A76000FBD79 /* FWRule.m in Sources */ = {isa = PBXBuildFile; fileRef = E58EA4850E901A76000FBD79 /* FWRule.m */; };
+		E58EA5930E913718000FBD79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58EA5920E913718000FBD79 /* Security.framework */; };
 		E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E02EA80E856935003663D0 /* SecurityInterface.framework */; };
 		E5E02F1C0E858A84003663D0 /* FWipfwModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E5E02F1A0E858A84003663D0 /* FWipfwModel.h */; };
 		E5E02F1D0E858A84003663D0 /* FWipfwModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = E5E02F1B0E858A84003663D0 /* FWipfwModel.mm */; };
@@ -43,6 +44,7 @@
 		E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = DefaultRules.plist; sourceTree = SOURCE_ROOT; };
 		E58EA4840E901A76000FBD79 /* FWRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWRule.h; sourceTree = "<group>"; };
 		E58EA4850E901A76000FBD79 /* FWRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWRule.m; sourceTree = "<group>"; };
+		E58EA5920E913718000FBD79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E5E02EA80E856935003663D0 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		E5E02F1A0E858A84003663D0 /* FWipfwModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWipfwModel.h; sourceTree = "<group>"; };
 		E5E02F1B0E858A84003663D0 /* FWipfwModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FWipfwModel.mm; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
 				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
 				E5E02EA90E856935003663D0 /* SecurityInterface.framework in Frameworks */,
+				E58EA5930E913718000FBD79 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +83,7 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E58EA5920E913718000FBD79 /* Security.framework */,
 				E5E02EA80E856935003663D0 /* SecurityInterface.framework */,
 				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
 				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,

@@ -10,6 +10,8 @@
 #import "FWPrefPane.h"
 #import "FWRule.h"
 
+#include <stdio.h>
+
 // #include <vector>  --  has already been done in FWipfwModel.h
 
 
@@ -24,11 +26,6 @@
 	if((self = [super init]))
 	{
 		mRules = new FWipfwRuleContainer();
-		
-		// FWRule *rule = [[FWRule alloc] initEnabled:YES description:@"TEST"
-		// 		tcpPorts:nil udpPorts:nil];
-		// 
-		// mRules->push_back(rule);
 	}
 	return self;
 }
@@ -83,9 +80,11 @@
 	NSLog(@"SAVE");
 }
 
-- (void)setAuthStuff:(void*)someAuthStuff
+- (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
 {
+	NSLog(@"NEW REF");
 	
+	[self runId:pAuthRef];
 }
 
 - (void)setFirewallEnabled:(BOOL)enable
@@ -96,6 +95,55 @@
 - (BOOL)firewallEnabled
 {
 	return NO;
+}
+
+
+@end
+
+
+@implementation FWipfwModel (Private)
+
+- (void)runId:(AuthorizationRef)pAuthRef
+{
+	NSLog(@"id...");
+	
+	
+	OSStatus status;
+	FILE *communicationsPipe;
+	
+	char *pathToTool = "/usr/bin/id";
+	char *nullPtr = 0; // aka argv
+	const AuthorizationFlags options = kAuthorizationFlagDefaults;
+	
+	status = AuthorizationExecuteWithPrivileges(
+			pAuthRef, pathToTool, options, &nullPtr, &communicationsPipe);
+	
+	if(status == errAuthorizationSuccess)
+		NSLog(@"errAuthorizationSuccess");
+	
+	else
+	{
+		NSLog(@"NOT errAuthorizationSuccess");
+		return;
+	}
+	
+	
+	int fd = fileno(communicationsPipe);
+    
+	NSFileHandle *fh = [[[NSFileHandle alloc]
+			initWithFileDescriptor:fd] autorelease];
+	
+	NSData *data = [fh readDataToEndOfFile];
+	
+	
+	if(fclose(communicationsPipe) != 0)
+		NSLog(@"fclose error");
+	
+	
+	NSString *str = [[[NSString alloc] 
+			initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+	
+	NSLog(@"%@", str);
 }
 
 

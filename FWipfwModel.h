@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Security/Authorization.h>
 
 
 @class FWPrefPane;
@@ -67,7 +68,7 @@
  *	use sudo, without it, it will not be able to return data as you need
  *	root access to play around with ipfw.
  */
-- (void)setAuthStuff:(void*)someAuthStuff;
+- (void)setAuthorizationRef:(AuthorizationRef)authRef;
 
 /**
  *	Enables or disables the firewall, this also creates the startup item
@@ -79,5 +80,11 @@
  *	
  */
 - (BOOL)firewallEnabled;
+
+@end
+
+
+@interface FWipfwModel (Private)
+- (void)runId:(AuthorizationRef)authRef;
 
 @end

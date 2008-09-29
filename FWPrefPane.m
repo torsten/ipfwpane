@@ -10,6 +10,7 @@
 
 #import "FWPrefPane.h"
 #import "FWTableController.h"
+#import "FWipfwModel.h"
 
 
 @implementation FWPrefPane
@@ -55,7 +56,7 @@
 	[self enableUI:NO];
 	
 	// TODO: this enables the UI when the app starts, REMOVE THIS:
-	[self authorizationViewDidAuthorize:nil];
+	[self authorizationViewDidAuthorize:oAuthorizationView];
 	
 	[oTableController refreshTable];
 }
@@ -75,11 +76,15 @@
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
 {
 	[self enableUI:YES];
+	
+	[oModel setAuthorizationRef:[[pView authorization] authorizationRef]];
 }
 
 - (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
 {
 	[self enableUI:NO];
+	
+	[oModel setAuthorizationRef:NULL];
 }
 
 
