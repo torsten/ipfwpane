@@ -83,8 +83,6 @@
 
 - (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
 {
-	NSLog(@"NEW REF");
-	
 	mAuthRef = pAuthRef;
 	
 	[self runId];
@@ -108,7 +106,7 @@
 
 - (void)runId
 {
-	NSLog(@"id... %@", [self runRootCommand:"/usr/bin/id"]);
+	NSLog(@"id: %@", [self runRootCommand:"/usr/bin/id"]);
 }
 
 - (NSString*)runRootCommand:(char*)pCmd;

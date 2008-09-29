@@ -1,0 +1,60 @@
+root@Harley:~# ipfw -S list
+33300 set 0 deny icmp from any to me in icmptypes 8
+65535 set 31 allow ip from any to any
+
+-T shows timestamp of last execution 
+
+
+ipfw set [disable number ...] [enable number ...]
+
+=> set 23 is used for the prefpane (evtl hidden pref)
+
+=> base rule nr auch über hidden pref setzen
+
+
+Reading rules from a file:
+
+ipfw [-cnNqS] pathname
+
+To ease configuration, rules can be put into a file which is processed
+using ipfw as shown in the last synopsis line.  An absolute pathname must
+be used.  The file will be read line by line and applied as arguments to
+the ipfw utility.
+
+
+
+
+Base rule (forbid everything):
+add deny
+
+
+
+33300 set 0 deny icmp from any to me in icmptypes 8
+
+33400 set 23 allow tcp from any to any dst-port 8008 in
+33600 set 23 allow tcp from any to any dst-port 17328 in
+33700 set 23 deny tcp from any to any in setup
+
+set 23 deny udp from any to any in
+
+
+## Allow rules [Base + Nr]
+ipfw add   31337   set 23 allow tcp from any to any dst-port 8008 in
+ipfw add   31337   set 23 allow tcp from any to any dst-port 17328 in
+
+## Required allows (DNS)  [Base + 500]
+ipfw add   31337   set 23 allow udp from any 53 to any in
+
+## Deny rules  [Base + 501]
+ipfw add   31337   set 23 deny tcp from any to any in setup
+ipfw add   31337   set 23 deny udp from any to any in
+
+
+1234567890
+lzeas t go
+
+
+65535 set 31 allow ip from any to any
+
+
+
