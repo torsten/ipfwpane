@@ -12,21 +12,42 @@
 #import "FWRule.h"
 
 
-@interface FWSheetController(Private)
-@end
+// @interface FWSheetController(Private)
+// @end
 
 
 NSInteger FWSheetControllerSortDefaultRules(
 		NSMutableDictionary *a, NSMutableDictionary *b, void *context);
 
 
-typedef enum {
-	FWSheetControllerReturnSave = 0,
-	FWSheetControllerReturnCancel = 1
-} FWSheetControllerReturn;
+enum FWSheetControllerReturnCode
+{
+	FWSheetControllerReturnCancel = 0,
+	FWSheetControllerReturnSave = 1
+};
 
 
 @implementation FWSheetController
+
+// - (id)init
+// {
+// 	if((self = [super init]))
+// 	{
+// 		
+// 	}
+// 	return self;
+// }
+// 
+// - (void)dealloc
+// {
+// 	
+// 	
+// 	[super dealloc];
+// }
+
+
+#pragma mark NSNibAwaking
+
 
 - (void)awakeFromNib
 {
@@ -74,6 +95,10 @@ typedef enum {
 	[[oPopUpButton menu] addItem:item];
 }
 
+
+#pragma mark IBActions
+
+
 - (IBAction)saveSheet:(id)pSender
 {
     [NSApp endSheet:oAddSheet returnCode:FWSheetControllerReturnSave];
@@ -108,22 +133,7 @@ typedef enum {
 }
 
 
-- (void)didEndSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
-	contextInfo:(void *)pContextInfo
-{
-	if(pReturnCode == FWSheetControllerReturnSave)
-	{
-		FWRule *newRule = [[[FWRule alloc] init] autorelease];
-		newRule.description = [oDescriptionTextField stringValue];
-		
-		id <FWSheetControllerCallback> cb = pContextInfo;
-	
-		[cb sheetCreatedNewRule:newRule];
-	}
-	
-	
-    [pSheet orderOut:self];
-}
+#pragma mark NSControl Delegate
 
 
 - (void)controlTextDidChange:(NSNotification *)pNotification
@@ -133,6 +143,37 @@ typedef enum {
 	[oPopUpButton selectItem:[oPopUpButton lastItem]];
 }
 
+
+#pragma mark NSApp Sheet didEndSelectors
+
+
+- (void)didEndCreateSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
+	contextInfo:(void *)pContextInfo
+{
+	if(pReturnCode == FWSheetControllerReturnSave)
+	{
+		FWRule *newRule = [[[FWRule alloc] init] autorelease];
+		newRule.description = [oDescriptionTextField stringValue];
+		
+		id <FWSheetControllerCallback> callback = pContextInfo;
+		
+		[callback sheetCreatedNewRule:newRule];
+	}
+	
+	
+    [pSheet orderOut:self];
+}
+
+- (void)didEndEditSheet:(NSWindow *)pSheet returnCode:(int)pReturnCode
+	contextInfo:(void *)pContextInfo
+{
+	[pSheet orderOut:self];
+}
+
+
+#pragma mark Public
+
+
 - (void)createRuleAndCallback:(id)pCallback
 {
 	[oPopUpButton selectItem:nil];
@@ -141,15 +182,21 @@ typedef enum {
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]
 			modalDelegate:self
-            didEndSelector:@selector(didEndSheet:returnCode:contextInfo:)
+            didEndSelector:@selector(didEndCreateSheet:returnCode:contextInfo:)
             contextInfo:pCallback];
 }
 
 - (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
 {
+	[oPopUpButton selectItem:nil];
+	[oAddSheet makeFirstResponder:oPopUpButton];
 	
+	[NSApp beginSheet:oAddSheet
+			modalForWindow:[NSApp mainWindow]
+			modalDelegate:self
+            didEndSelector:@selector(didEndEditSheet:returnCode:contextInfo:)
+            contextInfo:pCallback];
 }
-
 
 
 @end

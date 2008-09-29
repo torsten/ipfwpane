@@ -85,11 +85,18 @@
 	[oSheetController createRuleAndCallback:self];
 }
 
+
+#pragma mark FWSheetControllerCallback
+
+
 - (void)sheetCreatedNewRule:(FWRule*)pRule
 {
 	[oModel addRule:pRule];
 	[oTableView reloadData];
 }
+
+// - (void)sheetCanceledEditRule:(FWRule*)rule;
+// - (void)sheetDidEditRule:(FWRule*)rule;	
 
 
 @end

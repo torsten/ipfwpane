@@ -25,6 +25,9 @@
 @end
 
 
+/**
+ *	Provides an interface for the edit sheet for FWRules.
+ */
 @interface FWSheetController : NSObject
 {
 	IBOutlet NSWindow *oAddSheet;
@@ -40,7 +43,6 @@
 
 - (IBAction)saveSheet:(id)sender;
 - (IBAction)cancelSheet:(id)sender;
-
 - (IBAction)popUpButtonChanged:(id)sender;
 
 
