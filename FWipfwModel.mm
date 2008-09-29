@@ -95,7 +95,7 @@
 
 - (BOOL)firewallEnabled
 {
-	
+	return NO;
 }
 
 
