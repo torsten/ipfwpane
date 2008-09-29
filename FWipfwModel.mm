@@ -15,6 +15,10 @@
 
 @implementation FWipfwModel
 
+
+#pragma mark NSObject
+
+
 - (id)init
 {
 	if((self = [super init]))
@@ -42,6 +46,9 @@
 	
 	[super dealloc];
 }
+
+
+#pragma mark Public Methods
 
 
 - (unsigned int)numberOfRules

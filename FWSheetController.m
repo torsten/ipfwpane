@@ -171,7 +171,7 @@ enum FWSheetControllerReturnCode
 }
 
 
-#pragma mark Public
+#pragma mark Public Methods
 
 
 - (void)createRuleAndCallback:(id)pCallback

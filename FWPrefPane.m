@@ -6,9 +6,9 @@
 //  Copyright (c) 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "FWPrefPane.h"
-
 #import <SecurityInterface/SFAuthorizationView.h>
+
+#import "FWPrefPane.h"
 
 
 @implementation FWPrefPane
@@ -17,6 +17,10 @@
 @synthesize tableIsEnabled;
 @synthesize modifyButtonsAreEnabled;
 @synthesize defaultsDict;
+
+
+#pragma mark NSPreferencePane
+
 
 - (id)initWithBundle:(NSBundle *)pBundle
 {
@@ -63,6 +67,38 @@
 }
 
 
+#pragma mark SFAuthorizationView Delegate
+
+
+- (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
+{
+	[self enableUI:YES];
+}
+
+- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
+{
+	[self enableUI:NO];
+}
+
+
+#pragma mark IBActions
+
+
+- (IBAction)toggleFirewall:(id)pSender
+{
+	if([pSender state] == NSOnState)
+		[self enableTable:YES];
+	
+	else
+		[self enableTable:NO];
+}
+
+
+@end
+
+
+@implementation FWPrefPane(Private)
+
 - (void)enableUI:(BOOL)pEnable
 {
 	if(pEnable)
@@ -92,7 +128,6 @@
 	}
 }
 
-
 - (void)enableTable:(BOOL)pEnable
 {
 	if(pEnable)
@@ -116,7 +151,6 @@
 	}
 }
 
-
 - (void)enableModifyButtons:(BOOL)pEnable
 {
 	if(pEnable)
@@ -126,17 +160,6 @@
 	}
 	else
 		[self setModifyButtonsAreEnabled:NO];
-}
-
-
-- (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
-{
-	[self enableUI:YES];
-}
-
-- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
-{
-	[self enableUI:NO];
 }
 
 
@@ -158,22 +181,10 @@
 	[oIconView setImage:img];
 }
 
-
-- (IBAction)toggleFirewall:(id)pSender
-{
-	if([pSender state] == NSOnState)
-		[self enableTable:YES];
-	
-	else
-		[self enableTable:NO];
-}
-
-
 - (void)enableFirewall
 {
 	// ...
 }
-
 
 - (void)disableFirewall
 {

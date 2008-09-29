@@ -39,23 +39,18 @@
 @property BOOL modifyButtonsAreEnabled;
 @property(readonly) NSMutableDictionary *defaultsDict;
 
-
-- (void)enableUI:(BOOL)enabled;
-
-- (void)enableTable:(BOOL)enabled;
-
-- (void)enableModifyButtons:(BOOL)enabled;
-
-
-- (void)mainViewDidLoad;
-
-- (void)setUpIcon;
-
 - (IBAction)toggleFirewall:(id)sender;
 
+
+@end
+
+
+@interface FWPrefPane (Private)
+- (void)enableUI:(BOOL)enabled;
+- (void)enableTable:(BOOL)enabled;
+- (void)enableModifyButtons:(BOOL)enabled;
+- (void)setUpIcon;
 - (void)enableFirewall;
-
 - (void)disableFirewall;
-
 
 @end
