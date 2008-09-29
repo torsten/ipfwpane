@@ -9,6 +9,7 @@
 #import <SecurityInterface/SFAuthorizationView.h>
 
 #import "FWPrefPane.h"
+#import "FWTableController.h"
 
 
 @implementation FWPrefPane
@@ -55,6 +56,8 @@
 	
 	// TODO: this enables the UI when the app starts, REMOVE THIS:
 	[self authorizationViewDidAuthorize:nil];
+	
+	[oTableController refreshTable];
 }
 
 - (NSPreferencePaneUnselectReply)shouldUnselect

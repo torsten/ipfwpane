@@ -46,6 +46,8 @@
 	
 	if(pTableColumn == oBoolColumn)
 		rule.enabled = [pValue boolValue];
+	
+	[oModel saveRules];
 }
 
 
@@ -85,6 +87,8 @@
 	if([oTableView selectedRow] != -1)
 		[oModel removeRuleAtIndex:[oTableView selectedRow]];
 	
+	[oModel saveRules];
+	
 	[oTableView reloadData];
 
 }
@@ -108,16 +112,30 @@
 - (void)sheetCreatedNewRule:(FWRule*)pRule
 {
 	[oModel addRule:pRule];
+	[oModel saveRules];
+	
 	[oTableView reloadData];
 }
 
 - (void)sheetDidEditRule:(FWRule*)pRule
 {
+	[oModel saveRules];
+	
 	[oTableView reloadData];
 }
 
 - (void)sheetCanceledEditRule:(FWRule*)pRule
 {
+}
+
+
+#pragma mark Public Methods
+
+
+- (void)refreshTable
+{
+	[oModel reloadRules];
+	[oTableView reloadData];
 }
 
 

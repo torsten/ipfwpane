@@ -75,12 +75,12 @@
 
 - (void)reloadRules
 {
-	
+	NSLog(@"LOAD");
 }
 
 - (void)saveRules
 {
-	
+	NSLog(@"SAVE");
 }
 
 - (void)setAuthStuff:(void*)someAuthStuff

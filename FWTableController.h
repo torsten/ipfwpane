@@ -31,5 +31,10 @@
 - (IBAction)editSelectedRow:(id)sender;
 - (IBAction)addItem:(id)sender;
 
+/**
+ *	Forces the model to reload its data and then reloads the table view.
+ */
+- (void)refreshTable;
+
 
 @end
