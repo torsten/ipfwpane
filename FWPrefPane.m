@@ -40,7 +40,7 @@
 - (void)mainViewDidLoad
 {
 	[oAuthorizationView setString:"system.privilege.admin"];
-	[oAuthorizationView updateStatus:self];
+	[oAuthorizationView updateStatus:oAuthorizationView];
 	[oAuthorizationView setDelegate:self];
 	
 	[self setUpIcon];
@@ -55,8 +55,10 @@
 	
 	[self enableUI:NO];
 	
-	// TODO: this enables the UI when the app starts, REMOVE THIS:
+#ifdef DEBUG
+	// Simulate a click on the lock
 	[self authorizationViewDidAuthorize:oAuthorizationView];
+#endif
 	
 	[oTableController refreshTable];
 }
@@ -76,7 +78,6 @@
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
 {
 	[self enableUI:YES];
-	
 	[oModel setAuthorizationRef:[[pView authorization] authorizationRef]];
 }
 

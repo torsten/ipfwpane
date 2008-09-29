@@ -26,6 +26,7 @@
 	if((self = [super init]))
 	{
 		mRules = new FWipfwRuleContainer();
+		mAuthRef = NULL;
 	}
 	return self;
 }
@@ -84,7 +85,9 @@
 {
 	NSLog(@"NEW REF");
 	
-	[self runId:pAuthRef];
+	mAuthRef = pAuthRef;
+	
+	[self runId];
 }
 
 - (void)setFirewallEnabled:(BOOL)enable
@@ -103,31 +106,39 @@
 
 @implementation FWipfwModel (Private)
 
-- (void)runId:(AuthorizationRef)pAuthRef
+- (void)runId
 {
-	NSLog(@"id...");
-	
-	
+	NSLog(@"id... %@", [self runRootCommand:"/usr/bin/id"]);
+}
+
+- (NSString*)runRootCommand:(char*)pCmd;
+{
 	OSStatus status;
 	FILE *communicationsPipe;
 	
-	char *pathToTool = "/usr/bin/id";
 	char *nullPtr = 0; // aka argv
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
+	// TODO: Ensure somehow at this point, that pCmd is not bad.
+	
 	status = AuthorizationExecuteWithPrivileges(
-			pAuthRef, pathToTool, options, &nullPtr, &communicationsPipe);
+			mAuthRef, pCmd, options, &nullPtr, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
-		NSLog(@"errAuthorizationSuccess");
-	
+	{
+#ifdef DEBUG
+			NSLog(@"errAuthorizationSuccess, continuing...");
+#endif
+	}
 	else
 	{
-		NSLog(@"NOT errAuthorizationSuccess");
-		return;
+#ifdef DEBUG
+		NSLog(@"NOT errAuthorizationSuccess, STOP.");
+#endif
+		return nil;
 	}
 	
-	
+	// manpage says: "These functions should not fail [...]"
 	int fd = fileno(communicationsPipe);
     
 	NSFileHandle *fh = [[[NSFileHandle alloc]
@@ -135,15 +146,17 @@
 	
 	NSData *data = [fh readDataToEndOfFile];
 	
-	
 	if(fclose(communicationsPipe) != 0)
-		NSLog(@"fclose error");
-	
+	{
+#ifdef DEBUG
+		NSLog(@"fclose() ERROR");
+#endif
+	}
 	
 	NSString *str = [[[NSString alloc] 
 			initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 	
-	NSLog(@"%@", str);
+	return str;
 }
 
 

@@ -29,6 +29,7 @@
 @interface FWipfwModel : NSObject
 {
 	FWipfwRuleContainer *mRules;
+	AuthorizationRef mAuthRef;
 }
 
 /**
@@ -85,6 +86,7 @@
 
 
 @interface FWipfwModel (Private)
-- (void)runId:(AuthorizationRef)authRef;
+- (void)runId;
+- (NSString*)runRootCommand:(char*)cmd;
 
 @end
