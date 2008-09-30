@@ -111,5 +111,9 @@
  */
 - (void)addRulesToIpfw;
 
+/**
+ *	
+ */
+- (void)writeActiveRulesTo:(int)fd;
 
 @end

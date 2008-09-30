@@ -121,6 +121,12 @@
 }                 
 
 
+- (void)writeActiveRulesTo:(int)pFd
+{
+	
+}
+
+
 - (void)addRulesToIpfw
 {
 	int fd;
@@ -128,13 +134,18 @@
 	
 	[self openTempFileAndSaveFDAt:&fd saveNameAt:&tempFileName];
 	
+	if(fd == -1)
+	{
+		NSLog(@"BAEM, got a invalid temp fd.");
+		return;
+	}
+	
+	[self writeActiveRulesTo:fd];
 	
 	NSString *result;
-	
 	result = [self runIpfwWithArgs:[tempFileName UTF8String], NULL];
 	
-	NSLog(@"HMM: %@", result);
-	
+	FULog(@"ipfw just said:\n%@ ", result);
 	
 	// Delete the temp file.
 	if(unlink([tempFileName UTF8String]) != 0)
@@ -156,7 +167,6 @@
 
 - (NSString*)runIpfwWithArgs:(const char*)pArg, ...
 {
-	// Count the arguments
 	va_list argumentList;
 	unsigned int argumentCount;
 	
@@ -175,10 +185,7 @@
 		va_end(argumentList);
 	}
 	
-	FULog(@"runIpfwWithArgs got %d args.", argumentCount);
-	
-	
-	// Collect the arguments into argv
+	// Collect the arguments into a argv
 	char* argv[argumentCount+1];
 	
 	if(argumentCount >= 1)
@@ -195,8 +202,16 @@
 	else // argumentCount == 0
 		argv[0] = NULL;
 	
+#ifdef DEBUG
+	fprintf(stderr, "runIpfwWithArgs got %d args: ", argumentCount);
 	
-	// This gets changed
+	for(unsigned int i = 0; i < argumentCount; ++i)
+		fprintf(stderr, "(%u)'%s' ", i, argv[i]);
+	
+	fputc('\n', stderr);
+#endif	
+	
+	// This 2 get changed
 	OSStatus status;
 	FILE *communicationsPipe;
 	
@@ -204,7 +219,7 @@
 	const char *ipfw = "/sbin/ipfw";
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
-	// TODO: Ensure somehow at this point, that pCmd is not bad.
+	// TODO: Ensure somehow at this point, that the is not bad.
 	
 	status = AuthorizationExecuteWithPrivileges(
 			mAuthRef, ipfw, options, argv, &communicationsPipe);
