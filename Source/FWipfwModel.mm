@@ -13,6 +13,8 @@
 #import "DebugFU.h"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 // #include <vector>  --  has already been done in FWipfwModel.h
 
@@ -113,7 +115,21 @@
 
 - (void)getRuleList
 {
+	int fd;
+	NSString* str;
+	
+	[self openTempFileAndSaveFDAt:&fd saveNameAt:&str];
+	
+	NSLog(@"fd: %d, name: %@", fd, str);
 	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
+}
+
+- (void)openTempFileAndSaveFDAt:(int*)pFileDesPtr saveNameAt:(NSString**)pStrPtr
+{
+	char name[] = "/tmp/ipfw-input-XXXXXX";
+	
+	*pFileDesPtr = mkstemp(name);
+	*pStrPtr = [NSString stringWithUTF8String:name];
 }
 
 - (NSString*)runIpfwWithArgs:(char*)pArg, ...

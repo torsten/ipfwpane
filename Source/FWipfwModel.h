@@ -87,6 +87,9 @@
 
 @interface FWipfwModel (Private)
 
+/**
+ *	
+ */
 - (void)getRuleList;
 
 /**
@@ -96,5 +99,17 @@
  *	If this method returns nil, something went wrong.
  */
 - (NSString*)runIpfwWithArgs:(char*)arg, ...;
+
+/**
+ *	Open a temporary file and return the file descriptor and
+ *	the name of the file.
+ */
+- (void)openTempFileAndSaveFDAt:(int*)fileDesPtr saveNameAt:(NSString**)strPtr;
+                                      
+/**
+ *	
+ */
+- (void)addRulesToIpfw;
+
 
 @end
