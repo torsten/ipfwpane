@@ -9,9 +9,9 @@
 #import "FWipfwModel.h"
 #import "FWPrefPane.h"
 #import "FWRule.h"
-
 #import "DebugFU.h"
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -115,21 +115,37 @@
 
 - (void)getRuleList
 {
-	int fd;
-	NSString* str;
-	
-	[self openTempFileAndSaveFDAt:&fd saveNameAt:&str];
-	
-	NSLog(@"fd: %d, name: %@", fd, str);
+	[self addRulesToIpfw];
 	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
+}                 
+
+- (void)addRulesToIpfw
+{
+	int fd;
+	NSString *tempFileName;
+	
+	[self openTempFileAndSaveFDAt:&fd saveNameAt:&tempFileName];
+	
+	
+	// ...
+	
+	
+	// Delete the temp file.
+	if(unlink([tempFileName UTF8String]) != 0)
+		NSLog(@"unlink() of %@ failed.", tempFileName);
+	
+	close(fd);
 }
 
+        
 - (void)openTempFileAndSaveFDAt:(int*)pFileDesPtr saveNameAt:(NSString**)pStrPtr
 {
-	char name[] = "/tmp/ipfw-input-XXXXXX";
+	char name[] = "/tmp/ipfw-input-XXXXXXXXXX";
 	
 	*pFileDesPtr = mkstemp(name);
 	*pStrPtr = [NSString stringWithUTF8String:name];
+	
+	FULog(@"openTempFileAndSaveFDAt:%d saveNameAt:%@", *pFileDesPtr, *pStrPtr);
 }
 
 - (NSString*)runIpfwWithArgs:(char*)pArg, ...
