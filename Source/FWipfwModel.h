@@ -98,7 +98,7 @@
  *
  *	If this method returns nil, something went wrong.
  */
-- (NSString*)runIpfwWithArgs:(char*)arg, ...;
+- (NSString*)runIpfwWithArgs:(const char*)arg, ...;
 
 /**
  *	Open a temporary file and return the file descriptor and

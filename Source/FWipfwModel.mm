@@ -6,9 +6,10 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "FWipfwModel.h"
 #import "FWPrefPane.h"
 #import "FWRule.h"
+#import "FWipfwModel.h"
+
 #import "DebugFU.h"
 
 #include <fcntl.h>
@@ -119,6 +120,7 @@
 	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
 }                 
 
+
 - (void)addRulesToIpfw
 {
 	int fd;
@@ -127,7 +129,11 @@
 	[self openTempFileAndSaveFDAt:&fd saveNameAt:&tempFileName];
 	
 	
-	// ...
+	NSString *result;
+	
+	result = [self runIpfwWithArgs:[tempFileName UTF8String], NULL];
+	
+	NSLog(@"HMM: %@", result);
 	
 	
 	// Delete the temp file.
@@ -148,13 +154,13 @@
 	FULog(@"openTempFileAndSaveFDAt:%d saveNameAt:%@", *pFileDesPtr, *pStrPtr);
 }
 
-- (NSString*)runIpfwWithArgs:(char*)pArg, ...
+- (NSString*)runIpfwWithArgs:(const char*)pArg, ...
 {
 	// Count the arguments
 	va_list argumentList;
 	unsigned int argumentCount;
-	char *nextStr;
 	
+	// Count the arguments
 	if(pArg == NULL)
 		argumentCount = 0;
 	
@@ -163,15 +169,8 @@
 		argumentCount = 1;
 		va_start(argumentList, pArg);
 		
-		for(;;)
-		{
-			nextStr = va_arg(argumentList, char*);
-			
-			if(nextStr == NULL)
-				break;
-			
+		while(va_arg(argumentList, char*) != NULL)
 			++argumentCount;
-		}
 		
 		va_end(argumentList);
 	}
@@ -180,14 +179,21 @@
 	
 	
 	// Collect the arguments into argv
-	char *argv[argumentCount+1];
+	char* argv[argumentCount+1];
 	
-	va_start(argumentList, pArg);
+	if(argumentCount >= 1)
+	{
+		argv[0] = (char*)pArg;
+		
+		va_start(argumentList, pArg);
 	
-	for(unsigned int i = 0; i < argumentCount; ++i)
-		argv[i] = va_arg(argumentList, char*);
-	
-	va_end(argumentList);
+		for(unsigned int i = 1; i <= argumentCount; ++i)
+			argv[i] = va_arg(argumentList, char*);
+		
+		va_end(argumentList);
+	}
+	else // argumentCount == 0
+		argv[0] = NULL;
 	
 	
 	// This gets changed
