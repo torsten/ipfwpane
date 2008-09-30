@@ -92,7 +92,9 @@
 /**
  *	Runs ipfw with the given arguments and returns the output as a string.
  *	The list is terminated by a NULL pointer.
+ *
+ *	If this method returns nil, something went wrong.
  */
-- (NSString*)runIpfwAsRootWithArgs:(char*)arg, ...;
+- (NSString*)runIpfwWithArgs:(char*)arg, ...;
 
 @end

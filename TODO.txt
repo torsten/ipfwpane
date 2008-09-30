@@ -2,3 +2,5 @@
 	- Read their current port from the plist and keep track of this.
 	- Show Growl message each time this happens so users cannot be
 	  fooled too easy.
+
+* Read the "Sharing" PrefPane and create (not editable) rules for them.

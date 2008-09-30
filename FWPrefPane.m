@@ -12,6 +12,8 @@
 #import "FWTableController.h"
 #import "FWipfwModel.h"
 
+#import "DebugFU.h"
+
 
 @implementation FWPrefPane
 
@@ -55,10 +57,8 @@
 	
 	[self enableUI:NO];
 	
-#ifdef DEBUG
 	// Simulate a click on the lock
-	[self authorizationViewDidAuthorize:oAuthorizationView];
-#endif
+	IF_DEBUG([self authorizationViewDidAuthorize:oAuthorizationView]);
 	
 	[oTableController refreshTable];
 }
@@ -191,12 +191,12 @@
 
 - (void)enableFirewall
 {
-	// ...
+	FULog(@"enableFirewall");
 }
 
 - (void)disableFirewall
 {
-	// ...
+	FULog(@"disableFirewall");
 }
 
 

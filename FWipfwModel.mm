@@ -10,7 +10,7 @@
 #import "FWPrefPane.h"
 #import "FWRule.h"
 
-#include "DebugFU.h"
+#import "DebugFU.h"
 
 #include <stdio.h>
 
@@ -75,19 +75,24 @@
 
 - (void)reloadRules
 {
-	FULog(@"LOAD");
+	FULog(@"reloadRules");
+	
+	
 }
 
 - (void)saveRules
 {
-	FULog(@"SAVE");
+	FULog(@"saveRules");
+	
+	
 }
 
 - (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
 {
 	mAuthRef = pAuthRef;
 	
-	[self getRuleList];
+	if(pAuthRef)
+		[self getRuleList];
 }
 
 - (void)setFirewallEnabled:(BOOL)enable
@@ -108,10 +113,10 @@
 
 - (void)getRuleList
 {
-	NSLog(@"%@", [self runIpfwAsRootWithArgs:"-S", "list", NULL]);
+	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
 }
 
-- (NSString*)runIpfwAsRootWithArgs:(char*)pArg, ...
+- (NSString*)runIpfwWithArgs:(char*)pArg, ...
 {
 	// Count the arguments
 	va_list argumentList;
@@ -119,9 +124,8 @@
 	char *nextStr;
 	
 	if(pArg == NULL)
-	{
 		argumentCount = 0;
-	}
+	
 	else
 	{
 		argumentCount = 1;
@@ -140,7 +144,7 @@
 		va_end(argumentList);
 	}
 	
-	FULog(@"runIpfwAsRootWithArgs got %d args.", argumentCount);
+	FULog(@"runIpfwWithArgs got %d args.", argumentCount);
 	
 	
 	// Collect the arguments into argv
@@ -153,11 +157,12 @@
 	
 	va_end(argumentList);
 	
+	
 	// This gets changed
 	OSStatus status;
 	FILE *communicationsPipe;
 	
-	// Constant stuff
+	// Constant stuff for the next call
 	const char *ipfw = "/sbin/ipfw";
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
@@ -167,11 +172,11 @@
 			mAuthRef, ipfw, options, argv, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
-		FULog(@"errAuthorizationSuccess, continuing...");
+		FULog(@"status was ok, continuing...");
 	
 	else
 	{
-		FULog(@"NOT errAuthorizationSuccess, STOP.");
+		FULog(@"NO errAuthorizationSuccess, STOP.");
 		return nil;
 	}
 	

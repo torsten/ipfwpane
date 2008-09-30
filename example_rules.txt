@@ -1,0 +1,119 @@
+# DO NOT USE THESE RULES without customizing them first!
+# Version: 2007/12/12
+
+# For more information, see http://securosis.com/2007/11/15/ipfw-rules/
+# & http://securosis.com/2007/11/16/ipfw-rules-20071116-revision/#comments
+
+# These rules *MUST* be customized to your requirements.
+# In particular, if you have a private home network (behind an AirPort
+# Base Station, Linksys WRT54G, etc.), change “10.42.24.0/24″ below to
+# your private network range; duplicate rules with different ranges, if use use this computer on multiple networks.
+# Additionally, allow only ports you actually use; block unused ports.
+
+# Thanks to:
+# Rich Mogull http://securosis.com
+# windexh8er: http://www.slash32.com/
+# Rob
+# Lee: http://thnetos.wordpress.com/
+# Josh
+# Chris Pepper http://www.extrapepperoni.com/
+# Apple (Server Admin is a good way to create an ipfw ruleset)
+# http://www.apple.com/server/macosx/
+# FreeBSD (where Apple got ipfw) http://www.freebsd.org/
+
+# We don’t really want this, but it’s unavoidable on Mac OS X Server, so
+# document it here (serialnumberd).
+# 100 allow udp from any 626 to any dst-port 626
+
+# Let me talk to myself over the loopback.
+add 200 allow ip from any to any via lo0
+
+# Loopback traffic on a ‘real’ interface is bogus.
+add 300 deny log logamount 1000 ip from any to 127.0.0.0/8
+
+# Block multicast unless you need it.
+# add 400 deny log logamount 1000 ip from 224.0.0.0/4 to any in
+
+# If we let a conversation begin, let it continue.
+# Let my clients go!
+add 500 allow tcp from any to any out keep-state
+add 510 allow udp from any to any out keep-state
+# Block replies, if we don’t recall initiating the conversation.
+add 520 deny log tcp from any to any established in
+
+# Allow DHCP responses (keep-state can’t handle DHCP broadcasts).
+add 600 allow udp from any to any src-port 67 dst-port 68 in
+
+# Do you never need fragmented packets?
+# add 700 deny udp from any to any in frag
+
+# Let yourself ping.
+# add 1000 allow icmp from 10.42.24.0/24 to any icmptypes 8
+
+# Server Admin provides these by default.
+add 1100 allow icmp from any to any icmptypes 0
+add 1110 allow igmp from any to any
+
+# mDNS (Bonjour) from trusted local networks (fill in your own,
+# preferably non-standard, networks after ‘from’).
+# For Back to My Mac, you might need this from ‘any’.
+# add 5000 allow udp from 10.42.24.0/24 to any dst-port 5353
+# add 5010 allow udp from 10.42.24.0/24 5353 to any dst-port 1024-65535 in
+
+# ssh — should be restricted to trusted networks if at all possible; if
+# open to the Internet, make sure you don’t have “PermitRootLogin yes”
+# in sshd_config (at least use
+# PermitRootLogin without-password“, please!)
+add 5200 allow tcp from any to any dst-port 22
+
+# iTunes music sharing
+# add 5300 allow tcp from 10.42.24.0/24 to any dst-port 3689
+
+# AFP
+# add 5400 allow tcp from 10.42.24.0/24 to any dst-port 548
+
+# HTTP (Apache); HTTPS
+# add 5500 allow tcp from any to any dst-port 80
+# add 5510 allow tcp from any to any dst-port 443
+
+# L2TP VPN — is this complete?
+# add 5600 allow udp from any to any dst-port 1701
+# add 5610 allow esp from any to any
+# add 5620 allow udp from any to any dst-port 500
+# add 5630 allow udp from any to any dst-port 4500
+
+# iChat: local
+# add 5700 allow tcp from 10.42.24.0/24 to any dst-port 5298
+# add 5710 allow udp from 10.42.24.0/24 to any dst-port 5298
+# add 5720 allow udp from 10.42.24.0/24 to any dst-port 5297,5678
+
+# Server Admin SSL (Mac OS X Server only)
+# add 5800 allow tcp from 10.42.24.0/24 to any dst-port 311
+# add 5810 allow tcp from 10.42.24.0/24 to any dst-port 427
+# add 5820 allow udp from 10.42.24.0/24 to any dst-port 427
+
+# syslog — uncommon
+# add 5900 allow udp from 10.42.24.0/24 to any dst-port 514
+
+# ipp (CUPS printing)
+# add 6000 allow tcp from 10.42.24.0/24 to any dst-port 631
+
+# MTU discovery
+add 10000 allow icmp from any to any icmptypes 3
+
+# Source quench
+add 10100 allow icmp from any to any icmptypes 4
+
+# Ping out; accept ping answers.
+add 10200 allow icmp from any to any icmptypes 8 out
+add 10210 allow icmp from any to any icmptypes 0 in
+
+# Allow outbound traceroute.
+add 10300 allow icmp from any to any icmptypes 11 in
+
+# My default policy: log and drop anything that hasn’t matched an allow
+# rule above
+add 65534 deny log logamount 1000 ip from any to any
+
+# Hard-coded default allow rule (compiled into Darwin kernel)
+add 65535 allow ip from any to any

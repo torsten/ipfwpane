@@ -39,15 +39,22 @@ set 23 deny udp from any to any in
 
 
 ## Allow rules [Base + Nr]
-ipfw add   31337   set 23 allow tcp from any to me dst-port 8008 in
-ipfw add   31337   set 23 allow tcp from any to me dst-port 17328 in
+ipfw add   31337   allow tcp from any to me dst-port 8008 in
+ipfw add   31337   allow tcp from any to me dst-port 17328 in
 
-## Required allows (DNS)  [Base + 500]
-ipfw add   31337   set 23 allow udp from any 53 to me in
+## Required allows (DNS, DHCP)  [Base + 500]
+# ipfw add   31337   allow udp from any 1-1023 to me in
+ipfw add   31337   allow udp from any to any out keep-state
+ipfw add   31337   allow udp from any 67 to any 68 in
 
 ## Deny rules  [Base + 501]
-ipfw add   31337   set 23 deny tcp from any to any in setup
-ipfw add   31337   set 23 deny udp from any to any in
+# ipfw add   31337   deny tcp from any to any in setup
+# ipfw add   31337   deny udp from any to any in
+ipfw add   31337   deny ip from any to any
+
+
+
+
 
 
 1234567890
@@ -61,8 +68,107 @@ lzeas t go
 http://www.ecst.csuchico.edu/~beej/guide/ipc/flock.html
 
 
+http://securosis.com/2007/12/11/ipfw-rules-v20071212/
+
 
 Ports
 
 
 123,456,23-25,23,etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Let me talk to myself over the loopback.
+ipfw  add 31337  allow ip from any to any via lo0
+
+# Loopback traffic on a ‘real’ interface is bogus.
+ipfw  add 31337  deny log logamount 1000 ip from any to 127.0.0.0/8
+
+# Block multicast unless you need it.
+# ipfw  add 31337  deny log logamount 1000 ip from 224.0.0.0/4 to any in
+
+# If we let a conversation begin, let it continue.
+# Let my clients go!
+ipfw  add 31337  allow tcp from any to any out keep-state
+ipfw  add 31337  allow udp from any to any out keep-state
+# Block replies, if we don’t recall initiating the conversation.
+ipfw  add 31337  deny log tcp from any to any established in
+
+# Allow DHCP responses (keep-state can’t handle DHCP broadcasts).
+ipfw  add 31337  allow udp from any to any src-port 67 dst-port 68 in
+
+# Do you never need fragmented packets?
+# ipfw  add 31337  deny udp from any to any in frag
+
+# Let yourself ping.
+# ipfw  add 31337  allow icmp from 10.42.24.0/24 to any icmptypes 8
+
+# Server Admin provides these by default.
+ipfw  add 31337  allow icmp from any to any icmptypes 0
+ipfw  add 31337  allow igmp from any to any
+
+# mDNS (Bonjour) from trusted local networks (fill in your own,
+# preferably non-standard, networks after ‘from’).
+# For Back to My Mac, you might need this from ‘any’.
+# ipfw  add 31337  allow udp from 10.42.24.0/24 to any dst-port 5353
+# ipfw  add 31337  allow udp from 10.42.24.0/24 5353 to any dst-port 1024-65535 in
+
+# MTU discovery
+ipfw  add 31337  allow icmp from any to any icmptypes 3
+
+# Source quench
+ipfw  add 31337  allow icmp from any to any icmptypes 4
+
+# Ping out; accept ping answers.
+ipfw  add 31337  allow icmp from any to any icmptypes 8 out
+ipfw  add 31337  allow icmp from any to any icmptypes 0 in
+
+# Allow outbound traceroute.
+ipfw  add 31337  allow icmp from any to any icmptypes 11 in
+
+# My default policy: log and drop anything that hasn’t matched an allow
+# rule above
+ipfw  add 31337  deny log logamount 1000 ip from any to any
+
+
+
+
+
+ipfw add 31337 set 23 allow ip from any to any via lo0
+ipfw add 31337 set 23 deny log logamount 1000 ip from any to 127.0.0.0/8
+
+ipfw add 31337 set 23 allow udp from any to any out keep-state
+
+
+##  Allow incoming TCP and UDP here.  ##
+ipfw add 31337 set 23 allow tcp from any to me dst-port 8008 in
+ipfw add 31337 set 23 allow tcp from any to me dst-port 17328 in
+
+
+ipfw add 31337 set 23 deny tcp from any to any in setup
+ipfw add 31337 set 23 allow tcp from any to any
+
+ipfw add 31337 set 23 allow udp from any 67 to any dst-port 68 in
+
+ipfw add 31337 set 23 allow igmp from any to any
+ipfw add 31337 set 23 allow icmp from any to any icmptypes 3
+ipfw add 31337 set 23 allow icmp from any to any icmptypes 4
+ipfw add 31337 set 23 allow icmp from any to any icmptypes 8 out
+ipfw add 31337 set 23 allow icmp from any to any icmptypes 0 in
+ipfw add 31337 set 23 allow icmp from any to any icmptypes 11 in
+
+ipfw add 31337 set 23 deny log logamount 1000 ip from any to any

@@ -26,10 +26,16 @@
 	<dict>
 		<key>Title</key>
 		<string>iChat AV</string>
+		<key>TCPPorts</key>
+		<string>5298</string>
+		<key>UDPPorts</key>
+		<string>5297,5298,5678</string>
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>iTunes Library Sharing</string>
+		<string>iTunes Music Sharing</string>
+		<key>TCPPorts</key>
+		<string>3689</string>
 	</dict>
 	<dict>
 		<key>Title</key>
@@ -38,6 +44,8 @@
 	<dict>
 		<key>Title</key>
 		<string>Apple File Sharing (AFP)</string>
+		<key>TCPPorts</key>
+		<string>548</string>
 	</dict>
 	<dict>
 		<key>Title</key>

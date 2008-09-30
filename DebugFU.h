@@ -1,6 +1,6 @@
 /**
- *	My small debug macro which gets stripped when compiled without -DDEBUG.
- *
+ *	My small debug macros which get stripped away when compiled without -DDEBUG.
+ *	
  *	Thanks to http://www.redhat.com/docs/manuals/enterprise/RHEL-4-Manual/gcc/variadic-macros.html
  */
 
@@ -9,9 +9,11 @@
 
 #ifdef DEBUG
 #define FULog(...) NSLog(__VA_ARGS__)
+#define IF_DEBUG(WHTEVR) WHTEVR
 
 #else
 #define FULog(...)
+#define IF_DEBUG(WHTEVR)
 
 #endif
 
