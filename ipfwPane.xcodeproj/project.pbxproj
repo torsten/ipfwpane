@@ -174,6 +174,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DBD214808BA80EA00186707 /* Build configuration list for PBXNativeTarget "ipfwPane" */;
 			buildPhases = (
+				E531F4570E940B8D0025A206 /* Generate FWLaunchDaemonPlist.h */,
 				E58EA3B70E8F0CC2000FBD79 /* Generate Info.plist */,
 				8D202CE90486D31800D8A456 /* Headers */,
 				8D202CEC0486D31800D8A456 /* Resources */,
@@ -236,6 +237,20 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E531F4570E940B8D0025A206 /* Generate FWLaunchDaemonPlist.h */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate FWLaunchDaemonPlist.h";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby generate_fw_launch_daemon_plist_h.rb > Source/FWLaunchDaemonPlist.h\n";
+		};
 		E58EA3B70E8F0CC2000FBD79 /* Generate Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

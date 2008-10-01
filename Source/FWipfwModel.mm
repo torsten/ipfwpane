@@ -28,6 +28,7 @@
 #import "FWPrefPane.h"
 #import "FWRule.h"
 #import "FWipfwModel.h"
+#import "FWLaunchDaemonPlist.h"
 
 #import "DebugFU.h"
 
