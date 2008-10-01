@@ -1,3 +1,5 @@
+* Input validation for port fields
+
 * "Smart Ports" for Transmission, ShakesPeer, ...:
 	- Read their current port from the plist and keep track of this.
 	- Show Growl message each time this happens so users cannot be
