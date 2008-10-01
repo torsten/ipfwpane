@@ -133,11 +133,20 @@
 
 @implementation FWipfwModel (Private)
 
+#define DROP_ALL_RULE "65534"
+#define CUSTOM_RULES "41337"
+#define PRE_RULES "41336"
+#define POST_RULES "41338"
+#define RULE_SET " set 23 " // Note the spaces
+
 - (void)getRuleList
 {
 	[self addRulesToIpfw];
 	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
 }                 
+
+#define ADD_RULE(RULE_ID, RULE_BODY) \
+	"add " RULE_ID RULE_SET RULE_BODY "\n"
 
 - (void)writeFrameworkRulesToFile:(int)pFd
 {
@@ -149,41 +158,41 @@
 	const char *framworkRules =
 	
 	// Allow everthing on lo0
-	"add 41336 set 23 allow ip from any to any via lo0\n"
+	ADD_RULE(PRE_RULES, "allow ip from any to any via lo0")
 	
 	// Deny loopback traffic on other interfaces.
-	"add 41336 set 23 deny ip from any to 127.0.0.0/8\n"
+	ADD_RULE(PRE_RULES, "deny ip from any to 127.0.0.0/8")
 	
 	// Keep track of UDP connections we did open.
-	"add 41336 set 23 allow udp from any to any out keep-state\n"
+	ADD_RULE(PRE_RULES, "allow udp from any to any out keep-state")
 	
 	// Deny all incoming connections (exept for those the user wants)
-	"add 41338 set 23 deny tcp from any to any in setup\n"
+	ADD_RULE(POST_RULES, "deny tcp from any to any in setup")
 	
 	// Allow all the rest of TCP.
-	"add 41338 set 23 allow tcp from any to any\n"
+	ADD_RULE(POST_RULES, "allow tcp from any to any")
 	
 	// DHCP answers
-	"add 41338 set 23 allow udp from any 67 to any dst-port 68 in\n"
+	ADD_RULE(POST_RULES, "allow udp from any 67 to any dst-port 68 in")
 	
 	// Deny all other UDP traffic.
-	"add 41338 set 23 deny udp from any to any\n"
+	ADD_RULE(POST_RULES, "deny udp from any to any")
 	
 	// MTU discovery
-	"add 41338 set 23 allow icmp from any to any icmptypes 3\n"
+	ADD_RULE(POST_RULES, "allow icmp from any to any icmptypes 3")
 	
 	// Source quench
-	"add 41338 set 23 allow icmp from any to any icmptypes 4\n"
+	ADD_RULE(POST_RULES, "allow icmp from any to any icmptypes 4")
 	
 	// Ping out; accept ping answers.
-	"add 41338 set 23 allow icmp from any to any icmptypes 8 out\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 0 in\n"
+	ADD_RULE(POST_RULES, "allow icmp from any to any icmptypes 8 out")
+	ADD_RULE(POST_RULES, "allow icmp from any to any icmptypes 0 in")
 	
 	// Allow outbound traceroute.
-	"add 41338 set 23 allow icmp from any to any icmptypes 11 in\n"
+	ADD_RULE(POST_RULES, "allow icmp from any to any icmptypes 11 in")
 	
 	// Deny everything else.
-	"add 64535 set 23 deny ip from any to any\n"
+	ADD_RULE(DROP_ALL_RULE, "deny ip from any to any")
 	;
 	
 	write(pFd, framworkRules, strlen(framworkRules));
@@ -194,8 +203,9 @@
 	[self writeFrameworkRulesToFile:pFd];
 	
 	const char *body =
-	"add 41337 set 23 allow tcp from any to me dst-port 8008 in\n"
-	"add 41337 set 23 allow tcp from any to me dst-port 17328 in\n";
+	"add 41337 set 23 allow tcp from any to any dst-port 8008 in\n"
+	"add 41337 set 23 allow tcp from any to any dst-port 17328 in\n"
+	"add 41337 set 23 allow udp from any to any dst-port 5353 in\n";
 	write(pFd, body, strlen(body));
 }
 
@@ -221,7 +231,7 @@
 	
 	// Delete the old rules first
 	result = [self runIpfwWithArgs:
-			"delete", "64535", "41338", "41337", "41336", NULL];
+			"delete", DROP_ALL_RULE, PRE_RULES, CUSTOM_RULES, POST_RULES, NULL];
 	FULog(@"%@ ", result);
 	
 	// Create the new ones from the file

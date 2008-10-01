@@ -70,6 +70,12 @@
 	</dict>
 	<dict>
 		<key>Title</key>
+		<string>mDNS (Bonjour)</string>
+		<key>UDPPorts</key>
+		<string>5353</string>
+	</dict>
+	<dict>
+		<key>Title</key>
 		<string>Windows File Sharing (SMB)</string>
 	</dict>
 </array>
