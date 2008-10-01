@@ -142,16 +142,11 @@
 
 - (void)writeActiveRulesToFile:(int)pFd
 {
-	// preamble, rule-loop, postamble
-	
+	// TODO: configureable rule ids (via defaults)
 	const char *preamble =
 	"add 41336 set 23 allow ip from any to any via lo0\n"
 	"add 41336 set 23 deny ip from any to 127.0.0.0/8\n"
 	"add 41336 set 23 allow udp from any to any out keep-state\n";
-	
-	const char *body =
-	"add 41337 set 23 allow tcp from any to me dst-port 8008 in\n"
-	"add 41337 set 23 allow tcp from any to me dst-port 17328 in\n";
 	
 	const char *postamble =
 	"add 41338 set 23 deny tcp from any to any in setup\n"
@@ -165,8 +160,16 @@
 	"add 41338 set 23 allow icmp from any to any icmptypes 11 in\n"
 	"add 64535 set 23 deny ip from any to any\n";
 	
+	
 	write(pFd, preamble, strlen(preamble));
+	
+	
+	const char *body =
+	"add 41337 set 23 allow tcp from any to me dst-port 8008 in\n"
+	"add 41337 set 23 allow tcp from any to me dst-port 17328 in\n";
 	write(pFd, body, strlen(body));
+	
+	
 	write(pFd, postamble, strlen(postamble));
 }
 
@@ -189,7 +192,7 @@
 	[self writeActiveRulesToFile:fd];
 	
 	NSString *result;
-
+	
 	// Delete the old rules first
 	result = [self runIpfwWithArgs:
 			"delete", "64535", "41338", "41337", "41336", NULL];
