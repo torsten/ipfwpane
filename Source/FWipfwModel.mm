@@ -139,12 +139,14 @@
 #define PRE_RULES "41336"
 #define POST_RULES "41338"
 #define RULE_SET "23"
+#define IPFW "/sbin/ipfw"
 
 - (void)getRuleList
 {
 	[self addRulesToIpfw];
-	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
-}                 
+	NSLog(@"id: %@", [self runCommand:"/usr/bin/id" withArgs:NULL]);
+	NSLog(@"list: %@", [self runCommand:IPFW withArgs:"-S", "list", NULL]);
+}
 
 #define ADD_RULE(RULE_ID, RULE_BODY) \
 	"add " RULE_ID " set " RULE_SET " " RULE_BODY "\n"
@@ -238,12 +240,12 @@
 	NSString *result;
 	
 	// Delete the old rules first
-	result = [self runIpfwWithArgs:
+	result = [self runCommand:IPFW withArgs:
 			"delete", DROP_ALL_RULE, PRE_RULES, CUSTOM_RULES, POST_RULES, NULL];
 	FULog(@"%@ ", result);
 	
 	// Create the new ones from the file
-	result = [self runIpfwWithArgs:[tempFileName UTF8String], NULL];
+	result = [self runCommand:IPFW withArgs:[tempFileName UTF8String], NULL];
 	FULog(@"%@ ", result);
 	
 	// Delete the temp file.
@@ -263,7 +265,7 @@
 	FULog(@"openTempFileAndSaveFDAt:%d saveNameAt:%@", *pFileDesPtr, *pStrPtr);
 }
 
-- (NSString*)runIpfwWithArgs:(const char*)pArg, ...
+- (NSString*)runCommand:(const char*)pCmd withArgs:(const char*)pArg, ...
 {
 	va_list argumentList;
 	unsigned int argumentCount;
@@ -301,7 +303,7 @@
 		argv[0] = NULL;
 	
 #ifdef DEBUG
-	fprintf(stderr, "runIpfwWithArgs got %d args: ", argumentCount);
+	fprintf(stderr, "rCwA: %s with %d args: ", pCmd, argumentCount);
 	
 	for(unsigned int i = 0; i < argumentCount; ++i)
 		fprintf(stderr, "(%u)'%s' ", i, argv[i]);
@@ -314,13 +316,12 @@
 	FILE *communicationsPipe;
 	
 	// Constant stuff for the next call
-	const char *ipfw = "/sbin/ipfw";
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
 	// TODO: Ensure somehow at this point, that the command is not bad.
 	
 	status = AuthorizationExecuteWithPrivileges(
-			mAuthRef, ipfw, options, argv, &communicationsPipe);
+			mAuthRef, pCmd, options, argv, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
 		FULog(@"errAuthorization__Success__, continuing...");
