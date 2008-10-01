@@ -139,38 +139,64 @@
 	NSLog(@"%@", [self runIpfwWithArgs:"-S", "list", NULL]);
 }                 
 
+- (void)writeFrameworkRulesToFile:(int)pFd
+{
+	// TODO: configureable rule ids and sets (via defaults)
+	
+	// This are the default rules which provide the framework
+	// for the user rules to work properply.
+	// These are based on the rules from ipfw-securosis.
+	const char *framworkRules =
+	
+	// Allow everthing on lo0
+	"add 41336 set 23 allow ip from any to any via lo0\n"
+	
+	// Deny loopback traffic on other interfaces.
+	"add 41336 set 23 deny ip from any to 127.0.0.0/8\n"
+	
+	// Keep track of UDP connections we did open.
+	"add 41336 set 23 allow udp from any to any out keep-state\n"
+	
+	// Deny all incoming connections (exept for those the user wants)
+	"add 41338 set 23 deny tcp from any to any in setup\n"
+	
+	// Allow all the rest of TCP.
+	"add 41338 set 23 allow tcp from any to any\n"
+	
+	// DHCP answers
+	"add 41338 set 23 allow udp from any 67 to any dst-port 68 in\n"
+	
+	// Deny all other UDP traffic.
+	"add 41338 set 23 deny udp from any to any\n"
+	
+	// MTU discovery
+	"add 41338 set 23 allow icmp from any to any icmptypes 3\n"
+	
+	// Source quench
+	"add 41338 set 23 allow icmp from any to any icmptypes 4\n"
+	
+	// Ping out; accept ping answers.
+	"add 41338 set 23 allow icmp from any to any icmptypes 8 out\n"
+	"add 41338 set 23 allow icmp from any to any icmptypes 0 in\n"
+	
+	// Allow outbound traceroute.
+	"add 41338 set 23 allow icmp from any to any icmptypes 11 in\n"
+	
+	// Deny everything else.
+	"add 64535 set 23 deny ip from any to any\n"
+	;
+	
+	write(pFd, framworkRules, strlen(framworkRules));
+}
 
 - (void)writeActiveRulesToFile:(int)pFd
 {
-	// TODO: configureable rule ids (via defaults)
-	const char *preamble =
-	"add 41336 set 23 allow ip from any to any via lo0\n"
-	"add 41336 set 23 deny ip from any to 127.0.0.0/8\n"
-	"add 41336 set 23 allow udp from any to any out keep-state\n";
-	
-	const char *postamble =
-	"add 41338 set 23 deny tcp from any to any in setup\n"
-	"add 41338 set 23 allow tcp from any to any\n"
-	"add 41338 set 23 allow udp from any 67 to any dst-port 68 in\n"
-	"add 41338 set 23 allow igmp from any to any\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 3\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 4\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 8 out\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 0 in\n"
-	"add 41338 set 23 allow icmp from any to any icmptypes 11 in\n"
-	"add 64535 set 23 deny ip from any to any\n";
-	
-	
-	write(pFd, preamble, strlen(preamble));
-	
+	[self writeFrameworkRulesToFile:pFd];
 	
 	const char *body =
 	"add 41337 set 23 allow tcp from any to me dst-port 8008 in\n"
 	"add 41337 set 23 allow tcp from any to me dst-port 17328 in\n";
 	write(pFd, body, strlen(body));
-	
-	
-	write(pFd, postamble, strlen(postamble));
 }
 
 

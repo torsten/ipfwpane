@@ -12,6 +12,13 @@
 		<string>Transmission</string>
 	</dict>
 	<dict>
+		<key>TCPSmartPorts</key>
+		<array>
+		</array>
+		<key>Title</key>
+		<string>ShakesPeer</string>
+	</dict>
+	<dict>
 		<key>TCPPorts</key>
 		<string>80</string>
 		<key>Title</key>

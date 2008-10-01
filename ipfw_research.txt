@@ -115,7 +115,6 @@ ipfw add 41338 set 23 deny tcp from any to any in setup
 ipfw add 41338 set 23 allow tcp from any to any
 ipfw add 41338 set 23 allow udp from any 67 to any dst-port 68 in
 
-ipfw add 41338 set 23 allow igmp from any to any
 ipfw add 41338 set 23 allow icmp from any to any icmptypes 3
 ipfw add 41338 set 23 allow icmp from any to any icmptypes 4
 ipfw add 41338 set 23 allow icmp from any to any icmptypes 8 out

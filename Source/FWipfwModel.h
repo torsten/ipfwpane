@@ -135,4 +135,9 @@
  */
 - (void)writeActiveRulesToFile:(int)fd;
 
+/**
+ *	
+ */
+- (void)writeFrameworkRulesToFile:(int)fd;
+
 @end
