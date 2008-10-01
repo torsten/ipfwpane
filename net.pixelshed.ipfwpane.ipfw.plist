@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC -//Apple Computer//DTD PLIST 1.0//EN
+http://www.apple.com/DTDs/PropertyList-1.0.dtd >
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.pixelshed.ipfwpane.ipfw</string>
+	<key>ipfwPaneCFBundleVersion</key>
+	<string>${REV_ID}</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/sbin/ipfw</string>
+		<string>/Library/Preferences/SystemConfiguration/net.pixelshed.ipfwpane.ipfw.conf</string>
+	</array>
+	<key>OnDemand</key>
+	<false/>
+	<key>LaunchOnlyOnce</key>
+	<true/>
+</dict>
+</plist>

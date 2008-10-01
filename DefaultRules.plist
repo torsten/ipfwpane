@@ -70,7 +70,7 @@
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>mDNS (Bonjour)</string>
+		<string>Bonjour (mDNS)</string>
 		<key>UDPPorts</key>
 		<string>5353</string>
 	</dict>
