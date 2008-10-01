@@ -38,6 +38,9 @@
 #define FULog(...) NSLog(__VA_ARGS__)
 #define IF_DEBUG(WHTEVR) WHTEVR
 
+// Just an idea for the future...
+// #define TESTFU() fprintf(stderr, "file: %s, func: %s, line:%d\n", __FILE__, __FUNCTION__, __LINE__)
+
 #else
 #define FULog(...)
 #define IF_DEBUG(WHTEVR)

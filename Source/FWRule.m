@@ -35,6 +35,9 @@
 @synthesize udpPorts;
 
 
+#pragma mark NSObject
+
+
 - (id)init
 {
 	if((self = [super init]))
@@ -71,6 +74,10 @@
 	
 	[super dealloc];
 }
+
+
+#pragma mark Public Methods
+
 
 
 @end

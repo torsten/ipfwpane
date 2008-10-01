@@ -1,31 +1,7 @@
-root@Harley:~# ipfw -S list
-33300 set 0 deny icmp from any to me in icmptypes 8
-65535 set 31 allow ip from any to any
-
--T shows timestamp of last execution 
-
-
-ipfw set [disable number ...] [enable number ...]
-
 => set 23 is used for the prefpane (evtl hidden pref)
 
 => base rule nr auch über hidden pref setzen
 
-
-Reading rules from a file:
-
-ipfw [-cnNqS] pathname
-
-To ease configuration, rules can be put into a file which is processed
-using ipfw as shown in the last synopsis line.  An absolute pathname must
-be used.  The file will be read line by line and applied as arguments to
-the ipfw utility.
-
-
-
-
-Base rule (forbid everything):
-add deny
 
 
 
@@ -55,39 +31,13 @@ ipfw add   31337   deny ip from any to any
 
 
 
-
-
 1234567890
 lzeas t go
 
 
-65535 set 31 allow ip from any to any
-
-
-
 http://www.ecst.csuchico.edu/~beej/guide/ipc/flock.html
 
-
 http://securosis.com/2007/12/11/ipfw-rules-v20071212/
-
-
-Ports
-
-
-123,456,23-25,23,etc
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -147,28 +97,29 @@ ipfw  add 31337  deny log logamount 1000 ip from any to any
 
 
 
+=== The current config: ===
 
-ipfw add 31337 set 23 allow ip from any to any via lo0
-ipfw add 31337 set 23 deny log logamount 1000 ip from any to 127.0.0.0/8
+ipfw add 41336 set 23 allow ip from any to any via lo0
+ipfw add 41336 set 23 deny ip from any to 127.0.0.0/8
 
-ipfw add 31337 set 23 allow udp from any to any out keep-state
-
-
-##  Allow incoming TCP and UDP here.  ##
-ipfw add 31337 set 23 allow tcp from any to me dst-port 8008 in
-ipfw add 31337 set 23 allow tcp from any to me dst-port 17328 in
+ipfw add 41336 set 23 allow udp from any to any out keep-state
 
 
-ipfw add 31337 set 23 deny tcp from any to any in setup
-ipfw add 31337 set 23 allow tcp from any to any
+##  BEGIN OF CUSTOM TCP/UDP RULES
+ipfw add 41337 set 23 allow tcp from any to me dst-port 8008 in
+ipfw add 41337 set 23 allow tcp from any to me dst-port 17328 in
+##  END CUSTOM RULES
 
-ipfw add 31337 set 23 allow udp from any 67 to any dst-port 68 in
 
-ipfw add 31337 set 23 allow igmp from any to any
-ipfw add 31337 set 23 allow icmp from any to any icmptypes 3
-ipfw add 31337 set 23 allow icmp from any to any icmptypes 4
-ipfw add 31337 set 23 allow icmp from any to any icmptypes 8 out
-ipfw add 31337 set 23 allow icmp from any to any icmptypes 0 in
-ipfw add 31337 set 23 allow icmp from any to any icmptypes 11 in
+ipfw add 41338 set 23 deny tcp from any to any in setup
+ipfw add 41338 set 23 allow tcp from any to any
+ipfw add 41338 set 23 allow udp from any 67 to any dst-port 68 in
 
-ipfw add 31337 set 23 deny log logamount 1000 ip from any to any
+ipfw add 41338 set 23 allow igmp from any to any
+ipfw add 41338 set 23 allow icmp from any to any icmptypes 3
+ipfw add 41338 set 23 allow icmp from any to any icmptypes 4
+ipfw add 41338 set 23 allow icmp from any to any icmptypes 8 out
+ipfw add 41338 set 23 allow icmp from any to any icmptypes 0 in
+ipfw add 41338 set 23 allow icmp from any to any icmptypes 11 in
+
+ipfw add 64535 set 23 deny ip from any to any
