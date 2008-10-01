@@ -11,6 +11,7 @@
 		8D202CEF0486D31800D8A456 /* ipfwPanePref.xib in Resources */ = {isa = PBXBuildFile; fileRef = F506C042013D9D8C01CA16C8 /* ipfwPanePref.xib */; };
 		8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
+		E531F4960E941A320025A206 /* FWLaunchDaemonPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F4930E941A320025A206 /* FWLaunchDaemonPlist.h */; };
 		E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */; };
 		E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */; };
 		E58EA5930E913718000FBD79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58EA5920E913718000FBD79 /* Security.framework */; };
@@ -36,6 +37,7 @@
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D202CF70486D31800D8A456 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D202CF80486D31800D8A456 /* ipfwPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ipfwPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		E531F4930E941A320025A206 /* FWLaunchDaemonPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWLaunchDaemonPlist.h; path = Source/FWLaunchDaemonPlist.h; sourceTree = "<group>"; };
 		E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
 		E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = DefaultRules.plist; sourceTree = SOURCE_ROOT; };
 		E58EA5920E913718000FBD79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -134,6 +136,7 @@
 		32DBCFA10370C40200C91783 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E531F4930E941A320025A206 /* FWLaunchDaemonPlist.h */,
 				E58EA6A80E923A69000FBD79 /* DebugFU.h */,
 				E58EA6A90E923A69000FBD79 /* FWipfwModel.h */,
 				E58EA6AA0E923A69000FBD79 /* FWipfwModel.mm */,
@@ -164,6 +167,7 @@
 				E58EA6BB0E923A69000FBD79 /* FWSheetController.h in Headers */,
 				E58EA6BD0E923A69000FBD79 /* FWTableController.h in Headers */,
 				E58EA6BF0E923A69000FBD79 /* ipfwPane_Prefix.pch in Headers */,
+				E531F4960E941A320025A206 /* FWLaunchDaemonPlist.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -111,6 +111,19 @@
  */
 - (void)getRuleList;
 
+
+/**
+ *	This is the base implementation of the method.  The maximum size of
+ *	the arguments accepted is 100.
+ */
+- (FILE*)openPipeToCommand:(const char*)cmd withArg:(const char*)arg
+	andList:(va_list)vaList;
+
+/**
+ *	
+ */
+- (int)openPipeToCommand:(const char*)cmd withArgs:(const char*)arg, ...;
+
 /**
  *	Runs ipfw with the given arguments and returns the output as a string.
  *	The list is terminated by a NULL pointer.
@@ -118,6 +131,7 @@
  *	If this method returns nil, something went wrong.
  */
 - (NSString*)runCommand:(const char*)cmd withArgs:(const char*)arg, ...;
+
 
 /**
  *	Open a temporary file and return the file descriptor and

@@ -265,51 +265,38 @@
 	FULog(@"openTempFileAndSaveFDAt:%d saveNameAt:%@", *pFileDesPtr, *pStrPtr);
 }
 
-- (NSString*)runCommand:(const char*)pCmd withArgs:(const char*)pArg, ...
+- (FILE*)openPipeToCommand:(const char*)pCmd
+	withArg:(const char*)pArg andList:(va_list)pVaList
 {
-	va_list argumentList;
 	unsigned int argumentCount;
+	char* argv[101];
 	
-	// Count the arguments
+	// Yeah, I know this is bad...
+	argv[0] = (char*)pArg;
+	
+	// Cound and collect the arguments into a argv
 	if(pArg == NULL)
 		argumentCount = 0;
 	
 	else
 	{
-		argumentCount = 1;
-		va_start(argumentList, pArg);
-		
-		while(va_arg(argumentList, char*) != NULL)
-			++argumentCount;
-		
-		va_end(argumentList);
+		for(argumentCount = 1; argumentCount < 101; ++argumentCount)
+		{
+			argv[argumentCount] = va_arg(pVaList, char*);
+			
+			if(argv[argumentCount] == NULL)
+				break;
+		}
 	}
-	
-	// Collect the arguments into a argv
-	char* argv[argumentCount+1];
-	
-	if(argumentCount >= 1)
-	{
-		argv[0] = (char*)pArg;
-		
-		va_start(argumentList, pArg);
-	
-		for(unsigned int i = 1; i <= argumentCount; ++i)
-			argv[i] = va_arg(argumentList, char*);
-		
-		va_end(argumentList);
-	}
-	else // argumentCount == 0
-		argv[0] = NULL;
 	
 #ifdef DEBUG
-	fprintf(stderr, "rCwA: %s with %d args: ", pCmd, argumentCount);
+	fprintf(stderr, "oPtC:wA:aL: %s with %d args: ", pCmd, argumentCount);
 	
 	for(unsigned int i = 0; i < argumentCount; ++i)
 		fprintf(stderr, "(%u)'%s' ", i, argv[i]);
 	
 	fputc('\n', stderr);
-#endif	
+#endif
 	
 	// This 2 get changed
 	OSStatus status;
@@ -324,30 +311,52 @@
 			mAuthRef, pCmd, options, argv, &communicationsPipe);
 	
 	if(status == errAuthorizationSuccess)
-		FULog(@"errAuthorization__Success__, continuing...");
-	
+	{
+		FULog(@"YES, errAuthorizationSuccess, continuing...");
+		return communicationsPipe;
+	}
 	else
 	{
 		FULog(@"NO errAuthorizationSuccess, STOP.");
-		return nil;
+		return NULL;
 	}
+}
+
+- (int)openPipeToCommand:(const char*)pCmd withArgs:(const char*)pArg, ...
+{
+	va_list argumentList;
+	FILE *pipeFile;
+	
+	va_start(argumentList, pArg);
+	pipeFile = [self openPipeToCommand:pCmd withArg:pArg andList:argumentList];
+	va_end(argumentList);
+	
+	return fileno(pipeFile);
+}
+
+- (NSString*)runCommand:(const char*)pCmd withArgs:(const char*)pArg, ...
+{
+	va_list argumentList;
+	FILE *pipeFile;
+	
+	va_start(argumentList, pArg);
+	pipeFile = [self openPipeToCommand:pCmd withArg:pArg andList:argumentList];
+	va_end(argumentList);
 	
 	// manpage says: "These functions should not fail [...]"
-	int fd = fileno(communicationsPipe);
-    
+	int fd = fileno(pipeFile);
+	
 	NSFileHandle *fh = [[[NSFileHandle alloc]
 			initWithFileDescriptor:fd] autorelease];
-	
 	NSData *data = [fh readDataToEndOfFile];
 	
-	if(fclose(communicationsPipe) != 0)
-		FULog(@"fclose() ERROR");
+	if(fclose(pipeFile) != 0)
+		FULog(@"rC:wA: fclose() ERROR");
 	
 	NSString *str = [[[NSString alloc] 
 			initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 	
 	return str;
 }
-
 
 @end
