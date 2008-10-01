@@ -239,7 +239,7 @@
 	const char *ipfw = "/sbin/ipfw";
 	const AuthorizationFlags options = kAuthorizationFlagDefaults;
 	
-	// TODO: Ensure somehow at this point, that the is not bad.
+	// TODO: Ensure somehow at this point, that the command is not bad.
 	
 	status = AuthorizationExecuteWithPrivileges(
 			mAuthRef, ipfw, options, argv, &communicationsPipe);
