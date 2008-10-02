@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 
-escaped_plist = File.read('net.pixelshed.ipfwpane.LaunchDaemon.plist').
+escaped_plist = File.
+    read('Resources/net.pixelshed.ipfwpane.LaunchDaemon.plist').
     scan(/.{1,60}/m).
     map {|i| i.inspect }.
     join("\n")

@@ -12,8 +12,8 @@
 		8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
 		E531F4960E941A320025A206 /* FWLaunchDaemonPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F4930E941A320025A206 /* FWLaunchDaemonPlist.h */; };
-		E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */; };
-		E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */; };
+		E531F4E60E94CDFA0025A206 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E531F4E40E94CDFA0025A206 /* DefaultRules.plist */; };
+		E531F4E70E94CDFA0025A206 /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E531F4E50E94CDFA0025A206 /* ipfwPanePref.png */; };
 		E58EA5930E913718000FBD79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58EA5920E913718000FBD79 /* Security.framework */; };
 		E58EA6B40E923A69000FBD79 /* DebugFU.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A80E923A69000FBD79 /* DebugFU.h */; };
 		E58EA6B50E923A69000FBD79 /* FWipfwModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A90E923A69000FBD79 /* FWipfwModel.h */; };
@@ -35,11 +35,11 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		8D202CF70486D31800D8A456 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D202CF80486D31800D8A456 /* ipfwPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ipfwPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		E531F4930E941A320025A206 /* FWLaunchDaemonPlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWLaunchDaemonPlist.h; path = Source/FWLaunchDaemonPlist.h; sourceTree = "<group>"; };
-		E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
-		E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = DefaultRules.plist; sourceTree = SOURCE_ROOT; };
+		E531F4E40E94CDFA0025A206 /* DefaultRules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultRules.plist; path = Resources/DefaultRules.plist; sourceTree = SOURCE_ROOT; };
+		E531F4E50E94CDFA0025A206 /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipfwPanePref.png; path = Resources/ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
+		E531F4ED0E94CE340025A206 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		E58EA5920E913718000FBD79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E58EA6A80E923A69000FBD79 /* DebugFU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugFU.h; path = Source/DebugFU.h; sourceTree = SOURCE_ROOT; };
 		E58EA6A90E923A69000FBD79 /* FWipfwModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWipfwModel.h; path = Source/FWipfwModel.h; sourceTree = SOURCE_ROOT; };
@@ -98,9 +98,9 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E58EA3E00E8F1B36000FBD79 /* DefaultRules.plist */,
-				E569A6BB0E850CF6001ED27B /* ipfwPanePref.png */,
-				8D202CF70486D31800D8A456 /* Info.plist */,
+				E531F4ED0E94CE340025A206 /* Info.plist */,
+				E531F4E40E94CDFA0025A206 /* DefaultRules.plist */,
+				E531F4E50E94CDFA0025A206 /* ipfwPanePref.png */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				F506C042013D9D8C01CA16C8 /* ipfwPanePref.xib */,
 			);
@@ -223,8 +223,8 @@
 			files = (
 				8D202CED0486D31800D8A456 /* InfoPlist.strings in Resources */,
 				8D202CEF0486D31800D8A456 /* ipfwPanePref.xib in Resources */,
-				E569A6BC0E850CF6001ED27B /* ipfwPanePref.png in Resources */,
-				E58EA3E10E8F1B36000FBD79 /* DefaultRules.plist in Resources */,
+				E531F4E60E94CDFA0025A206 /* DefaultRules.plist in Resources */,
+				E531F4E70E94CDFA0025A206 /* ipfwPanePref.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Delete the 'target plist'\nrm -f $INFOPLIST_PATH\n\n# Generate a new plist\nruby generate_info_plist.rb > Info.plist\n";
+			shellScript = "# Delete the 'target plist'\nrm -f $INFOPLIST_PATH\n\n# Generate a new plist\nruby generate_info_plist.rb > Resources/Info.plist\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -316,7 +316,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/ipfwPane_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				PRODUCT_NAME = ipfwPane;
 				WRAPPER_EXTENSION = prefPane;
