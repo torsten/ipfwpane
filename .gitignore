@@ -3,4 +3,3 @@ ipfwPane.xcodeproj/torsten.*
 .DS_Store
 Resources/Info.plist
 Source/FWLaunchDaemonPlist.h
-Website/ipfwPanePref.png
