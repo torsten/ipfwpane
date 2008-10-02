@@ -2,4 +2,4 @@ build/*
 ipfwPane.xcodeproj/torsten.*
 .DS_Store
 Resources/Info.plist
-Source/FWLaunchDaemonPlist.h
+Source/FWLaunchDaemon.h

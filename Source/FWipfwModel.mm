@@ -28,7 +28,8 @@
 #import "FWPrefPane.h"
 #import "FWRule.h"
 #import "FWipfwModel.h"
-#import "FWLaunchDaemonPlist.h"
+#import "FWLaunchDaemon.h"
+#import "FWipfwConfHandler.h"
 
 #import "DebugFU.h"
 
@@ -52,20 +53,16 @@
 	{
 		mRules = new FWipfwRuleContainer();
 		mAuthRef = NULL;
+		mConfHandler = [[FWipfwConfHandler alloc] initWithModel:self];
 	}
 	return self;
 }
 
 - (void)dealloc
 {
-	FWipfwRuleContainer::iterator iter(mRules->begin());
-	
-	// delete/free/dealloc each rule in the container.
-	for(; iter != mRules->end(); ++iter)
-		[(*iter) release];
-	
-	
+	[self clearRules];
 	delete mRules;
+	[mConfHandler release];
 	
 	[super dealloc];
 }
@@ -100,14 +97,48 @@
 {
 	FULog(@"reloadRules");
 	
+	[self clearRules];
 	
+	// open .conf file
+	// int pipe = [self openPipeToCommand:"/bin/cat" withArgs:".conf", NULL]
+	int pipe = 13;
+	
+	[mConfHandler parseFile:pipe];
+	
+	// close(pipe);
 }
 
 - (void)saveRules
 {
 	FULog(@"saveRules");
 	
+	// file  = /Library/Preferences/SystemConfiguration/\
+		net.pixelshed.ipfwpane.ipfw.conf
+	// open pipe to "/bin/sh", "-c", "cat - > #{file}"
 	
+	int pipe = [self openPipeToCommand:"/bin/sh"
+			withArgs:"-c", "/bin/cat - > "DA_FILE, NULL];
+	
+	
+	// set right chmod to the config file
+	[self runCommand:"/bin/chmod"
+			withArgs:"0644", DA_FILE, NULL];
+	
+	// write rules to pipe
+	[self writeFrameworkRulesToFile:pipe];
+	
+	// 
+	[mConfHandler writeRulesToFile:pipe];
+	
+	
+	close(pipe);
+	
+	
+	// delete current rules via ipfw
+	[self flushRules];
+	
+	// read the file again with ipfw
+	[self runCommand:IPFW withArgs:DA_FILE, NULL];
 }
 
 - (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
@@ -115,19 +146,31 @@
 	mAuthRef = pAuthRef;
 	
 	if(pAuthRef)
-		[self getRuleList];
+		FULog(@"setAuthorizationRef:YAY");
+	else
+		FULog(@"setAuthorizationRef:NULL");
 }
 
-- (void)setFirewallEnabled:(BOOL)enable
+- (void)enableFirewall:(BOOL)pEnable
 {
-	
+	if(pEnable)
+	{
+		FULog(@"enableFirewall:YES");
+		
+		[self installLaunchDaemon];
+		[self saveRules];
+	}
+	else
+	{
+		FULog(@"enableFirewall:NO");
+		
+		[self flushRules];
+		[self removeLaunchDaemon];
+	}
 }
 
-- (BOOL)firewallEnabled
-{
-	return NO;
-}
-
+// TODO: maybe implement a isFirewallEnabled method which
+// returns if the launch daemon file exists.  or encode this in the .conf, too.
 
 @end
 
@@ -358,5 +401,46 @@
 	
 	return str;
 }
+
+- (void)installLaunchDaemon
+{
+	FULog(@"installLaunchDaemon");
+	
+	int pipe = [self openPipeToCommand:"/bin/sh"
+			withArgs:"-c", "/bin/cat - > "DA_FILE, NULL];
+	
+	[self runCommand:"/bin/chmod"
+			withArgs:"0644", kFWLaunchDaemonFileName, NULL];
+	
+	write(...);
+	
+	close(pipe);
+}
+
+- (void)removeLaunchDaemon
+{
+	FULog(@"removeLaunchDaemon");
+	[self runCommand:"/bin/rm" withArgs:"-f", kFWLaunchDaemonFileName, NULL];
+}
+
+- (void)flushRules
+{
+	FULog(@"flushRules");
+	
+	[self runCommand:IPFW withArgs:
+			"delete", DROP_ALL_RULE, PRE_RULES, CUSTOM_RULES, POST_RULES, NULL];
+}
+
+- (void)clearRules
+{
+	FWipfwRuleContainer::iterator iter(mRules->begin());
+	
+	// release each rule in the container.
+	for(; iter != mRules->end(); ++iter)
+		[(*iter) release];
+	
+	mRules->clear();
+}
+
 
 @end

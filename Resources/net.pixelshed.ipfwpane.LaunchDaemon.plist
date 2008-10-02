@@ -5,8 +5,6 @@ http://www.apple.com/DTDs/PropertyList-1.0.dtd >
 <dict>
 	<key>Label</key>
 	<string>net.pixelshed.ipfwpane.LaunchDaemon</string>
-	<key>ipfwPaneCFBundleVersion</key>
-	<string>${REV_ID}</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/sbin/ipfw</string>

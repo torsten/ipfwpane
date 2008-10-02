@@ -31,6 +31,7 @@
 
 @class FWPrefPane;
 @class FWRule;
+@class FWipfwConfHandler;
 
 
 #ifdef __cplusplus
@@ -49,6 +50,7 @@
 {
 	FWipfwRuleContainer *mRules;
 	AuthorizationRef mAuthRef;
+	FWipfwConfHandler *mConfHandler;
 }
 
 /**
@@ -73,17 +75,19 @@
 
 /**
  *	Load all rules from ipfw into the class.
+ *
+ *	Does not require a valid AuthorizationRef.
  */
 - (void)reloadRules;
 
 /**
  *	Saves all pending rules back to ipfw.
+ *
+ *	REQUIRES a valid AuthorizationRef.
  */
 - (void)saveRules;
 
 /**
- *	TODO: rename this
- *
  *	With this method you can set an authorization struct so the model can
  *	use sudo, without it, it will not be able to return data as you need
  *	root access to play around with ipfw.
@@ -94,12 +98,7 @@
  *	Enables or disables the firewall, this also creates the startup item
  *	or removes it.
  */
-- (void)setFirewallEnabled:(BOOL)enable;
-
-/**
- *	
- */
-- (BOOL)firewallEnabled;
+- (void)enableFirewall:(BOOL)enable;
 
 @end
 
@@ -153,5 +152,26 @@
  *	
  */
 - (void)writeFrameworkRulesToFile:(int)fd;
+
+/**
+ *	Installs the launch daemon in /Library/LaunchDaemons
+ */
+- (void)installLaunchDaemon;
+
+/**
+ *	Removes the launch daemon.
+ */
+- (void)removeLaunchDaemon;
+
+/**
+ *	Lets the ipfw forget all rules
+ */
+- (void)flushRules;
+
+/**
+ *	This is very different from flushRules, as this only clears the internal
+ *	rules to enable a reload but this method does not affect the ipfw.
+ */
+- (void)clearRules;
 
 @end

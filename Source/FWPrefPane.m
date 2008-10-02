@@ -98,6 +98,10 @@
 {
 	[self enableUI:YES];
 	[oModel setAuthorizationRef:[[pView authorization] authorizationRef]];
+	
+	// TODO: clean up this
+	// if enabled
+	// [oModel saveRules]
 }
 
 - (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
