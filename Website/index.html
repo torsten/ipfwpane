@@ -28,10 +28,16 @@
 	   font-size: 2em;
 /*     border-bottom: 3px solid #9df;*/
 	 }
+	 div#subtitle {
+	   margin-bottom: 1.75em;
+	   font-size: 1.3em;
+	   color: #666;
+/*     border-bottom: 3px solid #9df;*/
+	 }
 	 div#box {
 	   border: 3px solid #aaa;
 	   padding: 30px;
-	   margin: 5em auto 1em auto;
+	   margin: 4em auto 1em auto;
 	   background-color: white;
 	   width: 50em;
 	 }
@@ -40,17 +46,13 @@
 	   font-size: 0.8em;
 	   color: #888;
 	   text-align: center;
-	   margin-bottom: 5em;
-	 }
-	 div#subtitle {
-	   margin-bottom: 2.5em;
-	   font-size: 1.3em;
-	   color: #666;
-/*     border-bottom: 3px solid #9df;*/
+	   margin-bottom: 4em;
 	 }
 	 div#downloadBox {
 	   position: relative;
+	   margin: 0;
      right: -5.5em;
+     margin-left: -5.5em;
 	   top: 0em;
 	   border: 3px solid #2a3;
 	   color: #192;
@@ -74,6 +76,18 @@
 	   padding: 0.5em;
 	   border: 3px solid #FF8000;
 	 }
+	 .highlight {
+	   background-color: #ffb;
+	   padding: 0.7em;
+	   margin: -0.3em -0.7em;
+	 }
+	 img#logo {
+	   float: left;
+	   margin-right: 1em;
+	   width: 70px;
+	   height: 70px;
+/*     border: 1px solid red;*/
+	 }
 	</style>
 </head>
 
@@ -83,13 +97,20 @@
 
 <div id="box">
 
-<!--
-<div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
-(Leopard only Universal Binary)</div>
--->
 
+<!-- <div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
+(Leopard only Universal Binary)</div> -->
+
+
+<div id="heading">
+<img id="logo" alt="ipfwPane icon" src="ipfwPanePref.png"/>
 <h1 id="titleHeading">ipfwPane</h1>
 <div id="subtitle">&hellip; the missing preference pane for Mac OS X 10.5</div>
+</div>
+
+<p class="highlight">
+Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfwpane/">follow the development</a> on GitHub, so stay tuned. (The icon isn't final, too.)
+</p>
 
 <p>ipfwPane lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8) firewall</a> again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
 </p>
@@ -100,10 +121,6 @@ There is just no longer an UI available for it, as it was in 10.4.  This is the 
 
 <p>
 This gives you again a more fine-grained control over which ports you want to allow and which you want to block.  And other than with Leopards application firewall you can now also block built-in applications and services if you want to.
-</p>
-
-<p class="warning">
-Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfwpane/">follow the development</a> on GitHub, so stay tuned.
 </p>
 
 <!--
