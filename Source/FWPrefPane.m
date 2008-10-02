@@ -39,7 +39,6 @@
 @synthesize uiIsEnabled;
 @synthesize tableIsEnabled;
 @synthesize modifyButtonsAreEnabled;
-@synthesize defaultsDict;
 
 
 #pragma mark NSPreferencePane
@@ -49,11 +48,14 @@
 {
 	if((self = [super initWithBundle:pBundle]))
 	{
-		defaultsDict = [NSMutableDictionary dictionaryWithDictionary:
-				[[NSUserDefaults standardUserDefaults]
-					persistentDomainForName:[[self bundle] bundleIdentifier]]];
-		
-		[defaultsDict retain];
+		// Currently no longer needed, because we do not use the
+		// common per-user preferences.
+		//
+		// defaultsDict = [NSMutableDictionary dictionaryWithDictionary:
+		// 		[[NSUserDefaults standardUserDefaults]
+		// 			persistentDomainForName:[[self bundle] bundleIdentifier]]];
+		// 
+		// [defaultsDict retain];
 	}
 	return self;
 }
@@ -79,13 +81,15 @@
 	[oTableController refreshTable];
 }
 
-- (NSPreferencePaneUnselectReply)shouldUnselect
-{
-	[[NSUserDefaults standardUserDefaults] setPersistentDomain:defaultsDict
-			forName:[[self bundle] bundleIdentifier]];
-	
-	return NSUnselectNow;
-}
+// see initWithBundle
+//
+// - (NSPreferencePaneUnselectReply)shouldUnselect
+// {
+// 	[[NSUserDefaults standardUserDefaults] setPersistentDomain:defaultsDict
+// 			forName:[[self bundle] bundleIdentifier]];
+// 	
+// 	return NSUnselectNow;
+// }
 
 
 #pragma mark SFAuthorizationView Delegate
@@ -117,12 +121,12 @@
 	if([pSender state] == NSOnState)
 	{
 		[self enableTable:YES];
-		[oModel enableFirewall:YES];
+		// [oModel enableFirewall:YES];
 	}
 	else
 	{
 		[self enableTable:NO];
-		[oModel enableFirewall:NO];
+		// [oModel enableFirewall:NO];
 	}
 }
 
@@ -139,7 +143,7 @@
 		[self setUiIsEnabled:pEnable];
 		
 		// If the checkbox is toggled
-		if([[defaultsDict objectForKey:@"isFirewallEnabled"] boolValue])
+		if([oModel firewallEnabled])
 			[self setTableIsEnabled:YES];
 		
 		else

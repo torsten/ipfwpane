@@ -103,7 +103,7 @@
 - (void)setFirewallEnabled:(BOOL)enable;
 
 /**
- *	
+ *	Uses stat(2) to find out if FW_LAUNCH_DAEMON_FILENAME does exist or not.
  */
 - (BOOL)firewallEnabled;
 

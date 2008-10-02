@@ -49,14 +49,11 @@
 	BOOL uiIsEnabled;
 	BOOL tableIsEnabled;
 	BOOL modifyButtonsAreEnabled;
-	
-	NSMutableDictionary *defaultsDict;
 }
 
 @property BOOL uiIsEnabled;
 @property BOOL tableIsEnabled;
 @property BOOL modifyButtonsAreEnabled;
-@property(readonly) NSMutableDictionary *defaultsDict;
 
 - (IBAction)toggleFirewall:(id)sender;
 
