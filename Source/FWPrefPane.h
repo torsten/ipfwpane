@@ -69,7 +69,5 @@
 - (void)enableTable:(BOOL)enabled;
 - (void)enableModifyButtons:(BOOL)enabled;
 - (void)setUpIcon;
-- (void)enableFirewall;
-- (void)disableFirewall;
 
 @end

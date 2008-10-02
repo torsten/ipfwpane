@@ -115,10 +115,15 @@
 - (IBAction)toggleFirewall:(id)pSender
 {
 	if([pSender state] == NSOnState)
+	{
 		[self enableTable:YES];
-	
+		[oModel enableFirewall:YES];
+	}
 	else
+	{
 		[self enableTable:NO];
+		[oModel enableFirewall:NO];
+	}
 }
 
 
@@ -208,16 +213,5 @@
 	
 	[oIconView setImage:img];
 }
-
-- (void)enableFirewall
-{
-	FULog(@"enableFirewall");
-}
-
-- (void)disableFirewall
-{
-	FULog(@"disableFirewall");
-}
-
 
 @end
