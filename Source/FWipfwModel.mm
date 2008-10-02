@@ -104,7 +104,9 @@
 	[self clearRules];
 	
 	// open .conf file
-	int pipe = [self openPipeToCommand:"/bin/cat" withArgs:IPFW_CONF, NULL];
+	int pipe = open(IPFW_CONF, O_RDONLY);
+	
+	FULog(@"pipe: %d", pipe);
 	
 	[mConfHandler parseFile:pipe];
 	close(pipe);
@@ -311,7 +313,10 @@
 	pipeFile = [self openPipeToCommand:pCmd withArg:pArg andList:argumentList];
 	va_end(argumentList);
 	
-	return fileno(pipeFile);
+	if(pipeFile != NULL)
+		return fileno(pipeFile);
+	else
+		return -1;
 }
 
 - (NSString*)runCommand:(const char*)pCmd withArgs:(const char*)pArg, ...

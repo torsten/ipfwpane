@@ -76,9 +76,6 @@
 	
 	[self enableUI:NO];
 	
-	// Simulate a click on the lock
-	// IF_DEBUG([self authorizationViewDidAuthorize:oAuthorizationView]);
-	
 	[oTableController refreshTable];
 }
 
