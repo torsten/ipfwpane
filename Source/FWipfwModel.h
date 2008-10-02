@@ -53,6 +53,8 @@
 	FWipfwConfHandler *mConfHandler;
 }
 
+@property BOOL firewallEnabled;
+
 /**
  *	The number of rules which get maintained
  */
@@ -98,7 +100,12 @@
  *	Enables or disables the firewall, this also creates the startup item
  *	or removes it.
  */
-- (void)enableFirewall:(BOOL)enable;
+- (void)setFirewallEnabled:(BOOL)enable;
+
+/**
+ *	
+ */
+- (BOOL)firewallEnabled;
 
 @end
 

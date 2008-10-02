@@ -25,20 +25,25 @@
  * FWipfwModel.mm, created on 20.09.2008.
  */
 
+#import "FWLaunchDaemon.h"
 #import "FWPrefPane.h"
 #import "FWRule.h"
-#import "FWipfwModel.h"
-#import "FWLaunchDaemon.h"
 #import "FWipfwConfHandler.h"
+#import "FWipfwModel.h"
 
 #import "DebugFU.h"
 
 #include <fcntl.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/uio.h>
 #include <unistd.h>
 
 // #include <vector>  --  has already been done in FWipfwModel.h
+
 
 #define IPFW "/sbin/ipfw"
 #define IPFW_CONF "/Library/Preferences/SystemConfiguration/" \
@@ -144,26 +149,37 @@
 		FULog(@"setAuthorizationRef:NULL");
 }
 
-- (void)enableFirewall:(BOOL)pEnable
+- (void)setFirewallEnabled:(BOOL)pEnable
 {
 	if(pEnable)
 	{
-		FULog(@"enableFirewall:YES");
+		FULog(@"setFirewallEnabled:YES");
 		
 		[self installLaunchDaemon];
 		[self saveRules];
 	}
 	else
 	{
-		FULog(@"enableFirewall:NO");
+		FULog(@"setFirewallEnabled:NO");
 		
 		[self flushRules];
 		[self removeLaunchDaemon];
 	}
 }
 
-// TODO: maybe implement a isFirewallEnabled method which
-// returns if the launch daemon file exists.  or encode this in the .conf, too.
+- (BOOL)firewallEnabled
+{
+	struct stat notUsedStruct;
+	int result;
+	
+	result = stat(FW_LAUNCH_DAEMON_FILENAME, &notUsedStruct);
+	
+	// if something went wrong and the file does not not exist (yes 2 nots)
+	if(result != -1 && errno != ENOENT)
+		return YES;
+	else
+		return NO;
+}
 
 @end
 
