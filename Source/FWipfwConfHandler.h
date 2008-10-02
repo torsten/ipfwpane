@@ -41,12 +41,15 @@
 }
 
 /**
- *	
+ *	Creates the handler with a model, this model will receive all the
+ *	new rules if you parse via parseFile: and it will also be used to
+ *	gather data when using writeRulesToFile:.
  */
 - (id)initWithModel:(FWipfwModel*)model;
 
 /**
- *	
+ *	Parses the specialy annotated ipfw.conf file and addRule:s them
+ *	into the model.
  */
 - (void)parseFile:(int)ipfwConfFd;
 

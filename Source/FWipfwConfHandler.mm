@@ -32,6 +32,10 @@
 
 @implementation FWipfwConfHandler
 
+
+#pragma mark NSObject
+
+
 - (id)initWithModel:(FWipfwModel*)pModel
 {
 	if((self = [super init]))
@@ -40,6 +44,9 @@
 	}
 	return self;
 }
+
+
+#pragma mark Public Methods
 
 
 - (void)parseFile:(int)pIpfwConfFd

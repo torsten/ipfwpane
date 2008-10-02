@@ -42,7 +42,6 @@
 	
 	IBOutlet FWTableController *oTableController;
 	IBOutlet FWipfwModel *oModel;
-	// IBOutlet FWSheetController *oSheetController;
 	
 	IBOutlet NSTextField *oCreditsField;
 	
@@ -55,8 +54,11 @@
 @property BOOL tableIsEnabled;
 @property BOOL modifyButtonsAreEnabled;
 
+/**
+ *	This method just toggle the UI enable/disable status, the actions on
+ *	the model are triggered through the connection in interface builder.
+ */
 - (IBAction)toggleFirewall:(id)sender;
-
 
 @end
 

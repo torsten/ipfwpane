@@ -119,17 +119,11 @@
 - (IBAction)toggleFirewall:(id)pSender
 {
 	if([pSender state] == NSOnState)
-	{
 		[self enableTable:YES];
-		// [oModel enableFirewall:YES];
-	}
+	
 	else
-	{
 		[self enableTable:NO];
-		// [oModel enableFirewall:NO];
-	}
 }
-
 
 @end
 
