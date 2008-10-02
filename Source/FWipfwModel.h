@@ -106,12 +106,6 @@
 @interface FWipfwModel (Private)
 
 /**
- *	
- */
-- (void)getRuleList;
-
-
-/**
  *	This is the base implementation of the method.  The maximum size of
  *	the arguments accepted is 100.
  */
@@ -137,16 +131,6 @@
  *	the name of the file.
  */
 - (void)openTempFileAndSaveFDAt:(int*)fileDesPtr saveNameAt:(NSString**)strPtr;
-                                      
-/**
- *	
- */
-- (void)addRulesToIpfw;
-
-/**
- *	
- */
-- (void)writeActiveRulesToFile:(int)fd;
 
 /**
  *	

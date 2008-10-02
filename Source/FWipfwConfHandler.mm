@@ -34,7 +34,7 @@
 
 - (id)initWithModel:(FWipfwModel*)pModel
 {
-	if(self = [super init])
+	if((self = [super init]))
 	{
 		mModel = pModel;
 	}
@@ -67,9 +67,12 @@
 
 - (void)writeRulesToFile:(int)pIpfwConfFd
 {
-	const char *test = "# BAEM, BAEM, BAEM\n";
+	const char *testData =
+	"add 41337 set 23 allow tcp from any to any dst-port 8008 in\n"
+	"add 41337 set 23 allow tcp from any to any dst-port 17328 in\n"
+	"add 41337 set 23 allow udp from any to any dst-port 5353 in\n";
 	
-	write(int fildes, test, strlen(test));
+	write(pIpfwConfFd, testData, strlen(testData));
 }
 
 @end

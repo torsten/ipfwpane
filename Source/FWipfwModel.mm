@@ -40,6 +40,10 @@
 
 // #include <vector>  --  has already been done in FWipfwModel.h
 
+#define IPFW "/sbin/ipfw"
+#define IPFW_CONF "/Library/Preferences/SystemConfiguration/" \
+		"net.pixelshed.ipfwpane.ipfw.conf"
+
 
 @implementation FWipfwModel
 
@@ -100,45 +104,32 @@
 	[self clearRules];
 	
 	// open .conf file
-	// int pipe = [self openPipeToCommand:"/bin/cat" withArgs:".conf", NULL]
-	int pipe = 13;
+	int pipe = [self openPipeToCommand:"/bin/cat" withArgs:IPFW_CONF, NULL];
 	
 	[mConfHandler parseFile:pipe];
-	
-	// close(pipe);
+	close(pipe);
 }
 
 - (void)saveRules
 {
 	FULog(@"saveRules");
 	
-	// file  = /Library/Preferences/SystemConfiguration/\
-		net.pixelshed.ipfwpane.ipfw.conf
-	// open pipe to "/bin/sh", "-c", "cat - > #{file}"
-	
 	int pipe = [self openPipeToCommand:"/bin/sh"
-			withArgs:"-c", "/bin/cat - > "DA_FILE, NULL];
-	
+			withArgs:"-c", "/bin/cat - > "IPFW_CONF, NULL];
 	
 	// set right chmod to the config file
-	[self runCommand:"/bin/chmod"
-			withArgs:"0644", DA_FILE, NULL];
+	[self runCommand:"/bin/chmod" withArgs:"0644", IPFW_CONF, NULL];
 	
-	// write rules to pipe
 	[self writeFrameworkRulesToFile:pipe];
-	
-	// 
 	[mConfHandler writeRulesToFile:pipe];
 	
-	
 	close(pipe);
-	
 	
 	// delete current rules via ipfw
 	[self flushRules];
 	
 	// read the file again with ipfw
-	[self runCommand:IPFW withArgs:DA_FILE, NULL];
+	[self runCommand:IPFW withArgs:IPFW_CONF, NULL];
 }
 
 - (void)setAuthorizationRef:(AuthorizationRef)pAuthRef
@@ -182,14 +173,6 @@
 #define PRE_RULES "41336"
 #define POST_RULES "41338"
 #define RULE_SET "23"
-#define IPFW "/sbin/ipfw"
-
-- (void)getRuleList
-{
-	[self addRulesToIpfw];
-	NSLog(@"id: %@", [self runCommand:"/usr/bin/id" withArgs:NULL]);
-	NSLog(@"list: %@", [self runCommand:IPFW withArgs:"-S", "list", NULL]);
-}
 
 #define ADD_RULE(RULE_ID, RULE_BODY) \
 	"add " RULE_ID " set " RULE_SET " " RULE_BODY "\n"
@@ -249,54 +232,8 @@
 	write(pFd, framworkRules, strlen(framworkRules));
 }
 
-- (void)writeActiveRulesToFile:(int)pFd
-{
-	[self writeFrameworkRulesToFile:pFd];
-	
-	const char *body =
-	"add 41337 set 23 allow tcp from any to any dst-port 8008 in\n"
-	"add 41337 set 23 allow tcp from any to any dst-port 17328 in\n"
-	"add 41337 set 23 allow udp from any to any dst-port 5353 in\n";
-	write(pFd, body, strlen(body));
-	
-	// /usr/bin/install -m 0644 -g wheel -o root net.pixelshed.ipfwpane.ipfw.plist /Library/LaunchDaemons
-}
+#undef ADD_RULE
 
-
-- (void)addRulesToIpfw
-{
-	int fd;
-	NSString *tempFileName;
-	
-	// TODO: Write to the same file the startup-item uses it it gets integrated.
-	
-	[self openTempFileAndSaveFDAt:&fd saveNameAt:&tempFileName];
-	
-	if(fd == -1)
-	{
-		NSLog(@"BAEM, got a invalid temp fd.");
-		return;
-	}
-	
-	[self writeActiveRulesToFile:fd];
-	
-	NSString *result;
-	
-	// Delete the old rules first
-	result = [self runCommand:IPFW withArgs:
-			"delete", DROP_ALL_RULE, PRE_RULES, CUSTOM_RULES, POST_RULES, NULL];
-	FULog(@"%@ ", result);
-	
-	// Create the new ones from the file
-	result = [self runCommand:IPFW withArgs:[tempFileName UTF8String], NULL];
-	FULog(@"%@ ", result);
-	
-	// Delete the temp file.
-	if(unlink([tempFileName UTF8String]) != 0)
-		NSLog(@"unlink() of %@ failed.", tempFileName);
-	
-	close(fd);
-}
 
 - (void)openTempFileAndSaveFDAt:(int*)pFileDesPtr saveNameAt:(NSString**)pStrPtr
 {
@@ -407,20 +344,19 @@
 	FULog(@"installLaunchDaemon");
 	
 	int pipe = [self openPipeToCommand:"/bin/sh"
-			withArgs:"-c", "/bin/cat - > "DA_FILE, NULL];
+			withArgs:"-c", "/bin/cat - > "FW_LAUNCH_DAEMON_FILENAME, NULL];
 	
 	[self runCommand:"/bin/chmod"
-			withArgs:"0644", kFWLaunchDaemonFileName, NULL];
+			withArgs:"0644", FW_LAUNCH_DAEMON_FILENAME, NULL];
 	
-	write(...);
-	
+	write(pipe, FW_LAUNCH_DAEMON_DATA, strlen(FW_LAUNCH_DAEMON_DATA));
 	close(pipe);
 }
 
 - (void)removeLaunchDaemon
 {
 	FULog(@"removeLaunchDaemon");
-	[self runCommand:"/bin/rm" withArgs:"-f", kFWLaunchDaemonFileName, NULL];
+	[self runCommand:"/bin/rm" withArgs:"-f", FW_LAUNCH_DAEMON_FILENAME, NULL];
 }
 
 - (void)flushRules
