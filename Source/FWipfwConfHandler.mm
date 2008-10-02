@@ -27,6 +27,7 @@
 
 #import "FWipfwConfHandler.h"
 #import "FWipfwModel.h"
+#import "FWRule.h"
 
 
 @implementation FWipfwConfHandler
@@ -43,14 +44,32 @@
 
 - (void)parseFile:(int)pIpfwConfFd
 {
-	// 8008, BT, 5353
+	FWRule *rule;
 	
-	// [pModel ]
+	rule = [[[FWRule alloc] initEnabled:YES
+		description:@"Bonjour (mDNS)"
+		tcpPorts:@""
+		udpPorts:@"5353"] autorelease];
+	[mModel addRule:rule];
+	
+	rule = [[[FWRule alloc] initEnabled:YES
+		description:@"Transmission"
+		tcpPorts:@"17328"
+		udpPorts:@""] autorelease];
+	[mModel addRule:rule];
+	
+	rule = [[[FWRule alloc] initEnabled:YES
+		description:@"Navajo"
+		tcpPorts:@"8008"
+		udpPorts:@""] autorelease];
+	[mModel addRule:rule];
 }
 
 - (void)writeRulesToFile:(int)pIpfwConfFd
 {
+	const char *test = "# BAEM, BAEM, BAEM\n";
 	
+	write(int fildes, test, strlen(test));
 }
 
 @end
