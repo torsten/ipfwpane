@@ -174,8 +174,10 @@
 	
 	result = stat(FW_LAUNCH_DAEMON_FILENAME, &notUsedStruct);
 	
+	FULog(@"firewallEnabled: %d errno: %d (ENOENT:%d)", result, errno, ENOENT);
+	
 	// if something went wrong and the file does not not exist (yes 2 nots)
-	if(result != -1 && errno != ENOENT)
+	if(result != -1)
 		return YES;
 	else
 		return NO;

@@ -97,6 +97,8 @@
 
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)pView
 {
+	FULog(@"authorize");
+	
 	[self enableUI:YES];
 	[oModel setAuthorizationRef:[[pView authorization] authorizationRef]];
 	
@@ -107,6 +109,8 @@
 
 - (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)pView
 {
+	FULog(@"deauthorize");
+	
 	[self enableUI:NO];
 	
 	[oModel setAuthorizationRef:NULL];
