@@ -8,15 +8,16 @@
 	<title>ipfwPane &hellip; the missing preference pane for Mac OS X 10.5</title>
 	<style type="text/css" media="screen">
 	 body {
-	   font-family: "Helvetica Neue", Arial, sans-serif;
+	   font-family: "Helvetica", Verdana ,Arial, sans-serif;
 	   background-color: #ddd;
 	   font-size: 12pt;
 /*     background-position: bottom right;
      background-image: url('../ipfwPanePref.png');
      background-repeat: no-repeat;
 */	 }
-	 h1, h2 {
+	 h1, h2, h3 {
 	   font-weight: normal;
+	   font-family: "Helvetica Neue", Arial, sans-serif;
 	   margin: 0;
 	 }
 	 h1 {
@@ -39,7 +40,7 @@
 	   font-size: 0.8em;
 	   color: #888;
 	   text-align: center;
-	   margin-bottom: 2em;
+	   margin-bottom: 5em;
 	 }
 	 div#subtitle {
 	   margin-bottom: 2.5em;
@@ -64,6 +65,15 @@
 	   color: #173;
 	   font-size: 1.5em;
 	 }
+	 div.screenshot {
+	   text-align: center;
+	   color: #666;
+	 }
+	 .warning {
+	   background-color: #fc6;
+	   padding: 0.5em;
+	   border: 3px solid #FF8000;
+	 }
 	</style>
 </head>
 
@@ -73,8 +83,10 @@
 
 <div id="box">
 
-<div id="downloadBox"><a href="#">Download ipfwPane</a><br/>
-Leopard only Universal Binary</div>
+<!--
+<div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
+(Leopard only Universal Binary)</div>
+-->
 
 <h1 id="titleHeading">ipfwPane</h1>
 <div id="subtitle">&hellip; the missing preference pane for Mac OS X 10.5</div>
@@ -90,23 +102,42 @@ There is just no longer an UI available for it, as it was in 10.4.  This is the 
 This gives you again a more fine-grained control over which ports you want to allow and which you want to block.  And other than with Leopards application firewall you can now also block built-in applications and services if you want to.
 </p>
 
+<p class="warning">
+Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfw_pane/">follow the development</a> on GitHub, so stay tuned.
+</p>
+
+<!--
 
 <h2>Features</h2>
 <ul>
+  <li>Open Source</li>
   <li>Smart Ports</li>
+  <li>Reboot Proof®</li>
+  <li>&hellip;</li>
 </ul>
 
 <h2>News</h2>
 
-<p>...</p>
+-->
+
 
 
 <h2>Screenshots</h2>
 
-<h2>Misc</h2>
+<p>
+<div class="screenshot">
+<img src="prototype.png"/><br/>
+The current development version looks like this.
+</div>
 
-<p>Download at ... and GitHub link</p>
+</p>
 
+
+<h2>Miscellaneous</h2>
+
+<p>
+ipfwPane is open source (new BSD license).  So if you like you can <a href="http://github.com/torsten/ipfw_pane/">check out the source</a> on GitHub and extend it.
+</p>
 
 </div>
 
