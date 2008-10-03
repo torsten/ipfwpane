@@ -77,7 +77,6 @@
 	
 	std::string currentLine;
 	
-	
 	// Read from the fd into the readBuffer and then search in this
 	// buffer for a newline, then pass each found line to parseLine:.
 	for(;;)
@@ -111,9 +110,9 @@
 
 - (void)writeRulesToFile:(int)pIpfwConfFd
 {
-	unsigned int numRules = [mModel numberOfRules];
 	FWRule *rule;
 	std::string entry;
+	unsigned int numRules = [mModel numberOfRules];
 	
 	for(unsigned int i = 0; i < numRules; ++i)
 	{
@@ -130,7 +129,6 @@
 			entry.append("\"1\"\n");
 		else
 			entry.append("\"0\"\n");
-		
 		
 		// If the rule is disabled do not print any real instructions about it.
 		if(rule.enabled)
@@ -156,7 +154,6 @@
 		
 		write(pIpfwConfFd, entry.c_str(), entry.size());
 	}
-	
 }
 
 @end
@@ -191,7 +188,6 @@
 				break;
 			
 			quoted.replace(i, 1, replacements[j].to);
-			
 			i += strlen(replacements[j].to);
 		}
 	}
