@@ -6,3 +6,5 @@
 	  fooled too easy.
 
 * Read the "Sharing" PrefPane and create (not editable) rules for them.
+
+* http://support.apple.com/kb/TS1629?viewlocale=en_US

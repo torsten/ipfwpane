@@ -72,6 +72,8 @@
 	[mModel addRule:rule];
 }
 
+// NSPropertyListSerialization
+
 - (void)writeRulesToFile:(int)pIpfwConfFd
 {
 	const char *testData =
