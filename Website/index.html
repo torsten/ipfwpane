@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>ipfwPane &hellip; the missing preference pane of Mac OS X 10.5</title>
+	<title>ipfwPane</title>
 	<style type="text/css" media="screen">
 	 body {
-	   font-family: "Helvetica", Verdana ,Arial, sans-serif;
+	   font-family: "Helvetica", Verdana, Arial, sans-serif;
 	   background-color: #ddd;
 	   font-size: 12pt;
 /*     background-position: bottom right;
@@ -37,23 +37,30 @@
 	 div#box {
 	   border: 3px solid #aaa;
 	   padding: 30px;
-	   margin: 4em auto 1em auto;
+	   margin: 3em auto 1em auto;
 	   background-color: white;
 	   width: 50em;
 	 }
-	 div#footer
-	 {
+	 div#footer {
 	   font-size: 0.8em;
 	   color: #888;
 	   text-align: center;
-	   margin-bottom: 4em;
+	   margin-bottom: 3em;
+	 }
+	 div#footer a {
+	   color: #888;
+	   text-decoration: underline;
+	 }
+	 div#footer a:hover {
+	   color: #888;
+	   text-decoration: none;
 	 }
 	 div#downloadBox {
 	   position: relative;
 	   margin: 0;
      right: -5.5em;
      margin-left: -5.5em;
-	   top: 0em;
+	   top: 0.5em;
 	   border: 3px solid #2a3;
 	   color: #192;
 	   background-color: #6f7;
@@ -105,14 +112,14 @@
 <div id="heading">
 <img id="logo" alt="ipfwPane icon" src="ipfwPanePref.png"/>
 <h1 id="titleHeading">ipfwPane</h1>
-<div id="subtitle">&hellip; the missing preference pane of Mac OS X 10.5</div>
+<div id="subtitle">&hellip; the missing Preference Pane of Mac OS X 10.5</div>
 </div>
 
 <p class="highlight">
 Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfwpane/">follow the development</a> on GitHub, so stay tuned. (The icon isn't final, too.)
 </p>
 
-<p>ipfwPane lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8) firewall</a> again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
+<p>ipfw Preference Pane (short ipfwPane) lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8) firewall</a> again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
 </p>
 
 <p>
@@ -155,7 +162,7 @@ ipfwPane is open source (new BSD license).  So if you like you can <a href="http
 
 </div>
 
-<div id="footer">Copyright &copy; 2008 Torsten Becker.</div>
+<div id="footer">Copyright &copy; 2008 Torsten Becker, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/deed.en" title="Creative Commons Attribution-Noncommercial-Share Alike 3.0 License">some rights</a> reserved.</div>
 
 </body>
 </html>

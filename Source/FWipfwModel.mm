@@ -112,12 +112,12 @@
 	[self clearRules];
 	
 	// open .conf file
-	int pipe = open(IPFW_CONF, O_RDONLY);
+	int fd = open(IPFW_CONF, O_RDONLY);
 	
-	FULog(@"pipe: %d", pipe);
+	FULog(@"fd: %d", fd);
 	
-	[mConfHandler parseFile:pipe];
-	close(pipe);
+	[mConfHandler parseFile:fd];
+	close(fd);
 }
 
 - (void)saveRules
