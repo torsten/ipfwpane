@@ -31,7 +31,7 @@
 
 @class FWPrefPane;
 @class FWRule;
-@class FWipfwConfHandler;
+@class FWConfigHandler;
 @class FWRootRunner;
 
 
@@ -50,7 +50,7 @@
 @interface FWipfwModel : NSObject
 {
 	FWipfwRuleContainer *mRules;
-	FWipfwConfHandler *mConfHandler;
+	FWConfigHandler *mConfHandler;
 	FWRootRunner *mRunner;
 }
 

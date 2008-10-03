@@ -29,7 +29,7 @@
 #import "FWPrefPane.h"
 #import "FWRootRunner.h"
 #import "FWRule.h"
-#import "FWipfwConfHandler.h"
+#import "FWConfigHandler.h"
 #import "FWipfwModel.h"
 
 #import "DebugFU.h"
@@ -62,7 +62,7 @@
 	if((self = [super init]))
 	{
 		mRules = new FWipfwRuleContainer();
-		mConfHandler = [[FWipfwConfHandler alloc] initWithModel:self];
+		mConfHandler = [[FWConfigHandler alloc] initWithModel:self];
 		mRunner = [[FWRootRunner alloc] init];
 	}
 	return self;

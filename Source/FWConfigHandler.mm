@@ -22,10 +22,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * FWipfwConfHandler.mm, created on 01.10.2008.
+ * FWConfigHandler.mm, created on 01.10.2008.
  */
 
-#import "FWipfwConfHandler.h"
+#import "FWConfigHandler.h"
 #import "FWipfwModel.h"
 #import "FWRule.h"
 
@@ -43,15 +43,14 @@
 #define FW_RULE_MARKER "#<FWRule>"
 
 
-@interface FWipfwConfHandler (Private)
+@interface FWConfigHandler (Private)
 - (void)parseLine:(std::string&)string;
 - (void)appendString:(NSString*)nsString inQuotesTo:(std::string&)stdString;
 
 @end
 
 
-// TODO: maybe rename to FWConfigHandler
-@implementation FWipfwConfHandler
+@implementation FWConfigHandler
 
 
 #pragma mark NSObject
@@ -159,7 +158,7 @@
 @end
 
 
-@implementation FWipfwConfHandler (Private)
+@implementation FWConfigHandler (Private)
 
 - (void)appendString:(NSString*)pNSString inQuotesTo:(std::string&)pStdString
 {

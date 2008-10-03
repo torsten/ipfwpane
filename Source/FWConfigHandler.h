@@ -22,7 +22,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * FWipfwConfHandler.h, created on 01.10.2008.
+ * FWConfigHandler.h, created on 01.10.2008.
  */
 
 #import <Cocoa/Cocoa.h>
@@ -35,7 +35,7 @@
  *	This class can parse specally annotated ipfw.conf file and
  *	write a ruleset back to such a file as well.
  */
-@interface FWipfwConfHandler : NSObject
+@interface FWConfigHandler : NSObject
 {
 	FWipfwModel *mModel;
 }

@@ -11,12 +11,12 @@
 		8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
 		E531F4E60E94CDFA0025A206 /* DefaultRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = E531F4E40E94CDFA0025A206 /* DefaultRules.plist */; };
 		E531F4E70E94CDFA0025A206 /* ipfwPanePref.png in Resources */ = {isa = PBXBuildFile; fileRef = E531F4E50E94CDFA0025A206 /* ipfwPanePref.png */; };
-		E531F51C0E9582950025A206 /* FWipfwConfHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F51A0E9582950025A206 /* FWipfwConfHandler.h */; };
-		E531F51D0E9582950025A206 /* FWipfwConfHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = E531F51B0E9582950025A206 /* FWipfwConfHandler.mm */; };
 		E531F5670E9629EF0025A206 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E531F5630E9629EF0025A206 /* InfoPlist.strings */; };
 		E531F5680E9629EF0025A206 /* ipfwPanePref.xib in Resources */ = {isa = PBXBuildFile; fileRef = E531F5650E9629EF0025A206 /* ipfwPanePref.xib */; };
 		E531F5890E962F270025A206 /* FWRootRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F5870E962F270025A206 /* FWRootRunner.h */; };
 		E531F58A0E962F270025A206 /* FWRootRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = E531F5880E962F270025A206 /* FWRootRunner.m */; };
+		E531F64C0E96D4F70025A206 /* FWConfigHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F64A0E96D4F70025A206 /* FWConfigHandler.h */; };
+		E531F64D0E96D4F70025A206 /* FWConfigHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */; };
 		E58EA5930E913718000FBD79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58EA5920E913718000FBD79 /* Security.framework */; };
 		E58EA6B40E923A69000FBD79 /* DebugFU.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A80E923A69000FBD79 /* DebugFU.h */; };
 		E58EA6B50E923A69000FBD79 /* FWipfwModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A90E923A69000FBD79 /* FWipfwModel.h */; };
@@ -41,12 +41,12 @@
 		E531F4E40E94CDFA0025A206 /* DefaultRules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultRules.plist; path = Resources/DefaultRules.plist; sourceTree = SOURCE_ROOT; };
 		E531F4E50E94CDFA0025A206 /* ipfwPanePref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipfwPanePref.png; path = Resources/ipfwPanePref.png; sourceTree = SOURCE_ROOT; };
 		E531F4ED0E94CE340025A206 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
-		E531F51A0E9582950025A206 /* FWipfwConfHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWipfwConfHandler.h; path = Source/FWipfwConfHandler.h; sourceTree = SOURCE_ROOT; };
-		E531F51B0E9582950025A206 /* FWipfwConfHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FWipfwConfHandler.mm; path = Source/FWipfwConfHandler.mm; sourceTree = SOURCE_ROOT; };
 		E531F5640E9629EF0025A206 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E531F5660E9629EF0025A206 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/English.lproj/ipfwPanePref.xib; sourceTree = "<group>"; };
 		E531F5870E962F270025A206 /* FWRootRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWRootRunner.h; path = Source/FWRootRunner.h; sourceTree = "<group>"; };
 		E531F5880E962F270025A206 /* FWRootRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FWRootRunner.m; path = Source/FWRootRunner.m; sourceTree = "<group>"; };
+		E531F64A0E96D4F70025A206 /* FWConfigHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWConfigHandler.h; path = Source/FWConfigHandler.h; sourceTree = SOURCE_ROOT; };
+		E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FWConfigHandler.mm; path = Source/FWConfigHandler.mm; sourceTree = SOURCE_ROOT; };
 		E58EA5920E913718000FBD79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E58EA6A80E923A69000FBD79 /* DebugFU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugFU.h; path = Source/DebugFU.h; sourceTree = SOURCE_ROOT; };
 		E58EA6A90E923A69000FBD79 /* FWipfwModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWipfwModel.h; path = Source/FWipfwModel.h; sourceTree = SOURCE_ROOT; };
@@ -142,10 +142,10 @@
 		32DBCFA10370C40200C91783 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E531F64A0E96D4F70025A206 /* FWConfigHandler.h */,
+				E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */,
 				E531F5870E962F270025A206 /* FWRootRunner.h */,
 				E531F5880E962F270025A206 /* FWRootRunner.m */,
-				E531F51A0E9582950025A206 /* FWipfwConfHandler.h */,
-				E531F51B0E9582950025A206 /* FWipfwConfHandler.mm */,
 				E58EA6A80E923A69000FBD79 /* DebugFU.h */,
 				E58EA6A90E923A69000FBD79 /* FWipfwModel.h */,
 				E58EA6AA0E923A69000FBD79 /* FWipfwModel.mm */,
@@ -176,8 +176,8 @@
 				E58EA6BB0E923A69000FBD79 /* FWSheetController.h in Headers */,
 				E58EA6BD0E923A69000FBD79 /* FWTableController.h in Headers */,
 				E58EA6BF0E923A69000FBD79 /* ipfwPane_Prefix.pch in Headers */,
-				E531F51C0E9582950025A206 /* FWipfwConfHandler.h in Headers */,
 				E531F5890E962F270025A206 /* FWRootRunner.h in Headers */,
+				E531F64C0E96D4F70025A206 /* FWConfigHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,8 +291,8 @@
 				E58EA6BA0E923A69000FBD79 /* FWRule.m in Sources */,
 				E58EA6BC0E923A69000FBD79 /* FWSheetController.m in Sources */,
 				E58EA6BE0E923A69000FBD79 /* FWTableController.m in Sources */,
-				E531F51D0E9582950025A206 /* FWipfwConfHandler.mm in Sources */,
 				E531F58A0E962F270025A206 /* FWRootRunner.m in Sources */,
+				E531F64D0E96D4F70025A206 /* FWConfigHandler.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
