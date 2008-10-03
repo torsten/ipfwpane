@@ -40,8 +40,12 @@
 #include <unistd.h>
 
 
+#define FW_RULE_MARKER "#<FWRule>"
+
+
 @interface FWipfwConfHandler (Private)
 - (void)parseLine:(std::string&)string;
+- (void)appendString:(NSString*)nsString inQuotesTo:(std::string&)stdString;
 
 @end
 
@@ -68,27 +72,6 @@
 
 - (void)parseFile:(int)pIpfwConfFd
 {
-	// FWRule *rule;
-	// 
-	// rule = [[[FWRule alloc] initEnabled:YES
-	// 	description:@"Bonjour (mDNS)"
-	// 	tcpPorts:@""
-	// 	udpPorts:@"5353"] autorelease];
-	// [mModel addRule:rule];
-	// 
-	// rule = [[[FWRule alloc] initEnabled:YES
-	// 	description:@"Transmission"
-	// 	tcpPorts:@"17328"
-	// 	udpPorts:@""] autorelease];
-	// [mModel addRule:rule];
-	// 
-	// rule = [[[FWRule alloc] initEnabled:YES
-	// 	description:@"Navajo"
-	// 	tcpPorts:@"8008"
-	// 	udpPorts:@""] autorelease];
-	// [mModel addRule:rule];
-	
-	
     ssize_t didRead;
 	char readBuffer[3000];
 	
@@ -105,7 +88,7 @@
 		
 		if(didRead == -1)
 		{
-			NSLog(@"read error from pipe.");
+			NSLog(@"read(2) error from pipe.");
 			return;
 		}
 		// Just handle lines which did really end with a \n.
@@ -128,21 +111,95 @@
 
 - (void)writeRulesToFile:(int)pIpfwConfFd
 {
-	const char *testData =
-	"#\n"
-	"add 41337 set 23 allow tcp from any to any dst-port 8008 in\n"
-	"#\n"
-	"add 41337 set 23 allow tcp from any to any dst-port 17328 in\n"
-	"#+#\"Bonjour (mDNS)\" \"BS:\\\\QT:\\\"NL:\\np:\\p\" \"5353\" \"0\"\n"
-	"add 41337 set 23 allow udp from any to any dst-port 5353 in\n";
+	unsigned int numRules = [mModel numberOfRules];
+	FWRule *rule;
+	std::string entry;
 	
-	write(pIpfwConfFd, testData, strlen(testData));
+	for(unsigned int i = 0; i < numRules; ++i)
+	{
+		rule = [mModel ruleForIndex:i];
+		entry.clear();
+		
+		entry.append(FW_RULE_MARKER);
+		
+		[self appendString:rule.description inQuotesTo:entry];
+		[self appendString:rule.tcpPorts inQuotesTo:entry];
+		[self appendString:rule.udpPorts inQuotesTo:entry];
+		
+		if(rule.enabled)
+			entry.append("\"1\"\n");
+		else
+			entry.append("\"0\"\n");
+		
+		
+		// If the rule is disabled do not print any real instructions about it.
+		if(rule.enabled)
+		{
+			if(rule.tcpPorts != nil && [rule.tcpPorts length] > 0)
+			{
+				entry.append(
+						"add 41337 set 23 allow tcp from any to any dst-port ");
+				entry.append([rule.tcpPorts UTF8String]);
+				entry.append(" in\n");
+			}
+			
+			if(rule.udpPorts != nil && [rule.udpPorts length] > 0)
+			{
+				entry.append(
+						"add 41337 set 23 allow udp from any to any dst-port ");
+				entry.append([rule.udpPorts UTF8String]);
+				entry.append(" in\n");
+			}			
+		}
+		
+		entry.append("\n");
+		
+		write(pIpfwConfFd, entry.c_str(), entry.size());
+	}
+	
 }
 
 @end
 
 
 @implementation FWipfwConfHandler (Private)
+
+- (void)appendString:(NSString*)pNSString inQuotesTo:(std::string&)pStdString
+{
+	std::string quoted([pNSString UTF8String]);
+	
+	const struct
+	{
+		const char from;
+		const char *to;
+	}
+	replacements[] =
+	{
+		{'\\', "\\\\"},
+		{'"', "\\\""},
+		{'\n', "\\n"},
+		{'\0', NULL}
+	};
+	
+	for(size_t j = 0; replacements[j].to != NULL; ++j)
+	{
+		for(size_t i = 0; i < quoted.size();)
+		{
+			i = quoted.find(replacements[j].from, i);
+			
+			if(i == std::string::npos)
+				break;
+			
+			quoted.replace(i, 1, replacements[j].to);
+			
+			i += strlen(replacements[j].to);
+		}
+	}
+	
+	pStdString.append("\"");
+	pStdString.append(quoted);
+	pStdString.append("\" ");
+}
 
 - (void)parseLine:(std::string&)pString
 {
@@ -153,26 +210,12 @@
 		BackslashState = 2
 	};
 	
-	struct ConversionDescription
-	{
-		SEL ruleSelector;
-		SEL stringSelector;
-	}
-	deserializationTable[] =
-	{
-		{@selector(setDescription:), nil},
-		{@selector(setTcpPorts:), nil},
-		{@selector(setUdpPorts:), nil},
-		{@selector(setEnabled:), @selector(boolValue)},
-		{nil, nil}
-	};
-	
-	if(pString.find("#+#") == 0)
+	if(pString.find(FW_RULE_MARKER) == 0)
 	{
 		FULog(@"parseLine:'%s'", pString.c_str());
 		
 		// Erase the start marker
-		pString.erase(0, 3);
+		pString.erase(0, strlen(FW_RULE_MARKER));
 		
 		enum ParseState state = InitialState;
 		std::string accu;
@@ -220,32 +263,19 @@
 			}
 		}
 		
-		// Initialize the new FWRule with all the data we jsut parsed in
-		// the order which is specified in deserializationTable.
-		FWRule *newRule = [[[FWRule alloc] init] autorelease];;
-		for(size_t i = 0; deserializationTable[i].ruleSelector != nil; ++i)
+		if(strings.size() != 4)
 		{
-			if(i >= strings.size())
-			{
-				FULog(@"OMG, TMI: Too much information. (%u)", i);
-				return;
-			}
-			
-			// If stringSelector is nil, just take the string as argument
-			if(deserializationTable[i].stringSelector == nil)
-				[newRule performSelector:(deserializationTable[i].ruleSelector)
-						withObject:strings[i]];
-			
-			// Else call first a conversion selector on the string.
-			else
-			{
-				id value = [strings[i] performSelector:
-						(deserializationTable[i].stringSelector)];
-				
-				[newRule performSelector:(deserializationTable[i].ruleSelector)
-						withObject:value];
-			}
+			FULog(@"Wrong amount of information, will not create rule.");
+			return;
 		}
+		
+		// Initialize the new FWRule with all the data we jsut parsed.
+		FWRule *newRule = [[[FWRule alloc] init] autorelease];;
+		
+		newRule.description = strings[0];
+		newRule.tcpPorts = strings[1];
+		newRule.udpPorts = strings[2];
+		newRule.enabled = [strings[3] boolValue];
 		
 		[mModel addRule:newRule];
 	}
