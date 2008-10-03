@@ -40,7 +40,7 @@
 #include <unistd.h>
 
 
-#define FW_RULE_MARKER "#<FWRule>"
+#define FW_RULE_MARKER "#<FWRule:"
 
 
 @interface FWConfigHandler (Private)
@@ -125,9 +125,9 @@
 		[self appendString:rule.udpPorts inQuotesTo:entry];
 		
 		if(rule.enabled)
-			entry.append("\"1\"\n");
+			entry.append("\"1\">\n");
 		else
-			entry.append("\"0\"\n");
+			entry.append("\"0\">\n");
 		
 		// If the rule is disabled do not print any real instructions about it.
 		if(rule.enabled)
@@ -207,10 +207,7 @@
 	
 	if(pString.find(FW_RULE_MARKER) == 0)
 	{
-		FULog(@"parseLine:'%s'", pString.c_str());
-		
-		// Erase the start marker
-		pString.erase(0, strlen(FW_RULE_MARKER));
+		FULog(@"parseLine:%s", pString.c_str());
 		
 		enum ParseState state = InitialState;
 		std::string accu;
