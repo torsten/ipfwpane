@@ -3,7 +3,8 @@
 //
 
 #ifdef __OBJC__
-    #import <Foundation/Foundation.h>
     #import <AppKit/AppKit.h>
     #import <Cocoa/Cocoa.h>
+    #import <Foundation/Foundation.h>
+    #import <Security/Authorization.h>
 #endif
