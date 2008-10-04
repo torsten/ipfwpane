@@ -17,3 +17,5 @@
 
 [Later]  
   * Read the "Sharing" PrefPane and create (not editable) rules for them.
+
+  * FWAdvancedSheet to enter direct ipfw rules

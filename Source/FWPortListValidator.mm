@@ -34,11 +34,26 @@
 
 + (NSString*)validateAndCorrectPorts:(NSString*)pPortList
 {
+	enum ParseState
+	{
+		InitialState = 0,
+		NumberState = 1,
+		GotSpeparatorState = 2,
+		GotSpaceState = 3,
+		StartRangeState = 4
+	};
+	
 	std::string portList([pPortList UTF8String]);
 	
+	std::string::iterator iter;
+	for(iter = portList.begin(); iter != portList.end(); ++iter)
+	{
+		// Filter everything which is not a number
+		if(*iter < '0' || *iter > '9')
+			portList.erase(iter--);
+	}
 	
-	
-	return [NSString string];
+	return [NSString stringWithUTF8String:portList.c_str()];
 }
 
 @end

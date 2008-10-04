@@ -27,8 +27,11 @@
 
 #import <PreferencePanes/PreferencePanes.h>
 
-#import "FWSheetController.h"
+#import "FWPortListValidator.h"
 #import "FWRule.h"
+#import "FWSheetController.h"
+
+#import "DebugFU.h"
 
 
 NSInteger FWSheetControllerSortDefaultRules(
@@ -158,6 +161,19 @@ enum FWSheetControllerReturnCode
 	[oPopUpButton selectItem:[oPopUpButton lastItem]];
 }
 
+- (void)controlTextDidEndEditing:(NSNotification *)pNotification
+{
+	if([pNotification object] == oTCPPortsTextField)
+		[oTCPPortsTextField setStringValue:
+				[FWPortListValidator validateAndCorrectPorts:
+					[oTCPPortsTextField stringValue]]];
+	
+	else if([pNotification object] == oUDPPortsTextField)
+		[oUDPPortsTextField setStringValue:
+				[FWPortListValidator validateAndCorrectPorts:
+					[oUDPPortsTextField stringValue]]];
+}
+
 
 #pragma mark NSApp Sheet didEndSelectors
 
@@ -171,8 +187,11 @@ enum FWSheetControllerReturnCode
 		
 		newRule.enabled = YES;
 		newRule.description = [oDescriptionTextField stringValue];
-		newRule.tcpPorts = [oTCPPortsTextField stringValue];
-		newRule.udpPorts = [oUDPPortsTextField stringValue];
+		
+		newRule.tcpPorts = [FWPortListValidator validateAndCorrectPorts:
+				[oTCPPortsTextField stringValue]];
+		newRule.udpPorts = [FWPortListValidator validateAndCorrectPorts:
+				[oUDPPortsTextField stringValue]];
 		
 		id <FWSheetControllerCallback> callback = pContextInfo;
 		
@@ -191,8 +210,11 @@ enum FWSheetControllerReturnCode
 	if(pReturnCode == FWSheetControllerReturnSave)
 	{
 		mRuleInEdit.description = [oDescriptionTextField stringValue];
-		mRuleInEdit.tcpPorts = [oTCPPortsTextField stringValue];
-		mRuleInEdit.udpPorts = [oUDPPortsTextField stringValue];
+		
+		mRuleInEdit.tcpPorts = [FWPortListValidator validateAndCorrectPorts:
+				[oTCPPortsTextField stringValue]];
+		mRuleInEdit.udpPorts = [FWPortListValidator validateAndCorrectPorts:
+				[oUDPPortsTextField stringValue]];
 		
 		[callback sheetDidEditRule:mRuleInEdit];
 	}

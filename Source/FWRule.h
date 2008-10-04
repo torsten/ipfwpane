@@ -56,6 +56,13 @@
 	 *	
 	 */
 	NSString *udpPorts;
+	
+	/**
+	 *	Tells wether this is still a default rule which the user has not
+	 *	modified, this is used to select the right item in the popupbutton
+	 *	if it is still a clean rule.
+	 */
+	// BOOL default;
 }
 
 @property BOOL enabled;
