@@ -132,6 +132,7 @@ enum FWSheetControllerReturnCode
 {
 	NSDictionary *ruleData = [[oPopUpButton selectedItem] representedObject];
 	
+	mDirtyFields = NO;
 	
 	if([ruleData objectForKey:@"TCPPorts"])
 		[oTCPPortsTextField setStringValue:[ruleData objectForKey:@"TCPPorts"]];
@@ -159,6 +160,8 @@ enum FWSheetControllerReturnCode
 	// If the text in any of the boxes changes, fall back to
 	// the "Other" item.
 	[oPopUpButton selectItem:[oPopUpButton lastItem]];
+	
+	mDirtyFields = YES;
 }
 
 - (void)controlTextDidEndEditing:(NSNotification *)pNotification
@@ -193,6 +196,8 @@ enum FWSheetControllerReturnCode
 		newRule.udpPorts = [FWPortListValidator validateAndCorrectPorts:
 				[oUDPPortsTextField stringValue]];
 		
+		newRule.stillDefault = !mDirtyFields;
+		
 		id <FWSheetControllerCallback> callback = pContextInfo;
 		
 		[callback sheetCreatedNewRule:newRule];
@@ -216,6 +221,8 @@ enum FWSheetControllerReturnCode
 		mRuleInEdit.udpPorts = [FWPortListValidator validateAndCorrectPorts:
 				[oUDPPortsTextField stringValue]];
 		
+		mRuleInEdit.stillDefault = !mDirtyFields;
+		
 		[callback sheetDidEditRule:mRuleInEdit];
 	}
 	else
@@ -238,6 +245,8 @@ enum FWSheetControllerReturnCode
 	oTCPPortsTextField.stringValue = [NSString string];
 	oUDPPortsTextField.stringValue = [NSString string];
 	
+	mDirtyFields = YES;
+	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]
 			modalDelegate:self
@@ -247,7 +256,11 @@ enum FWSheetControllerReturnCode
 
 - (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
 {
-	[oPopUpButton selectItem:nil];
+	[oPopUpButton selectItemWithTitle:pRule.description];
+
+	if([oPopUpButton selectedItem] == nil)
+		[oPopUpButton selectItem:[oPopUpButton lastItem]];
+	
 	[oAddSheet makeFirstResponder:oTCPPortsTextField];
 	
 	oDescriptionTextField.stringValue = pRule.description;
@@ -255,6 +268,7 @@ enum FWSheetControllerReturnCode
 	oUDPPortsTextField.stringValue = pRule.udpPorts;
 	
 	mRuleInEdit = pRule;
+	mDirtyFields = YES;
 	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]

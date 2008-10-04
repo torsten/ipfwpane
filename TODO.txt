@@ -1,10 +1,6 @@
 [v0.2]
   * Credits
   
-  * Reselect present when editing
-  
-  * Input validation for port fields
-  
   * http://support.apple.com/kb/TS1629?viewlocale=en_US
 
 

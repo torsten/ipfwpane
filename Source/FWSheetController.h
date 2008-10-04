@@ -60,6 +60,7 @@
 	IBOutlet NSPreferencePane *oPrefPane;
 	
 	FWRule *mRuleInEdit;
+	BOOL mDirtyFields;
 }
 
 - (IBAction)saveSheet:(id)sender;

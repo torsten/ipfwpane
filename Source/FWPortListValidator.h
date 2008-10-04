@@ -34,7 +34,6 @@
  */
 @interface FWPortListValidator : NSObject
 {
-	
 }
 
 + (NSString*)validateAndCorrectPorts:(NSString*)portList;

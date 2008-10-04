@@ -33,6 +33,7 @@
 @synthesize description;
 @synthesize tcpPorts;
 @synthesize udpPorts;
+@synthesize stillDefault;
 
 
 #pragma mark NSObject
@@ -46,6 +47,7 @@
 		description = [NSString string];
 		tcpPorts = [NSString string];
 		udpPorts = [NSString string];
+		stillDefault = NO;
 	}
 	return self;
 }
@@ -54,7 +56,8 @@
 - (id)initEnabled:(BOOL)pEnabled
 	description:(NSString*)pDescription
 	tcpPorts:(NSString*)pTCPPorts
-	udpPorts:(NSString*)pUDPPorts;
+	udpPorts:(NSString*)pUDPPorts
+	stillDefault:(BOOL)pDefault;
 {
 	if((self = [super init]))
 	{
@@ -62,6 +65,7 @@
 		description = pDescription;
 		tcpPorts = pTCPPorts;
 		udpPorts = pUDPPorts;
+		stillDefault = pDefault;
 	}
 	return self;
 }

@@ -32,7 +32,6 @@
  *	Just a POO for keeping the rule-data,
  *	
  *	TODO:
- *	- present
  *	- smart-rule? [none/nil oder app-domain aka org.m0k.transmission]
  */
 @interface FWRule : NSObject
@@ -62,17 +61,19 @@
 	 *	modified, this is used to select the right item in the popupbutton
 	 *	if it is still a clean rule.
 	 */
-	// BOOL default;
+	BOOL stillDefault;
 }
 
 @property BOOL enabled;
 @property(retain) NSString *description;
 @property(retain) NSString *tcpPorts;
 @property(retain) NSString *udpPorts;
+@property BOOL stillDefault;
 
 - (id)initEnabled:(BOOL)enabled
 	description:(NSString*)desc
 	tcpPorts:(NSString*)tcp
-	udpPorts:(NSString*)udp;
+	udpPorts:(NSString*)udp
+	stillDefault:(BOOL)isDefault;
 
 @end

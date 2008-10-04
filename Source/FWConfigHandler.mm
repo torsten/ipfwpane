@@ -125,9 +125,16 @@
 		[self appendString:rule.udpPorts inQuotesTo:entry];
 		
 		if(rule.enabled)
-			entry.append("\"1\">\n");
+			entry.append("\"1\" ");
 		else
-			entry.append("\"0\">\n");
+			entry.append("\"0\" ");
+		
+		if(rule.stillDefault)
+			entry.append("\"1\" ");
+		else
+			entry.append("\"0\" ");
+		
+		entry.append(">\n");
 		
 		// If the rule is disabled do not print any real instructions about it.
 		if(rule.enabled)
@@ -255,7 +262,7 @@
 			}
 		}
 		
-		if(strings.size() != 4)
+		if(strings.size() != 5)
 		{
 			FULog(@"Wrong amount of information, will not create rule.");
 			return;
@@ -268,6 +275,7 @@
 		newRule.tcpPorts = strings[1];
 		newRule.udpPorts = strings[2];
 		newRule.enabled = [strings[3] boolValue];
+		newRule.stillDefault = [strings[3] boolValue];
 		
 		[mModel addRule:newRule];
 	}
