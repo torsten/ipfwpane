@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
+<!-- Currently not working rules:
 	<dict>
 		<key>TCPSmartPorts</key>
 		<array>
@@ -18,6 +19,23 @@
 		<key>Title</key>
 		<string>ShakesPeer</string>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Apple Remote Desktop</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Printer Sharing</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>ICQ File Transfer</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Windows File Sharing (SMB)</string>
+	</dict>
+-->
 	<dict>
 		<key>TCPPorts</key>
 		<string>80</string>
@@ -46,21 +64,9 @@
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>Apple Remote Desktop</string>
-	</dict>
-	<dict>
-		<key>Title</key>
 		<string>Apple File Sharing (AFP)</string>
 		<key>TCPPorts</key>
 		<string>548</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Printer Sharing</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>ICQ File Transfer</string>
 	</dict>
 	<dict>
 		<key>Title</key>
@@ -73,10 +79,6 @@
 		<string>Bonjour (mDNS)</string>
 		<key>UDPPorts</key>
 		<string>5353</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Windows File Sharing (SMB)</string>
 	</dict>
 </array>
 </plist>

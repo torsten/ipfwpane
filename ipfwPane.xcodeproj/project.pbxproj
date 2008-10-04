@@ -17,6 +17,8 @@
 		E531F58A0E962F270025A206 /* FWRootRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = E531F5880E962F270025A206 /* FWRootRunner.m */; };
 		E531F64C0E96D4F70025A206 /* FWConfigHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F64A0E96D4F70025A206 /* FWConfigHandler.h */; };
 		E531F64D0E96D4F70025A206 /* FWConfigHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */; };
+		E531F6620E978A360025A206 /* FWPortListValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = E531F6600E978A360025A206 /* FWPortListValidator.h */; };
+		E531F6630E978A360025A206 /* FWPortListValidator.mm in Sources */ = {isa = PBXBuildFile; fileRef = E531F6610E978A360025A206 /* FWPortListValidator.mm */; };
 		E58EA5930E913718000FBD79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58EA5920E913718000FBD79 /* Security.framework */; };
 		E58EA6B40E923A69000FBD79 /* DebugFU.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A80E923A69000FBD79 /* DebugFU.h */; };
 		E58EA6B50E923A69000FBD79 /* FWipfwModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E58EA6A90E923A69000FBD79 /* FWipfwModel.h */; };
@@ -47,6 +49,8 @@
 		E531F5880E962F270025A206 /* FWRootRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FWRootRunner.m; path = Source/FWRootRunner.m; sourceTree = "<group>"; };
 		E531F64A0E96D4F70025A206 /* FWConfigHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWConfigHandler.h; path = Source/FWConfigHandler.h; sourceTree = SOURCE_ROOT; };
 		E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FWConfigHandler.mm; path = Source/FWConfigHandler.mm; sourceTree = SOURCE_ROOT; };
+		E531F6600E978A360025A206 /* FWPortListValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWPortListValidator.h; path = Source/FWPortListValidator.h; sourceTree = "<group>"; };
+		E531F6610E978A360025A206 /* FWPortListValidator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FWPortListValidator.mm; path = Source/FWPortListValidator.mm; sourceTree = "<group>"; };
 		E58EA5920E913718000FBD79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E58EA6A80E923A69000FBD79 /* DebugFU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugFU.h; path = Source/DebugFU.h; sourceTree = SOURCE_ROOT; };
 		E58EA6A90E923A69000FBD79 /* FWipfwModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FWipfwModel.h; path = Source/FWipfwModel.h; sourceTree = SOURCE_ROOT; };
@@ -142,6 +146,8 @@
 		32DBCFA10370C40200C91783 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E531F6600E978A360025A206 /* FWPortListValidator.h */,
+				E531F6610E978A360025A206 /* FWPortListValidator.mm */,
 				E531F64A0E96D4F70025A206 /* FWConfigHandler.h */,
 				E531F64B0E96D4F70025A206 /* FWConfigHandler.mm */,
 				E531F5870E962F270025A206 /* FWRootRunner.h */,
@@ -178,6 +184,7 @@
 				E58EA6BF0E923A69000FBD79 /* ipfwPane_Prefix.pch in Headers */,
 				E531F5890E962F270025A206 /* FWRootRunner.h in Headers */,
 				E531F64C0E96D4F70025A206 /* FWConfigHandler.h in Headers */,
+				E531F6620E978A360025A206 /* FWPortListValidator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +300,7 @@
 				E58EA6BE0E923A69000FBD79 /* FWTableController.m in Sources */,
 				E531F58A0E962F270025A206 /* FWRootRunner.m in Sources */,
 				E531F64D0E96D4F70025A206 /* FWConfigHandler.mm in Sources */,
+				E531F6630E978A360025A206 /* FWPortListValidator.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
