@@ -27,6 +27,9 @@
 
 #import "FWPortListValidator.h"
 
+#import "DebugFU.h"
+
+#include <cctype>
 #include <string>
 
 
@@ -38,20 +41,86 @@
 	{
 		InitialState = 0,
 		NumberState = 1,
-		GotSpeparatorState = 2,
-		GotSpaceState = 3,
-		StartRangeState = 4
-	};
-	
+		GotSpaceState = 2,
+		GotRangeState = 3,
+		SecondNumberState = 4
+	}
+	state = InitialState;
 	std::string portList([pPortList UTF8String]);
-	
 	std::string::iterator iter;
+	
 	for(iter = portList.begin(); iter != portList.end(); ++iter)
 	{
-		// Filter everything which is not a number
-		if(*iter < '0' || *iter > '9')
-			portList.erase(iter--);
+		if(state == InitialState)
+		{
+			if(isdigit(*iter))
+				state = NumberState;
+			
+			else
+				portList.erase(iter--);
+			
+		}
+		else if(state == NumberState)
+		{
+			if(!isdigit(*iter))
+			{
+				if(*iter == '-')
+					state = GotRangeState;
+				
+				else
+				{
+					*iter = ',';
+					state = GotSpaceState;
+				}
+			}
+		}
+		else if(state == GotSpaceState)
+		{
+			if(isdigit(*iter))
+				state = NumberState;
+			
+			else
+			{
+				if(*iter == '-')
+				{
+					--iter;
+					portList.erase(iter);
+					state = GotRangeState;
+				}
+				else
+					portList.erase(iter--);
+				
+			}
+		}
+		else if(state == GotRangeState)
+		{
+			if(isdigit(*iter))
+				state = SecondNumberState;
+			
+			else
+				portList.erase(iter--);
+			
+		}
+		else if(state == SecondNumberState)
+		{
+			if(!isdigit(*iter))
+			{
+				*iter = ',';
+				state = GotSpaceState;
+			}
+		}
+		else
+		{
+			FULog(@"Invalid parse state: %d", state);
+			return nil;
+		}
 	}
+	
+	// If the last char is not a digit, remove it.
+	std::string::size_type len = portList.size();
+	
+	if(len > 0 && !isdigit(portList[len-1]))
+		portList.erase(len-1, 1);
 	
 	return [NSString stringWithUTF8String:portList.c_str()];
 }
