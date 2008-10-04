@@ -7,94 +7,129 @@
 
 	<title>ipfwPane</title>
 	<style type="text/css" media="screen">
-	 body {
-	   font-family: "Helvetica", Verdana, Arial, sans-serif;
-	   background-color: #ddd;
-	   font-size: 12pt;
-/*     background-position: bottom right;
-     background-image: url('../ipfwPanePref.png');
-     background-repeat: no-repeat;
-*/	 }
-	 h1, h2, h3 {
-	   font-weight: normal;
-	   font-family: "Helvetica Neue", Arial, sans-serif;
-	   margin: 0;
-	 }
-	 h1 {
-	   font-size: 2.5em;
-	 }
-	 h2 {
-	   margin-top: 1em;
-	   font-size: 2em;
-/*     border-bottom: 3px solid #9df;*/
-	 }
-	 div#subtitle {
-	   margin-bottom: 1.75em;
-	   font-size: 1.3em;
-	   color: #666;
-/*     border-bottom: 3px solid #9df;*/
-	 }
-	 div#box {
-	   border: 3px solid #aaa;
-	   padding: 30px;
-	   margin: 3em auto 1em auto;
-	   background-color: white;
-	   width: 50em;
-	 }
-	 div#footer {
-	   font-size: 0.8em;
-	   color: #888;
-	   text-align: center;
-	   margin-bottom: 3em;
-	 }
-	 div#footer a {
-	   color: #888;
-	   text-decoration: underline;
-	 }
-	 div#footer a:hover {
-	   color: #888;
-	   text-decoration: none;
-	 }
-	 div#downloadBox {
-	   position: relative;
-	   margin: 0;
-     right: -5.5em;
-     margin-left: -5.5em;
-	   top: 0.5em;
-	   border: 3px solid #2a3;
-	   color: #192;
-	   background-color: #6f7;
-	   width: 15em;
-	   text-align: center;
-	   padding: 0.75em;
-	   float: right;
-	   font-size: 0.8em;
-	 }
-	 div#downloadBox a {
-	   color: #173;
-	   font-size: 1.5em;
-	 }
-	 div.screenshot {
-	   text-align: center;
-	   color: #666;
-	 }
-	 .warning {
-	   background-color: #fc6;
-	   padding: 0.5em;
-	   border: 3px solid #FF8000;
-	 }
-	 .highlight {
-	   background-color: #ffb;
-	   padding: 0.7em;
-	   margin: -0.3em -0.7em;
-	 }
-	 img#logo {
-	   float: left;
-	   margin-right: 1em;
-	   width: 70px;
-	   height: 70px;
-/*     border: 1px solid red;*/
-	 }
+    body {
+      font-family: "Helvetica", Verdana, Arial, sans-serif;
+      background-color: #ddd;
+      font-size: 12pt;
+      /* background-position: bottom right;
+      background-image: url('../ipfwPanePref.png');
+      background-repeat: no-repeat; */
+    }
+    p, div {
+      padding: 0;
+      margin: 0;
+    }
+    h1, h2, h3 {
+      font-weight: normal;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    div#subtitle {
+      margin-bottom: 1.75em;
+      font-size: 1.3em;
+      color: #666;
+      /* border-bottom: 3px solid #9df; */
+    }
+    h2 {
+      margin-top: 1em;
+      margin-bottom: 0.7em;
+      font-size: 2em;
+      /* border-bottom: 3px solid #9df; */
+    }
+    h3 {
+      font-size: 1.4em;
+    }
+    div#box {
+      border: 3px solid #aaa;
+      padding: 30px;
+      margin: 3em auto 1em auto;
+      background-color: white;
+      width: 50em;
+    }
+    div#footer {
+      font-size: 0.8em;
+      color: #888;
+      text-align: center;
+      margin-bottom: 3em;
+    }
+    div#footer a {
+      color: #888;
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    div#footer a:hover {
+      color: #888;
+      text-decoration: none;
+    }
+    div#downloadBox {
+      position: relative;
+      margin: 0;
+      right: -5.5em;
+      margin-left: -5.5em;
+      top: 0.5em;
+      border: 3px solid #2a3;
+      color: #192;
+      background-color: #6f7;
+      width: 18em;
+      text-align: center;
+      padding: 0.75em 0.5em;
+      float: right;
+      font-size: 0.8em;
+    }
+    div#downloadBox a {
+      color: #173;
+      background-color: transparent;
+      font-size: 1.5em;
+    }
+    div.screenshot {
+      text-align: center;
+      color: #666;
+    }
+    .warning {
+      background-color: #fc6;
+      padding: 0.5em;
+      border: 3px solid #FF8000;
+    }
+    p {
+      margin: 0.8em 0;
+    }
+    .highlight {
+      background-color: #ffb;
+      padding: 0.8em;
+      margin:  -0.4em -0.8em;
+      /* margin: -0.3em -0.7em; */
+    }
+    .highlight p {
+      margin-bottom: 0;
+    }
+    div.newsitem {
+      margin: 0.8em 0 1.2em 0;
+    }
+    img#logo {
+      float: left;
+      margin-right: 1em;
+      width: 70px;
+      height: 70px;
+      /* border: 1px solid red; */
+    }
+    .date {
+      color: #888;
+/*      font-size: 0.9em;*/
+    }
+    a {
+      color: #19C;
+      text-decoration: underline;
+    }
+    a:hover {
+      color: white;
+      background-color: #09C;
+      padding: 0.1em;
+      margin: -0.1em;
+      text-decoration: none;
+    }
 	</style>
 </head>
 
@@ -105,8 +140,8 @@
 <div id="box">
 
 
-<!-- <div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
-(Leopard only Universal Binary)</div> -->
+<div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
+v0.2 &middot; Leopard only &middot; Universal Binary</div>
 
 
 <div id="heading">
@@ -115,9 +150,13 @@
 <div id="subtitle">&hellip; the missing Preference Pane of Mac OS X 10.5</div>
 </div>
 
-<p class="highlight">
+<!-- <p class="highlight">
 Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfwpane/">follow the development</a> on GitHub, so stay tuned. (The icon isn't final, too.)
 </p>
+
+<p class="highlight">
+<span class="date">04 Oct 2008</span> Wanna try a beta build? Try <a href="ipfwPane-b3689.dmg">this one</a> and give <a href="mailto:torsten.becke%72%40%67mail.com?subject=ipfwPane%20Feedback">feedback</a>!
+</p> -->
 
 <p>ipfw Preference Pane (short ipfwPane) lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8) firewall</a> again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
 </p>
@@ -140,9 +179,41 @@ This gives you again a more fine-grained control over which ports you want to al
   <li>&hellip;</li>
 </ul>
 
+-->
+
 <h2>News</h2>
 
--->
+<div class="highlight">
+<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
+
+<p>Since today the first usable version of ipfwPane is available.</p>
+
+<p><a href="">Link</a></p>
+
+</div>
+
+<!-- <div class="newsitem">
+<h3>Blah, Blah, Blub <span class="date">01 Oct 2008</span></h3>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</div> -->
+
+
+<!-- <div class="newsitem">
+<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</div>
+
+<div class="newsitem">
+<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</div> -->
+
 
 
 
