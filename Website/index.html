@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>ipfwPane</title>
+	<title>ipfwPane &mdash; Leopards missing firewall</title>
 	<style type="text/css" media="screen">
     body {
       font-family: "Helvetica", Verdana, Arial, sans-serif;
@@ -67,7 +67,7 @@
     div#downloadBox {
       position: relative;
       margin: 0;
-      right: -5.5em;
+      right: -6em;
       margin-left: -5.5em;
       top: 0.5em;
       border: 3px solid #2a3;
@@ -134,13 +134,12 @@
 </head>
 
 
-
 <body>
 
 <div id="box">
 
 
-<div id="downloadBox"><a href="ipfwPane.dmg">Download ipfwPane</a><br/>
+<div id="downloadBox"><a href="ipfwPane-v0.2.dmg">Download ipfwPane</a><br/>
 v0.2 &middot; Leopard only &middot; Universal Binary</div>
 
 
@@ -150,15 +149,7 @@ v0.2 &middot; Leopard only &middot; Universal Binary</div>
 <div id="subtitle">&hellip; the missing Preference Pane of Mac OS X 10.5</div>
 </div>
 
-<!-- <p class="highlight">
-Please note that ipfwPane is currently still in development. There is no fully working version yet, but there will be one in the next weeks.  You can <a href="http://github.com/torsten/ipfwpane/">follow the development</a> on GitHub, so stay tuned. (The icon isn't final, too.)
-</p>
-
-<p class="highlight">
-<span class="date">04 Oct 2008</span> Wanna try a beta build? Try <a href="ipfwPane-b3689.dmg">this one</a> and give <a href="mailto:torsten.becke%72%40%67mail.com?subject=ipfwPane%20Feedback">feedback</a>!
-</p> -->
-
-<p>ipfw Preference Pane (short ipfwPane) lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8) firewall</a> again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
+<p>ipfw Preference Pane (short ipfwPane) lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8)</a> firewall again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
 </p>
 
 <p>
@@ -169,52 +160,20 @@ There is just no longer an UI available for it, as it was in 10.4.  This is the 
 This gives you again a more fine-grained control over which ports you want to allow and which you want to block.  And other than with Leopards application firewall you can now also block built-in applications and services if you want to.
 </p>
 
-<!--
-
-<h2>Features</h2>
-<ul>
-  <li>Open Source</li>
-  <li>Smart Ports</li>
-  <li>Reboot Proof®</li>
-  <li>&hellip;</li>
-</ul>
-
--->
 
 <h2>News</h2>
 
 <div class="highlight">
-<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
+<h3>Initial release now available for download <span class="date">05 Oct 2008</span></h3>
 
-<p>Since today the first usable version of ipfwPane is available.</p>
+<p>I am happy to announce the first public release of ipfwPane.  The features include everything you could do with Tigers old firewall.  You can create, edit and delete rules and modify UDP and TCP port ranges in a single rule.</p>
 
-<p><a href="">Link</a></p>
-
-</div>
-
-<!-- <div class="newsitem">
-<h3>Blah, Blah, Blub <span class="date">01 Oct 2008</span></h3>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-</div> -->
+<p>There is also a list of default ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> of Apple.  But as this is the first public version not all predefined rules might work.  So if you find a bug, please <a href="mailto:torsten.becke%72%40%67mail.com">tell me</a> about it.</p>
 
 
-<!-- <div class="newsitem">
-<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>ipfwPane v0.2 is available for download <a href="ipfwPane-v0.2.dmg">here</a>.</p>
 
 </div>
-
-<div class="newsitem">
-<h3>First Release Available <span class="date">04 Oct 2008</span></h3>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-</div> -->
-
-
 
 
 <h2>Screenshots</h2>
@@ -228,7 +187,7 @@ The current development version looks like this.
 <h2>Miscellaneous</h2>
 
 <p>
-ipfwPane is open source (new BSD license).  So if you like you can <a href="http://github.com/torsten/ipfwpane/">check out the source</a> on GitHub and extend it.
+ipfwPane is open source (new BSD license).  So if you like you can <a href="http://github.com/torsten/ipfwpane/">clone the source</a> from GitHub and play around with it.
 </p>
 
 </div>
