@@ -211,15 +211,23 @@
 
 - (void)patchVersionStrings
 {
-	NSString *longVersion =
-			[[self bundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-	
 	NSString *shortVersion =
 	[[self bundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 	
-	// Don't forget the retain ;)
-	NSString *toolTip =
-			[[@"Revision " stringByAppendingString:longVersion] retain];
+	NSString *longVersion =
+			[[self bundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	
+	NSString *gitRevision =
+			[[self bundle] objectForInfoDictionaryKey:@"FWGitRevision"];
+	
+	NSMutableString *toolTip = [NSMutableString stringWithString:@"Version "];
+	[toolTip retain];
+	[toolTip appendString:longVersion];
+	[toolTip appendString:@", Revision "];
+	[toolTip appendString:gitRevision];
+#ifdef DEBUG
+	[toolTip appendString:@", Debug enabled"];
+#endif
 	
 	[oCreditsField addToolTipRect:[oCreditsField bounds]
 			owner:toolTip userData:NULL];

@@ -6,23 +6,15 @@ most_recent_tag, tag_rev_count = `git tag`.
   map {|tag| [tag, `git rev-list #{tag}`.count("\n")]}.
   max {|a, b| a[1] <=> b[1]}
 
-rev_list = `git rev-list HEAD`
-head_rev_num = rev_list.count "\n"
+
+rev_list      = `git rev-list HEAD`
+head_rev_num  = rev_list.count "\n"
+long_hash     = rev_list[/^.+$/]
 
 
-# If the tag is the head, dont append a number
-if (head_rev_num - tag_rev_count) == 0
-  short_version = most_recent_tag
-  
-# else append the number of revisions since the tagged version
-else
-  short_version = most_recent_tag + ".#{head_rev_num - tag_rev_count}"
-  
-end
-
-
-long_hash = rev_list[/^.+$/]
-long_version = `git rev-parse --short=5 #{long_hash}`.chop
+short_version = most_recent_tag
+long_version  = most_recent_tag + ".#{head_rev_num - tag_rev_count}"
+git_revision  = `git rev-parse --short=4 #{long_hash}`.chop
 
 
 puts %+<?xml version="1.0" encoding="UTF-8"?>
@@ -49,6 +41,8 @@ puts %+<?xml version="1.0" encoding="UTF-8"?>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>#{long_version}</string>
+	<key>FWGitRevision</key>
+	<string>#{git_revision}</string>
 	<key>NSMainNibFile</key>
 	<string>ipfwPanePref</string>
 	<key>NSPrefPaneIconFile</key>
