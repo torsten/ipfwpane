@@ -19,52 +19,36 @@
 		<key>Title</key>
 		<string>ShakesPeer</string>
 	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Apple Remote Desktop</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Printer Sharing</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>ICQ File Transfer</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Windows File Sharing (SMB)</string>
-	</dict>
 -->
 	<dict>
-		<key>TCPPorts</key>
-		<string>80</string>
 		<key>Title</key>
 		<string>Web Server (HTTP)</string>
+		<key>TCPPorts</key>
+		<string>80</string>
 	</dict>
 	<dict>
-		<key>TCPPorts</key>
-		<string>22</string>
 		<key>Title</key>
 		<string>Remote Login (SSH)</string>
+		<key>TCPPorts</key>
+		<string>22</string>
 	</dict>
 	<dict>
 		<key>Title</key>
 		<string>iChat AV</string>
 		<key>TCPPorts</key>
-		<string>5298</string>
+		<string>5298,5297</string>
 		<key>UDPPorts</key>
-		<string>5297,5298,5678</string>
+		<string>5298,5297,5678,5060,16384-16403</string>
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>iTunes Music Sharing</string>
+		<string>iTunes Music Sharing (DAAP)</string>
 		<key>TCPPorts</key>
 		<string>3689</string>
 	</dict>
 	<dict>
 		<key>Title</key>
-		<string>Apple File Sharing (AFP)</string>
+		<string>AppleShare (AFP)</string>
 		<key>TCPPorts</key>
 		<string>548</string>
 	</dict>
@@ -77,8 +61,32 @@
 	<dict>
 		<key>Title</key>
 		<string>Bonjour (mDNS)</string>
+		<key>TCPPorts</key>
+		<string>5354</string>
 		<key>UDPPorts</key>
 		<string>5353</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Windows Sharing</string>
+		<key>TCPPorts</key>
+		<string>139</string>
+		<key>UDPPorts</key>
+		<string>138</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Printer Sharing</string>
+		<key>TCPPorts</key>
+		<string>515,631</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Apple Remote Desktop</string>
+		<key>TCPPorts</key>
+		<string>3283,5900,5988</string>
+		<key>UDPPorts</key>
+		<string>3283</string>
 	</dict>
 </array>
 </plist>
