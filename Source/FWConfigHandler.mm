@@ -275,7 +275,7 @@
 		newRule.tcpPorts = strings[1];
 		newRule.udpPorts = strings[2];
 		newRule.enabled = [strings[3] boolValue];
-		newRule.stillDefault = [strings[3] boolValue];
+		newRule.stillDefault = [strings[4] boolValue];
 		
 		[mModel addRule:newRule];
 	}

@@ -256,19 +256,27 @@ enum FWSheetControllerReturnCode
 
 - (void)editRule:(FWRule*)pRule andCallback:(id)pCallback
 {
-	[oPopUpButton selectItemWithTitle:pRule.description];
+	[oPopUpButton selectItem:nil];
+	
+	if(pRule.stillDefault)
+	{
+		[oPopUpButton selectItemWithTitle:pRule.description];
+		mDirtyFields = NO;
+	}
 
 	if([oPopUpButton selectedItem] == nil)
+	{
 		[oPopUpButton selectItem:[oPopUpButton lastItem]];
+		mDirtyFields = YES;
+	}
 	
-	[oAddSheet makeFirstResponder:oTCPPortsTextField];
+	[oAddSheet makeFirstResponder:oCanelButton];
 	
 	oDescriptionTextField.stringValue = pRule.description;
 	oTCPPortsTextField.stringValue = pRule.tcpPorts;
 	oUDPPortsTextField.stringValue = pRule.udpPorts;
 	
 	mRuleInEdit = pRule;
-	mDirtyFields = YES;
 	
 	[NSApp beginSheet:oAddSheet
 			modalForWindow:[NSApp mainWindow]

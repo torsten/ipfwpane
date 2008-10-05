@@ -57,6 +57,8 @@
 	IBOutlet NSTextField *oUDPPortsTextField;
 	IBOutlet NSTextField *oDescriptionTextField;
 	
+	IBOutlet NSButton *oCanelButton;
+	
 	IBOutlet NSPreferencePane *oPrefPane;
 	
 	FWRule *mRuleInEdit;
