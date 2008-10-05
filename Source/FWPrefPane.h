@@ -68,5 +68,6 @@
 - (void)enableTable:(BOOL)enabled;
 - (void)enableModifyButtons:(BOOL)enabled;
 - (void)setUpIcon;
+- (void)patchVersionStrings;
 
 @end

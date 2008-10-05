@@ -67,14 +67,7 @@
 	[oAuthorizationView setDelegate:self];
 	
 	[self setUpIcon];
-	
-	// Replace the placeholder ${REV} by the real version from the Info.plist
-	[oCreditsField setStringValue:[[
-			oCreditsField stringValue]
-			stringByReplacingOccurrencesOfString:@"${REV}"
-			withString:[[self bundle]
-				objectForInfoDictionaryKey:@"CFBundleShortVersionString"]]];
-	
+	[self patchVersionStrings];
 	
 	[self enableUI:NO];
 	
@@ -174,7 +167,7 @@
 			// if a row is selected
 			if([oTableView selectedRow] != -1)
 				[self setModifyButtonsAreEnabled:YES];
-		
+			
 			else
 				[self setModifyButtonsAreEnabled:NO];
 		}
@@ -214,6 +207,28 @@
 	
 	
 	[oIconView setImage:img];
+}
+
+- (void)patchVersionStrings
+{
+	NSString *longVersion =
+			[[self bundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	
+	NSString *shortVersion =
+	[[self bundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+	
+	// Don't forget the retain ;)
+	NSString *toolTip =
+			[[@"Revision " stringByAppendingString:longVersion] retain];
+	
+	[oCreditsField addToolTipRect:[oCreditsField bounds]
+			owner:toolTip userData:NULL];
+	
+	NSString *newCreditString =
+	[[oCreditsField stringValue] stringByReplacingOccurrencesOfString:@"${REV}"
+			withString:shortVersion];
+	
+	[oCreditsField setStringValue:newCreditString];
 }
 
 @end
