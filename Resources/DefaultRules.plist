@@ -88,5 +88,13 @@
 		<key>UDPPorts</key>
 		<string>3283</string>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Growl Notifications</string>
+		<key>TCPPorts</key>
+		<string>23052</string>
+		<key>UDPPorts</key>
+		<string>9887</string>
+	</dict>
 </array>
 </plist>
