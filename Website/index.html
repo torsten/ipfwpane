@@ -12,6 +12,16 @@
 	<script src="js/prototype.js" type="text/javascript"></script>
   <script src="js/scriptaculous.js" type="text/javascript"></script>
   
+  <script type="text/javascript" charset="utf-8">
+    function FWToggleLicense()
+    {
+      if($('license').visible())
+        Effect.BlindUp('license'); 
+      else
+        Effect.BlindDown('license'); 
+    }
+  </script>
+  
 	<style type="text/css" media="screen">
     body {
       font-family: "Helvetica", Verdana, Arial, sans-serif;
@@ -159,15 +169,16 @@
     code.command:before {
       content: "$ ";
     }
-    pre.license {
+    pre#license {
       font-family: Monaco, monospace;
       font-size: 0.9em;
+      margin-left: 2em;
     }
 	</style>
 </head>
 
 
-<body onload="setupZoom()">
+<body onload="setupZoom(); $('license').hide();">
 
 <div id="box">
 
@@ -220,10 +231,10 @@ This gives you again a more fine-grained control over which ports you want to al
 <h2>License</h2>
 
 <p>
-This application is open-source.  You can use it under the terms of the <a href="http://github.com/torsten/ipfwpane/tree/master/BSD%20License.txt">new BSD license</a>.
+This application is open-source.  You can use it under the terms of the <a href="#license" onclick="FWToggleLicense(); return false;">new BSD license</a>.
 </p>
 
-<pre class="license">
+<pre id="license">
 ipfwPane is distributed under the following terms:
 
 Copyright (C) 2008 Torsten Becker. All rights reserved.
