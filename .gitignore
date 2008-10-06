@@ -3,3 +3,4 @@ ipfwPane.xcodeproj/torsten.*
 .DS_Store
 Resources/Info.plist
 Source/FWLaunchDaemon.h
+Website/js/*

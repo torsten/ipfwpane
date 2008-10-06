@@ -7,9 +7,11 @@
 
 	<title>ipfwPane &hellip; the missing Preference Pane of Mac OS X 10.5</title>
 	
-	<script src="fancyzoom/FancyZoom.js" type="text/javascript"></script>
-  <script src="fancyzoom/FancyZoomHTML.js" type="text/javascript"></script>
-	
+	<script src="js/FancyZoom.js" type="text/javascript"></script>
+  <script src="js/FancyZoomHTML.js" type="text/javascript"></script>
+	<script src="js/prototype.js" type="text/javascript"></script>
+  <script src="js/scriptaculous.js" type="text/javascript"></script>
+  
 	<style type="text/css" media="screen">
     body {
       font-family: "Helvetica", Verdana, Arial, sans-serif;
@@ -147,11 +149,19 @@
       color: #888;
       font-weight: bold;
     }
-    code {
+    code.command {
       font-size: 1em;
       background-color: #222;
       color: #fff;
       padding: 0.2em;
+      font-family: Monaco, monospace;
+    }
+    code.command:before {
+      content: "$ ";
+    }
+    pre.license {
+      font-family: Monaco, monospace;
+      font-size: 0.9em;
     }
 	</style>
 </head>
@@ -191,7 +201,7 @@ This gives you again a more fine-grained control over which ports you want to al
 
 <p>I am happy to announce the first public release of ipfwPane.  The features include everything you could do with Tigers old firewall.  You can create, edit and delete rules and modify UDP and TCP port ranges in a single rule.</p>
 
-<p>There is also a list of predefined ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> from Apple.  But as this is the first public version some predefined rules might work.  So if you find a bug, please <a href="#contact">tell me</a> about it.</p>
+<p>There is also a list of predefined ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> from Apple.  But as this is the first public version some predefined rules might work.  So if you find a bug, please <a href="#author">tell me</a> about it.</p>
 
 
 <p>ipfwPane v0.2 is available for download <a href="ipfwPane-v0.2.dmg">here</a>.</p>
@@ -213,24 +223,51 @@ This gives you again a more fine-grained control over which ports you want to al
 This application is open-source.  You can use it under the terms of the <a href="http://github.com/torsten/ipfwpane/tree/master/BSD%20License.txt">new BSD license</a>.
 </p>
 
+<pre class="license">
+ipfwPane is distributed under the following terms:
+
+Copyright (C) 2008 Torsten Becker. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGE.
+</pre>
+
 
 <h2>Source</h2>
 
 <p>
-The source is hosted on <a href="http://github.com/torsten/ipfwpane/tree/master">GitHub</a>.  To get a recent copy, you just need <a href="http://git.or.cz/">Git</a> and type this in a command prompt:
+The source code is hosted on <a href="http://github.com/torsten/ipfwpane/tree/master">GitHub</a>.  To get a recent copy, you just need <a href="http://git.or.cz/">Git</a> and type this in a command prompt:
 </p>
 
-<code>
-$ git clone git://github.com/torsten/ipfwpane.git
+<code class="command">
+git clone git://github.com/torsten/ipfwpane.git
 </code>
 
 <p>If you dont have Git, you can also download a <a href="http://github.com/torsten/ipfwpane/tarball/master">tarball</a> via GitHub.</p>
 
 
-<h2>Author</h2>
+<h2 id="author">Author</h2>
 
 <p>
-This wonderful application is bought to you by Torsten Becker.  If you have some feedback you are very welcome to drop me a line at <em>torsten d&#0111;t becker &#0097;t gm&#0097;il d&#0111;t com</em>.
+This wonderful application is made for you by Torsten Becker.  If you have some feedback you are very welcome to drop me a line at <em>torsten d&#0111;t becker &#0097;t gm&#0097;il d&#0111;t com</em>.
 </p>
 
 
