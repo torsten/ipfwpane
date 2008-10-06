@@ -20,6 +20,11 @@
       else
         Effect.BlindDown('license'); 
     }
+    function FWFlashEmail()
+    {
+      new Effect.Highlight($('c0ntakt'), {startcolor: '#ffff99',
+          endcolor: '#ffffff', delay: 0.3, duration: 2.0});
+    }
   </script>
   
 	<style type="text/css" media="screen">
@@ -212,7 +217,7 @@ This gives you again a more fine-grained control over which ports you want to al
 
 <p>I am happy to announce the first public release of ipfwPane.  The features include everything you could do with Tigers old firewall.  You can create, edit and delete rules and modify UDP and TCP port ranges in a single rule.</p>
 
-<p>There is also a list of predefined ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> from Apple.  But as this is the first public version some predefined rules might work.  So if you find a bug, please <a href="#author">tell me</a> about it.</p>
+<p>There is also a list of predefined ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> from Apple.  But as this is the first public version some predefined rules might work.  So if you find a bug, please <a href="#author" onclick="FWFlashEmail();">tell me</a> about it.</p>
 
 
 <p>ipfwPane v0.2 is available for download <a href="ipfwPane-v0.2.dmg">here</a>.</p>
@@ -278,7 +283,7 @@ git clone git://github.com/torsten/ipfwpane.git
 <h2 id="author">Author</h2>
 
 <p>
-This wonderful application is made for you by Torsten Becker.  If you have some feedback you are very welcome to drop me a line at <em>torsten d&#0111;t becker &#0097;t gm&#0097;il d&#0111;t com</em>.
+This wonderful application is made for you by Torsten Becker.  If you have some feedback you are very welcome to drop me a line at <em id="c0ntakt">torsten d&#0111;t becker &#0097;t gm&#0097;il d&#0111;t com</em>.
 </p>
 
 
