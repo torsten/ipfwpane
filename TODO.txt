@@ -11,3 +11,5 @@
   * FWAdvancedSheet to enter direct ipfw rules
 
   * Improve Info.plist generation and overwriting stuff
+
+  * Atomic rule swap

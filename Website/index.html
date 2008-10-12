@@ -25,6 +25,13 @@
       new Effect.Highlight($('c0ntakt'), {startcolor: '#ffffbb',
           endcolor: '#ffffff', delay: 0.3, duration: 2.0});
     }
+    function FWTrackDownload(version)
+    {
+      // Get the 'default argument' for version
+      version = typeof(version) != 'undefined' ? version : 'XX';
+      
+      pageTracker._trackPageview('/ipfwpane/ipfwPane-' + version + '.dmg');
+    }
   </script>
   
   <style type="text/css" media="screen">
@@ -32,6 +39,7 @@
       font-family: "Helvetica", Verdana, Arial, sans-serif;
       background-color: #ddd;
       font-size: 12pt;
+      color: black;
     }
     p, div {
       padding: 0;
@@ -49,6 +57,14 @@
       margin-bottom: 1.75em;
       font-size: 1.3em;
       color: #666;
+    }
+    div#heading a {
+      text-decoration: none;
+      background-color: transparent;
+      color: black;
+    }
+    div#heading a:hover {
+      text-decoration: underline;
     }
     h2 {
       margin-top: 1em;
@@ -192,15 +208,24 @@
 <div id="box">
 
 
-<div id="downloadBox"><a href="ipfwPane-v0.2.dmg">Download ipfwPane</a><br/>
+<div id="downloadBox"><a href="ipfwPane-v0.2.dmg" onclick="FWTrackDownload('v0.2');">Download ipfwPane</a><br/>
 v0.2 &bull; Leopard only &bull; Universal Binary</div>
 
 
 <div id="heading">
+
+<a href="http://pixelshed.net/ipfwpane/">
 <img id="logo" alt="ipfwPane icon" src="ipfwPanePref.png"/>
-<h1 id="titleHeading">ipfwPane</h1>
+<!-- <img id="logo" alt="ipfwPane icon" src="cropd-posterizd-scald.png"/> -->
+</a>
+
+<h1><a href="http://pixelshed.net/ipfwpane/">
+ipfwPane</a></h1>
+
 <div id="subtitle">&hellip; the missing Preference Pane of Mac OS X 10.5</div>
+
 </div>
+
 
 <p>ipfw Preference Pane (short ipfwPane) lets you control the <a href="http://developer.apple.com/documentation/Darwin/Reference/ManPages/man8/ipfw.8.html">ipfw(8)</a> firewall again.  With Leopard Apple did introduce the new application firewall.  The former packet based firewall (which Mac OS X inherited from FreeBSD) does however still exist.
 </p>
@@ -224,7 +249,7 @@ This gives you again a more fine-grained control over which ports you want to al
 <p>There is also a list of predefined ports built into to app.  This list is based on this <a href="http://support.apple.com/kb/TS1629?viewlocale=en_US">article</a> from Apple.  But as this is the first public version some predefined rules might work.  So if you find a bug, please <a href="#author" onclick="FWFlashEmail();">tell me</a> about it.</p>
 
 
-<p>ipfwPane v0.2 is available for download <a href="ipfwPane-v0.2.dmg">here</a>.</p>
+<p>ipfwPane v0.2 is available for download <a href="ipfwPane-v0.2.dmg" onclick="FWTrackDownload('v0.2-news');">here</a>.</p>
 
 </div>
 
@@ -237,10 +262,21 @@ This gives you again a more fine-grained control over which ports you want to al
 </div>
 
 
+<h2>Installation</h2>
+
+<p>
+After you downloaded the <a href="#downloadBox">disk image</a>, mount it.  In it you will find a file called "ipfwPane.prefPane".  Just double click on this file and the Preference Pane will be installed.
+</p>
+
+<p>
+To use ipfwPane, go into "System&nbsp;Preferences" (reachable from the Apple menu) and then go into the "ipfw&nbsp;Firewall" category.
+</p>
+
+
 <h2>License</h2>
 
 <p>
-This application is open-source.  You can use it under the terms of the <a href="#license" onclick="FWToggleLicense(); return false;">new BSD license</a>.
+This application is open-source.  You can use it under the terms of the <a href="#license" onclick="FWToggleLicense(); return false;">2-clause BSD license&hellip;</a>
 </p>
 
 <pre id="license">
