@@ -9,12 +9,11 @@ most_recent_tag, tag_rev_count = `git tag`.
 
 rev_list      = `git rev-list HEAD`
 head_rev_num  = rev_list.count "\n"
-long_hash     = rev_list[/^.+$/]
 
 
 short_version = most_recent_tag
 long_version  = most_recent_tag + ".#{head_rev_num - tag_rev_count}"
-git_revision  = `git rev-parse --short=4 #{long_hash}`.chop
+git_revision  = `git rev-parse --short=4 HEAD`.chop
 
 
 puts %+<?xml version="1.0" encoding="UTF-8"?>
